@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('../fonts/HelveticaNeue-Medium.otf') format('opentype'), 
+         url('../fonts/HelveticaNeueMedium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    --bg-color-primary : #e7e7e7;
+    --bg-color-lightv1 : #FCFDFF;
+    --bg-color-dimv1 : #f1f1f1;
+    --bg-color-containerv1 : #ffffff;
+
+    --font-color-primary: #e7e7e7;
+    --font-color-secondary: rgba(255, 255, 255, 0.5);
+    --font-color-icon-primary: rgba(255, 255, 255, 0.5);
+
+    --primary-font-family : 'Poppins', sans-serif;
+
+    --fs-default : 1.125rem;
+    --fs-text : 0.85rem;
+    --fs-heading : 1.300rem;
+    --fs-extra-small : 0.70rem;
+}
+/* Global font class */
+.ff-primary-light {
+    font-family: var(--primary-font-family);
+    font-weight: 300;
+}
+.ff-primary-regular {
+    font-family: var(--primary-font-family);
+    font-weight: 400;
+}
+.ff-primary-medium {
+    font-family: var(--primary-font-family);
+    font-weight: 500;
+}
+
+.fs-default {
+    font-size: var(--fs-default);
+}
+
+.fs-text {
+    font-size: var(--fs-text);
+}
+
+.fs-heading {
+    font-size: var(--fs-heading);
+}
+.fs-extra-small {
+    font-size: var(--fs-extra-small);
+}
+.ls-spacing-normal {
+    letter-spacing: normal;
+}
+.ls-spacing-text {
+    letter-spacing: normal;
+}
+.ls-spacing-heading {
+    letter-spacing: 0.25pt;
+}
+/* Old style */
+.attach_container {
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--bg-primary-color);
+    background-color: var(--bg-primary-color);
+    border-radius: 3px;
+}
+
+.attchPreview {
+    object-fit: contain;
+    border-radius: 3px;
+}
+
+.clear_input_images {
+    cursor: pointer;
+}
+
+.post_att_container {
+    margin-right: 5px;
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 6px;
+}
+
+.post_att {
+    width: 300px;
+    height: 300px;
+}
+
+.post_att img {
+    object-fit: contain;
+    width: 300px;
+    height: 300px;
+}
+
+.profile-icon {
+    margin: 1rem;
+}
+
+.profile-icon>i {
+    margin-right: 9px;
+    font-size: 1.1rem;
+}
+
+.profile-icon>label {
+    font-size: 1.1rem;
+}
+
+.vm-profile-image {
+    width: 40%;
+    border-radius: 100%;
+}
+
+.post-prof-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.post-button-container {
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+
+}
+
+.post-section-container {
+    /* overflow: scroll; */
+}
+
+.pst-con-like:hover {
+    background-color: rgb(230, 230, 230);
+    transition: all ease-in-out 0.2s;
+    -webkit-transition: all ease-in-out 0.2s;
+    -moz-transition: all ease-in-out 0.2s;
+    -ms-transition: all ease-in-out 0.2s;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+}
+
+.pst-con-comment:hover {
+    background-color: rgb(78, 115, 226);
+    transition: all ease-in-out 0.2s;
+    -webkit-transition: all ease-in-out 0.2s;
+    -moz-transition: all ease-in-out 0.2s;
+    -ms-transition: all ease-in-out 0.2s;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+}
+
+.pst-con-like {
+    color: var(--font-color-primary);
+    background-color: #dfdfdf;
+    font-size: 0.9rem;
+}
+
+/* #40ac16
+    rgb(255, 255, 255)
+     */
+.pst-con-comment {
+    color: var(--font-color-primary);
+    background-color: rgb(65, 105, 225);
+    font-size: 0.9rem;
+}
+
+.text-posts {
+    white-space: pre-line;
+    font-size: 0.97rem;
+}
+
+.user_image img {
+    width: 39px;
+    height: 39px;
+    border-radius: 100%;
+}
+
+.user_post_header {
+    margin-bottom: 0.55rem;
+}
+
+.user_fullname {
+    font-size: 15px;
+}
+
+.user_post_reaction {
+    font-size: 12px;
+}
+.user_post_reaction>div {
+    padding: 10px;
+}
+.user_post_reaction>div:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.user_post_body,
+.user_post_comments {
+    color: var(--font-color-primary);
+    font-size: 14px;
+}
+
+.post_date_label {
+    font-size: 11.3px;
+}
+
+.u_reaction_control {
+    position: relative;
+}
+
+.u_reaction_container {
+    position: absolute;
+    width: 160px;
+    display: none;
+    margin-top: -4px;
+}
+
+.ubackg_reaction {
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
+    padding: 0.4rem;
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.ubackg_reaction>span>svg:hover {
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+    -webkit-transition: all ease-in-out 0.3s;
+    -ms-transition: all ease-in-out 0.3s;
+    transform: scale(1.1);
+}
+
+.hvr_reaction {
+    cursor: pointer;
+}
+
+.user_post_container {
+    background-color: rgba(214, 167, 255, 0.05);
+    /* padding: 2rem 1.5rem 2rem 1.5rem; */
+    border-radius: 4px;
+    border-color: none;
+}
+
+.user_post_control {
+    color: var(--font-color-primary);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.user_post_body {
+    cursor: pointer;
+
+    white-space: pre;
+    white-space: pre-line;
+    word-break: break-all;
+}
+.user_post_body:hover {
+    background-color: #f8f8f8;
+}
+
+.cus-disabled {
+    cursor: not-allowed;
+    color: #a5a5a5;
+}
+
+.post_attach_container {
+    margin-right: 5px;
+    border: 1px solid rgb(202, 202, 202);
+    /* border-radius: 6px; */
+    padding: 3px;
+}
+
+.post_attach {
+    width: 350px;
+    /* width: 100%; */
+    height: 350px;
+    /* height: 100%; */
+}
+
+.post_attach img {
+    object-fit: contain;
+    max-width: 350px;
+    width: 100%;
+    max-height: 350px;
+    height: 100%;
+}
+
+.post_attach video {
+    object-fit: contain;
+    width: 350px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                        Default post attachment Style                       */
+/* -------------------------------------------------------------------------- */
+.divider-section {
+    border-bottom: 1px solid rgb(185, 185, 185);
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.pf-attachment-content {
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    padding: 3px;
+    background-color: rgba(182, 182, 182, 0.12);
+}
+
+.pf-attachment-content-2 {
+    width: 100%;
+    height: 400px;
+    padding: 3px;
+    background-color: rgba(182, 182, 182, 0.12);
+}
+
+.pf-attachment-content-3 {
+    width: 100%;
+    height: 400px;
+    padding: 3px;
+    background-color: rgba(182, 182, 182, 0.12);
+}
+
+.pf-attachment-content img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.pf-attachment-content video {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.pf-media-container-2 img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pf-attachment-content-2 video {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pf-media-container-3 img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pf-attachment-content-3 video {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.postViewModal-btn:hover {
+    cursor: pointer;
+}
+
+.user_post_attachements {
+    height: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Comment section style                           */
+/* -------------------------------------------------------------------------- */
+.show_comment_section {
+    cursor: pointer;
+}
+
+.spinner-colorc {
+    color: var(--font-color-primary);
+}
+
+.pvcc {
+    font-size: 0.8rem;
+}
+
+.comment-act-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+}
+
+.cab-primary {
+    color: #0d6efd;
+}
+
+.cab-default {
+    color: var(--font-color-icon-primary);
+}
+
+.pf-user-image {
+    width: 30px;
+    height: 30px;
+}
+
+.pf-user-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.vrrr {
+    /* border-left: 2px solid rgb(75, 75, 75); */
+    /* padding-left: 1rem; */
+    /* padding-right: 1rem; */
+    /* padding-top: 0.3rem; */
+    /* padding-bottom: 0.6rem; */
+    padding: 1rem;
+    /* background-color: rgb(245, 245, 245); */
+    border-radius: 5px;
+    position: relative;
+}
+.vrrr::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 58px;
+    background-color: rgba(49, 44, 87, 1);
+    border-radius: 24px;
+    left: -8px;
+    top: 21px 
+}
+
+.view-full-post:hover {
+    color: #2e2e2e;
+}
+.user_post_reaction_control span:hover {
+    color: #2e2e2e;
+}
+
+.pf-user-comment {
+    font-size: 0.8rem;
+    color: var(--font-color-primary);
+}
+
+.pf-time-count {
+    font-size: 11.3px;
+    color: var(--font-color-secondary);
+}
+
+.pf-user-name a {
+    color: var(--font-color-primary);
+}
+.pf-user-name {
+    font-size: 0.9rem;
+}
+.pf-user-name:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+.cog-comment-delete {
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         Custom post settings button                        */
+/* -------------------------------------------------------------------------- */
+.custom-post-settings {
+    background-color: transparent;
+    border: none;
+}
+.dt-custombutton:after {
+    content: none;
+}
+.dm-custom {
+    z-index: 1;
+}
+/* -------------------------------------------------------------------------- */
+/*                                Share preview                               */
+/* -------------------------------------------------------------------------- */
+.sp-not-found-icon {
+    font-size: 2.5rem;
+}
+/* -------------------------------------------------------------------------- */
+/*                                 Share modal                                */
+/* -------------------------------------------------------------------------- */
+.share_this_post {
+    cursor: pointer;
+}
+.share-profile-pic {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+}
+.share-profile-pic img {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    object-position: center;
+}
+.modal-body.share-body {
+    position: relative !important;
+    padding: 1rem !important;
+    min-height: 350px !important;
+    height: auto !important;
+}
+.post-preview-section {
+    padding-top: 1.5rem !important;
+}
+.share_txt_content {
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-line;
+}
+/* -------------------------------------------------------------------------- */
+/*                                Media queries                               */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 576px) {
+    .pf-attachment-content {
+        width: 375px;
+        height: 375px;
+    }
+
+    .pf-attachment-content-2 {
+        width: 375px;
+        height: 375px;
+    }
+
+    .pf-attachment-content-3 {
+        width: 375px;
+        height: 375px;
+    }
+}
+
+@media (min-width: 768px) {
+    .pf-attachment-content {
+        width: 425px;
+        height: 425px;
+    }
+
+    .pf-attachment-content-2 {
+        width: 425px;
+        height: 425px;
+    }
+
+    .pf-attachment-content-3 {
+        width: 425px;
+        height: 425px;
+    }
+}
+
+@media (min-width: 992px) {
+    .pf-attachment-content {
+        width: 490px;
+        height: 490px;
+    }
+
+    .pf-attachment-content-2 {
+        width: 490px;
+        height: 490px;
+    }
+
+    .pf-attachment-content-3 {
+        width: 490px;
+        height: 490px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .pf-attachment-content {
+        width: 580px;
+        height: 580px;
+    }
+
+    .pf-attachment-content-2 {
+        width: 580px;
+        height: 580px;
+    }
+
+    .pf-attachment-content-3 {
+        width: 580px;
+        height: 580px;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .pf-attachment-content {
+        width: 620px;
+        height: 620px;
+    }
+
+    .pf-attachment-content-2 {
+        width: 620px;
+        height: 620px;
+    }
+
+    .pf-attachment-content-3 {
+        width: 620px;
+        height: 620px;
+    }
+}

@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+
+:root {
+    --background-dark-primary: #1e2530;
+    --background-dark-secondary: #fff;
+    --color-white : rgba(255, 255, 255, 1);
+    --color-black : rgb(20, 20, 20);
+
+    /* LETTER SPACING BUTTON */
+    --ls-h1: -1.5pt;
+    --ls-h2: -0.5pt;
+    --ls-h3: 0pt;
+    --ls-h4: 0.25pt;
+    --ls-h5: 0pt;
+    --ls-h6: 0.15pt;
+    --ls-btn-1-25 : 1.25pt;
+    --ls-body-small: 0.25pt;
+    --ls-body-medium: 0.5pt;
+
+    /* FONT SIZE */
+    --fs-small: 14px;
+    --fs-medium: 16px;
+
+    /* BUTTON PRIMARY COLOR */
+    --btn-c-primary : #1278bd;
+
+    /* FONT */
+    --font-fam-secondary : 'Poppins', sans-serif;
+}
+html,body {
+	min-height: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	content: '';
+	clear: both;
+	box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: var(--background-dark-primary);
+}
+.body {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.wrapper {
+	min-height: 100vh;
+	height: 100vh;
+}
+/* .container-form {
+     background-color: #666666;
+} */
+.login-container {
+	background-color: var(--background-dark-secondary);
+    min-width: 95%;
+    width: 95%;
+    color: var(--color-black);
+    padding: 2.5rem 2rem 2.5rem 2rem;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+#metaanimals-logo {
+    cursor: pointer;
+}
+div.input-container {
+    border: 1px solid rgb(104, 103, 103);
+    font-family: var(--font-fam-secondary);
+    position: relative;
+}
+input.input-disabled {
+    cursor: not-allowed;
+}
+input.input-control {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    font-family: var(--font-fam-secondary);
+    font-size: 14px;
+    letter-spacing: var(--ls-body-small);
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 1rem;
+}
+span.show_pass {
+    position: absolute;
+    margin-left: -25px;
+    margin-top: 10px;
+    z-index: 1;
+    color: #555;
+}
+span.show_pass:hover {
+    cursor: pointer;
+}
+select.input-control {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    font-family: var(--font-fam-secondary);
+    font-size: 14px;
+    letter-spacing: var(--ls-body-small);
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 1rem;
+}
+div.moaccount {
+    font-family: var(--font-fam-secondary);
+    color: var(--color-black);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: var(--ls-body-small);
+}
+div.remandfpass {
+    font-family: var(--font-fam-secondary);
+    color: var(--color-black);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: var(--ls-body-small);
+}
+a.forgot-pass {
+    font-family: var(--font-fam-secondary);
+    text-decoration: none;
+    color: var(--color-black);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: var(--ls-body-small);
+}
+button.login-btn {
+    width: 100%;
+    background-color: var(--btn-c-primary);
+    border: 1px solid var(--btn-c-primary);
+    color: var(--color-white);
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+    font-family: var(--font-fam-secondary);
+    letter-spacing: var(--ls-body-medium);
+    font-size: var(--fs-small);
+    font-weight: 500;
+}
+button.createaccount-btn {
+    width: 100%;
+    background-color: var(--background-dark-secondary);
+    border: 1px solid var(--btn-c-primary);
+    color: var(--color-black);
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+    font-family: var(--font-fam-secondary);
+    letter-spacing: var(--ls-body-medium);
+    font-size: var(--fs-small);
+    font-weight: 500;
+}
+div.createaccount-container {
+    background-color: var(--background-dark-secondary);
+    min-width: 95%;
+    width: 95%;
+    color: var(--color-black);
+    padding: 2.5rem 2rem 2.5rem 2rem;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+div.prompt-img {
+    font-size: 1.3rem;
+}
+div.prompt-text {
+    font-size: 0.8rem;
+    letter-spacing: 0.05;
+    font-family: var(--font-fam-secondary);
+}
+div.prompt-closes {
+    cursor: pointer;
+}
+p.text_descript {
+    font-style: var(--font-fam-secondary);
+    font-size: var(--fs-small);
+    letter-spacing: var(--ls-body-small);
+}
+
+
+
+
+
+
+button.registerpet-btn {
+    width: 100%;
+    background-color: var(--background-dark-secondary);
+    border: 1px solid var(--btn-c-primary);
+    color: var(--color-black);
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+    font-family: var(--font-fam-secondary);
+    letter-spacing: var(--ls-body-medium);
+    font-size: var(--fs-small);
+    font-weight: 500;
+}
+div.registerpet-container {
+    background-color: var(--background-dark-secondary);
+    min-width: 95%;
+    width: 95%;
+    color: var(--color-black);
+    padding: 2.5rem 2rem 2.5rem 2rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
+
+
+
+
+button.btn {
+    letter-spacing: var(--ls-btn-1-25);
+    font-size: 14px;
+
+}
+
+div.custom-alert {
+	padding: 0.6rem 0.8rem 0.6rem 0.8rem;
+	width: 100%;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+div.ca-warning {
+	background-color: #ffa726;
+	color: #000000;
+}
+div.ca-error {
+	background-color: #b91400;
+	color: #fafafa;
+}
+div.ca-success {
+	background-color: #4caf50;
+	color: #fafafa;
+}
+div.ca-secondary {
+	background-color: #6c757d;
+	color: #fafafa;
+}
+
+
+.header-registration {
+	height: 75px;
+}
+
+@media (min-width: 1px) {
+	.form-rowssss-l {
+		padding-left: 0px;
+	}
+	.form-rowssss-r {
+		padding-right: 0px;
+	}
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+    .login-container {
+        min-width: 380px;
+        width: 380px;
+    }
+    div.createaccount-container {
+        min-width: 680px;
+        width: 680px;
+    }
+    div.registerpet-container {
+        min-width: 850px;
+        width: 850px;
+    }
+}
+
+@media (min-width: 992px) {
+	.form-rowssss-l {
+		padding-left: 10px;
+	}
+	.form-rowssss-r {
+		padding-right: 10px;
+	}
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 1400px) {
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 9px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #686868;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.btn {
+	/* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  border-radius: 2px;
+}
+#loading-screen {
+    position: absolute;
+    top: 0px;
+    min-width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgb(37, 37, 37);
+    z-index: 999;
+}
+#loading-screen div div img {
+    width: 100px;
+}
+#loading-screen div div p {
+    color: white;
+}
+
+.ls-small-025 {
+    letter-spacing: 0.25pt;
+}
+.fs-small-14px {
+    font-size: 14px;
+}
+.ls-medium-05 {
+    letter-spacing: 0.5pt;
+}
+.fs-medium-16px {
+    font-size: 16px;
+}
