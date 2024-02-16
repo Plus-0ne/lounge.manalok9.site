@@ -89,6 +89,12 @@
                 }
             });
         }
+        $('body').on('click', '.btn', function() {
+            let button = this;
+            setTimeout(function() {
+                $(button).blur();
+            }, 300)
+        });
     });
 </script>
 <script type="text/javascript">

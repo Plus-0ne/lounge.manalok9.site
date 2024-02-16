@@ -523,9 +523,6 @@ $(document).ready(function () {
                 </div>
                 <div class="user_post_attachements">${post_attachment}</div>
                 <div class="mt-2 justify-content-start d-flex flex-row ff-primary-light">
-                    <div class="user_post_reaction d-inline pe-3" data-postid="${posts.post_id}">
-                    
-                    </div>
                     <div class="ff-primary-regular">
                         <button type="button" class="btn btn-secondary post-react-btn" data-react="like">
                             <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -559,12 +556,9 @@ $(document).ready(function () {
                             </svg>
                             <span>${react_count[2]}</span>
                         </button>
-                    </div>
-                    <div class="ff-primary-regular">
-                        <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}">Comments (${comment_count})</button>
-                    </div>
-                    <div class="ff-primary-regular">
-                        <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}">Share</button>
+                        <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
+                        <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}"><i class="bi bi-share-fill"></i></button>
+                        <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="float: right;"><i class="bi bi-reply-fill"></i> Reply</button>
                     </div>
                 </div>
             </div>

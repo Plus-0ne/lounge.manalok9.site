@@ -2081,6 +2081,9 @@ a {
 	transition: all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71);
 	transform: scale(0.9);
 }
+.btn:active {
+    transform: scale(1.0);
+}
 /* .btn:active {
     transition: all 0.08s cubic-bezier(0.22, 0.68, 0, 1.71);
     transform: scale(1);
