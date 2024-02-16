@@ -174,10 +174,24 @@
     font-size: 0.97rem;
 }
 
+.user_image {
+    z-index: 5;
+}
+
 .user_image img {
     width: 39px;
     height: 39px;
     border-radius: 100%;
+}
+
+.user_image-backdrop {
+    position: absolute;
+}
+
+.user_image-backdrop {
+    filter: blur(12px);
+    transform: scale(1.5);
+    opacity: 0.5;
 }
 
 .user_post_header {

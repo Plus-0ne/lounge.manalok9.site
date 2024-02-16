@@ -495,6 +495,9 @@ $(document).ready(function () {
                 <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
                     <div class="user_post_details d-flex flex-column">
                         <div class="d-flex flex-row align-items-center">
+                            <div class="user_image user_image-backdrop">
+                                <img src="${new_image}">
+                            </div>
                             <div class="user_image">
                                 <img src="${new_image}" alt="User image" onerror="">
                             </div>
