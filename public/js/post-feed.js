@@ -427,27 +427,10 @@ $(document).ready(function () {
             }
 
             /* Post Reaction */
+            let user_reactions = [];
             if (posts.post_reaction.length > 0) {
-                switch (posts.post_reaction[0].reaction) {
-                    case 1:
-                        user_has_reaction = like_svg_template();
-                        break;
-
-                    case 2:
-                        user_has_reaction = haha_svg_template();
-                        break;
-
-                    case 3:
-                        user_has_reaction = heart_svg_template();
-                        break;
-
-                    default:
-                        user_has_reaction = 'React';
-                        break;
-                }
-            }
-            else {
-                user_has_reaction = 'React';
+                user_reactions = posts.post_reaction[0].reaction.split(', ');
+                console.log(user_reactions);
             }
 
             /* Reaction count */
@@ -457,7 +440,7 @@ $(document).ready(function () {
             comment_count = posts.comment_per_post_count;
 
 
-            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_has_reaction, react_count, comment_count, week_name, postActivityTxt);
+            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt);
 
 
         });
@@ -480,7 +463,7 @@ $(document).ready(function () {
     }
 
     var posts_array = [];
-    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_has_reaction, react_count, comment_count, week_name, postActivityTxt) {
+    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt) {
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
         var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
         var new_image = (ImageNotFound(profile_picture) == false) ? profile_picture_new : profile_picture;
@@ -490,6 +473,7 @@ $(document).ready(function () {
         //                                     <span class="badge rounded-pill bg-success">'+ show_ago_time + '</span>\
         //                                 </small>\
         //                             </small>\
+
         post_temp = `<div class="user_post_container card mt-4 upc_${posts.post_id}">
             <div class="px-3 py-3 px-lg-4 py-lg-4">
                 <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
@@ -523,131 +507,48 @@ $(document).ready(function () {
                 </div>
                 <div class="user_post_attachements">${post_attachment}</div>
                 <div class="mt-2 d-flex flex-row justify-content-start ff-primary-light">
-                    <div class="ff-primary-regular">
-                        <button type="button" class="btn btn-secondary post-react-btn" data-react="like" style="width: 64px;">
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <g>
-                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                    <path fill="#0072ff" color="#0072ff" d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"></path>
-                                </g>
-                            </svg>
-                            <span>${react_count[0]}</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary post-react-btn" data-react="haha" style="width: 64px;">
-                            <svg width="20px" height="20px" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
-                                <path class="st0" d="M542.7 1092.6H377.6c-13 0-23.6-10.6-23.6-23.6V689.9c0-13 10.6-23.6 23.6-23.6h165.1c13 0 23.6 10.6 23.6 23.6V1069c0 13-10.6 23.6-23.6 23.6zM624 1003.5V731.9c0-66.3 18.9-132.9 54.1-189.2 21.5-34.4 69.7-89.5 96.7-118 6-6.4 27.8-25.2 27.8-35.5 0-13.2 1.5-34.5 2-74.2.3-25.2 20.8-45.9 46-45.7h1.1c44.1 1 58.3 41.7 58.3 41.7s37.7 74.4 2.5 165.4c-29.7 76.9-35.7 83.1-35.7 83.1s-9.6 13.9 20.8 13.3c0 0 185.6-.8 192-.8 13.7 0 57.4 12.5 54.9 68.2-1.8 41.2-27.4 55.6-40.5 60.3-2.6.9-2.9 4.5-.5 5.9 13.4 7.8 40.8 27.5 40.2 57.7-.8 36.6-15.5 50.1-46.1 58.5-2.8.8-3.3 4.5-.8 5.9 11.6 6.6 31.5 22.7 30.3 55.3-1.2 33.2-25.2 44.9-38.3 48.9-2.6.8-3.1 4.2-.8 5.8 8.3 5.7 20.6 18.6 20 45.1-.3 14-5 24.2-10.9 31.5-9.3 11.5-23.9 17.5-38.7 17.6l-411.8.8c-.2 0-22.6 0-22.6-30z"></path>
-                                <path class="st0" d="M750 541.9C716.5 338.7 319.5 323.2 319.5 628c0 270.1 430.5 519.1 430.5 519.1s430.5-252.3 430.5-519.1c0-304.8-397-289.3-430.5-86.1z"></path>
-                                <ellipse class="st1" cx="750.2" cy="751.1" rx="750" ry="748.8"></ellipse>
-                                <g>
-                                    <path class="st3" d="M755.3 784.1H255.4s13.2 431.7 489 455.8c6.7.3 11.2.1 11.2.1 475.9-24.1 489-455.9 489-455.9H755.3z"></path>
-                                    
-                                    <path class="st4" d="M312.1 991.7s174.8-83.4 435-82.6c129 .4 282.7 12 439.2 83.4 0 0-106.9 260.7-436.7 260.7-329 0-437.5-261.5-437.5-261.5z"></path>
-                                    <path class="st5" d="M1200.2 411L993 511.4l204.9 94.2"></path>
-                                    <path class="st5" d="M297.8 411L505 511.4l-204.9 94.2"></path>
-                                </g>
-                            </svg>
-                            <span>${react_count[1]}</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary post-react-btn" data-react="heart" style="width: 64px;">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 544.582 544.582" style="enable-background:new 0 0 544.582 544.582;" xml:space="preserve">
-                                <g>
-                                    <path fill="#ff0025" color="#ff0025" d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z"></path>
-                                </g>
-                            </svg>
-                            <span>${react_count[2]}</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
-                        <div style="display: inline-block; float: right;">
-                            <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}"><i class="bi bi-share-fill" style="width: 64px;"></i></button>
-                            <button type="button" class="btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="float: right;"><i class="bi bi-reply-fill"></i> Reply</button>
-                        </div>
+                    <button type="button" class="btn btn-secondary react-like-btn post-react-btn" data-react="like" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="#0072ff" color="#0072ff" d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"></path>
+                            </g>
+                        </svg>
+                        <span>${react_count[0]}</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary react-haha-btn post-react-btn" data-react="haha" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                        <svg width="20px" height="20px" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
+                            <path class="st0" d="M542.7 1092.6H377.6c-13 0-23.6-10.6-23.6-23.6V689.9c0-13 10.6-23.6 23.6-23.6h165.1c13 0 23.6 10.6 23.6 23.6V1069c0 13-10.6 23.6-23.6 23.6zM624 1003.5V731.9c0-66.3 18.9-132.9 54.1-189.2 21.5-34.4 69.7-89.5 96.7-118 6-6.4 27.8-25.2 27.8-35.5 0-13.2 1.5-34.5 2-74.2.3-25.2 20.8-45.9 46-45.7h1.1c44.1 1 58.3 41.7 58.3 41.7s37.7 74.4 2.5 165.4c-29.7 76.9-35.7 83.1-35.7 83.1s-9.6 13.9 20.8 13.3c0 0 185.6-.8 192-.8 13.7 0 57.4 12.5 54.9 68.2-1.8 41.2-27.4 55.6-40.5 60.3-2.6.9-2.9 4.5-.5 5.9 13.4 7.8 40.8 27.5 40.2 57.7-.8 36.6-15.5 50.1-46.1 58.5-2.8.8-3.3 4.5-.8 5.9 11.6 6.6 31.5 22.7 30.3 55.3-1.2 33.2-25.2 44.9-38.3 48.9-2.6.8-3.1 4.2-.8 5.8 8.3 5.7 20.6 18.6 20 45.1-.3 14-5 24.2-10.9 31.5-9.3 11.5-23.9 17.5-38.7 17.6l-411.8.8c-.2 0-22.6 0-22.6-30z"></path>
+                            <path class="st0" d="M750 541.9C716.5 338.7 319.5 323.2 319.5 628c0 270.1 430.5 519.1 430.5 519.1s430.5-252.3 430.5-519.1c0-304.8-397-289.3-430.5-86.1z"></path>
+                            <ellipse class="st1" cx="750.2" cy="751.1" rx="750" ry="748.8"></ellipse>
+                            <g>
+                                <path class="st3" d="M755.3 784.1H255.4s13.2 431.7 489 455.8c6.7.3 11.2.1 11.2.1 475.9-24.1 489-455.9 489-455.9H755.3z"></path>
+                                
+                                <path class="st4" d="M312.1 991.7s174.8-83.4 435-82.6c129 .4 282.7 12 439.2 83.4 0 0-106.9 260.7-436.7 260.7-329 0-437.5-261.5-437.5-261.5z"></path>
+                                <path class="st5" d="M1200.2 411L993 511.4l204.9 94.2"></path>
+                                <path class="st5" d="M297.8 411L505 511.4l-204.9 94.2"></path>
+                            </g>
+                        </svg>
+                        <span>${react_count[1]}</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary react-love-btn post-react-btn" data-react="heart" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 544.582 544.582" style="enable-background:new 0 0 544.582 544.582;" xml:space="preserve">
+                            <g>
+                                <path fill="#ff0025" color="#ff0025" d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z"></path>
+                            </g>
+                        </svg>
+                        <span>${react_count[2]}</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
+                    <div class="ms-auto">
+                        <button type="button" class="btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
+                        <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
                     </div>
-                </div>
-            </div>
-            <div class="user_post_reaction_control d-flex flex-row justify-content-evenly pb-3">
-                <div class="u_reaction_control ff-primary-regular">
-                    <span class="hvr_reaction hvrr_${posts.post_id}">
-                        ${user_has_reaction}
-                    </span>
-                    <div class="u_reaction_container">
-                        <div class="ubackg_reaction">
-                            <span class="react_to_post" data-postid="${posts.post_id}" data-postreaction="1">
-                                <svg width="28px" height="28px" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path fill="#0072ff" color="#0072ff"
-                                            d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z" />
-                                    </g>
-                                </svg>
-                            </span>
-                            <span class="react_to_post" data-postid="${posts.post_id}" data-postreaction="2">
-                                <svg width="28px" height="28px" viewBox="0 0 1500 1500"
-                                    id="Layer_1" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="st0"
-                                        d="M542.7 1092.6H377.6c-13 0-23.6-10.6-23.6-23.6V689.9c0-13 10.6-23.6 23.6-23.6h165.1c13 0 23.6 10.6 23.6 23.6V1069c0 13-10.6 23.6-23.6 23.6zM624 1003.5V731.9c0-66.3 18.9-132.9 54.1-189.2 21.5-34.4 69.7-89.5 96.7-118 6-6.4 27.8-25.2 27.8-35.5 0-13.2 1.5-34.5 2-74.2.3-25.2 20.8-45.9 46-45.7h1.1c44.1 1 58.3 41.7 58.3 41.7s37.7 74.4 2.5 165.4c-29.7 76.9-35.7 83.1-35.7 83.1s-9.6 13.9 20.8 13.3c0 0 185.6-.8 192-.8 13.7 0 57.4 12.5 54.9 68.2-1.8 41.2-27.4 55.6-40.5 60.3-2.6.9-2.9 4.5-.5 5.9 13.4 7.8 40.8 27.5 40.2 57.7-.8 36.6-15.5 50.1-46.1 58.5-2.8.8-3.3 4.5-.8 5.9 11.6 6.6 31.5 22.7 30.3 55.3-1.2 33.2-25.2 44.9-38.3 48.9-2.6.8-3.1 4.2-.8 5.8 8.3 5.7 20.6 18.6 20 45.1-.3 14-5 24.2-10.9 31.5-9.3 11.5-23.9 17.5-38.7 17.6l-411.8.8c-.2 0-22.6 0-22.6-30z" />
-                                    <path class="st0"
-                                        d="M750 541.9C716.5 338.7 319.5 323.2 319.5 628c0 270.1 430.5 519.1 430.5 519.1s430.5-252.3 430.5-519.1c0-304.8-397-289.3-430.5-86.1z" />
-                                    <ellipse class="st1" cx="750.2" cy="751.1" rx="750"
-                                        ry="748.8" />
-                                    <g>
-                                        <path id="mond" class="st3"
-                                            d="M755.3 784.1H255.4s13.2 431.7 489 455.8c6.7.3 11.2.1 11.2.1 475.9-24.1 489-455.9 489-455.9H755.3z" />
-                                        <path id="tong" class="st4"
-                                            d="M312.1 991.7s174.8-83.4 435-82.6c129 .4 282.7 12 439.2 83.4 0 0-106.9 260.7-436.7 260.7-329 0-437.5-261.5-437.5-261.5z" />
-                                        <path id="linker_1_" class="st5"
-                                            d="M1200.2 411L993 511.4l204.9 94.2" />
-                                        <path id="linker_4_" class="st5"
-                                            d="M297.8 411L505 511.4l-204.9 94.2" />
-                                    </g>
-                                </svg>
-                            </span>
-                            <span class="react_to_post" data-postid="${posts.post_id}" data-postreaction="3">
-                                <?xml version="1.0" encoding="iso-8859-1"?>
-                                <!DOCTYPE svg
-                                    PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                    y="0px" width="28px" height="28px"
-                                    viewBox="0 0 544.582 544.582"
-                                    style="enable-background:new 0 0 544.582 544.582;"
-                                    xml:space="preserve">
-                                    <g>
-                                        <path fill="#ff0025" color="#ff0025"
-                                            d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z" />
-                                    </g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                    <g></g>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="ff-primary-regular">
-                    <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}">Comments (${comment_count})</button>
-                </div>
-                <div class="ff-primary-regular">
-                    <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}">Share</button>
                 </div>
             </div>
             <div class="pv-comment-container-${posts.post_id} pv-check-comment-section" data-post_id="${posts.post_id}">\
             </div>
         </div>`;
-
-
 
         /* Append to container */
         $('.post-section-container').append(post_temp);
@@ -663,60 +564,62 @@ $(document).ready(function () {
         text_withurl = $('.content-body-text_' + posts.post_id);
         replaceURLWithHTMLLinks(text_withurl);
 
+        for (let i = 0; i < user_reactions.length; i++) {
+            const react_element = $(`.post-react-btn[data-post_id="${posts.post_id}"][data-react="${user_reactions[i]}"]`);
+            let react_count = parseInt(react_element.find('span').text());
+            react_count++;
+            react_element.find('span').text(react_count);
+            react_element.addClass('reacted');
+        };
     }
 
     /* Function react to post */
-    $(document).on('click', '.react_to_post', function () {
-        var post_id = $(this).attr('data-postid');
-        var reaction_val = $(this).attr('data-postreaction');
-        var my_reaction = null;
-        
-        let react_container = $('.user_post_reaction').find(`div[data-postid="${post_id}"]`);
+    $(document).on('click', '.post-react-btn', function () {
+        var post_id = $(this).data('post_id');
+        var reaction_val = $(this).data('react');
+    
+        let this_btn = this;
         let counter = 0;
-
+    
+        let reacts = [];
+    
+        if ($(this_btn).hasClass('reacted')) {
+            $(this_btn).removeClass('reacted'); 
+    
+            console.log('reactionVal', reaction_val);
+            const reactionIndex = reacts.indexOf(reaction_val);
+            console.log('reactionIndex', reactionIndex);
+            if (reactionIndex > -1) {
+                reacts.splice(reactionIndex, 1); 
+            }
+    
+            counter = parseInt($(this_btn).find('span').text());
+            counter -= 1;
+            $(this_btn).find('span').text(String(counter));
+    
+        } else { 
+            $(this_btn).addClass('reacted');
+            $(this_btn).parent().find('.reacted').each(function() {
+                reacts.push($(this).data('react'));
+            });
+    
+            counter = parseInt($(this_btn).find('span').text());
+            counter += 1; 
+            $(this_btn).find('span').text(String(counter));
+        }
+    
         $.ajax({
             type: "post",
             url: window.thisUrl + "/ajax/post/reaction/create",
             data: {
                 post_id: post_id,
-                reaction_val: reaction_val
+                reacts: JSON.stringify(reacts)
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (response) {
-                var res = response;
-                switch (res.myReaction) {
-                    case '1':
-                        my_reaction = like_svg_template();
-                        
-                        counter = parseInt(react_container.find('span[data-react="like"]').find('span').text());
-                        counter += 1;
-                        react_container.find('span[data-react="like"]').find('span').text(String(counter));
-                        break;
-
-                    case '2':
-                        my_reaction = haha_svg_template();
-
-                        counter = parseInt(react_container.find('span[data-react="haha"]').find('span').text());
-                        counter += 1
-                        react_container.find('span[data-react="haha"]').find('span').text(String(counter));
-                        break;
-
-                    case '3':
-                        my_reaction = heart_svg_template();
-
-                        counter = parseInt(react_container.find('span[data-react="heart"]').find('span').text());
-                        counter += 1
-                        react_container.find('span[data-react="heart"]').find('span').text(String(counter));
-                        break;
-
-                    default:
-                        my_reaction = 'React';
-                        break;
-                }
-                $('.hvrr_' + res.postReacted).html(my_reaction);
-
+                console.log(response);
             }
         });
     });

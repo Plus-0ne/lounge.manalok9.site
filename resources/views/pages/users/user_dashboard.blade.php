@@ -16,7 +16,7 @@
         {{-- TOP NAVIGATION --}}
         @include('pages/users/template/section/header_nav')
 
-        <div class="main">
+        <div class="main" style="height: 105vh;">
 
             {{-- SIDEABAR --}}
             @include('pages/users/template/section/sidebar')
@@ -31,7 +31,7 @@
                             <div class="write_post_section" style="display: none;">
                                 <div class="post_title pb-2">
                                     <label class="ff-primary-light fs-heading">
-                                        What's on your mind?
+                                    <span class="text-gradient-primary">{{ !empty(Auth::guard('web')->user()->first_name) ? 'Hello, ' . Auth::guard('web')->user()->first_name . '!' : '' }}</span> What's on your mind?
                                     </label>
                                 </div>
 
@@ -90,15 +90,11 @@
                                     </div>
                                 </div>
                                 <div class="post_image_container">
-
                                 </div>
                                 <div class="post_attachment_preview d-flex flex-wrap p-1">
                                 </div>
-
                             </div>
                         </form>
-                        <!-- POST DIVIDER -->
-                        <div class="mx-auto post_divider"></div>
                         <!-- POST SECTION -->
                         <div class="posts_loader mt-5">
                             <div class="text-center slide-in">

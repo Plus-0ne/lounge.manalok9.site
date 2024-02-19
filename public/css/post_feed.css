@@ -46,7 +46,12 @@
 }
 
 .fs-heading {
-    font-size: var(--fs-heading);
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
 }
 .fs-extra-small {
     font-size: var(--fs-extra-small);
@@ -190,8 +195,8 @@
 
 .user_image-backdrop {
     filter: blur(12px);
-    transform: scale(1.5);
-    opacity: 0.5;
+    /* transform: scale(1.5); */
+    /* opacity: 0.25; */
 }
 
 .user_post_header {
@@ -479,6 +484,16 @@
 }
 .cog-comment-delete {
     cursor: pointer;
+}
+
+.react-like-btn.reacted {
+    background-color: rgba(81, 64, 207, 0.50);
+}
+.react-haha-btn.reacted {
+    background-color: rgba(207, 192, 64, 0.50)
+}
+.react-love-btn.reacted {
+    background-color: rgba(207, 64, 134, 0.50);
 }
 
 /* -------------------------------------------------------------------------- */

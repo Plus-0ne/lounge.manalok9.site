@@ -108,6 +108,15 @@ body {
     overflow: hidden;
 }
 
+strong {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
 .header {
     padding: 1rem;
     position: sticky;
@@ -420,13 +429,25 @@ div.emojionearea-button-close {
     padding-right: 9px;
     width: 100%;
 }
+.nav-link.active:before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 30px;
+    border-radius: 64px;
+    background-color: rgba(49, 44, 87, 0.75);
+}
 .nav-icon {
     font-size: 1.2rem;
 }
 .nav-link span {
     text-align: justify;
-    letter-spacing: 1px;
-    font-family: var(--primary-font-family);
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
     font-size: 0.85rem;
 }
 .nav-link .nav-icon-container {
@@ -2222,4 +2243,15 @@ span.toggle-handle {
 
 .adtl_info {
     background-color: rgb(250, 250, 250);
+}
+
+.text-gradient-primary {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    background: linear-gradient(74deg, #5692f5 0, #b342f4 9%, #ffcf86 20%, #ffcf86 24%, #b342f4 35%, #5692f5 44%, #b342f4 50%, #ffcf86 56%, #ffcf86 75%, #ffcf86 100%);
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

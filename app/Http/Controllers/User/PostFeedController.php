@@ -385,13 +385,13 @@ class PostFeedController extends Controller
             'PostReaction' => function ($pr) use ($my_uuid) {
                 $pr->where([
                     ['uuid', $my_uuid],
-                    ['reaction', '>', 0]
+                    ['reaction', '<>', null]
                 ]);
             }
         ])
         ->withCount([
             'PostReaction as total_reaction' => function ($q) {
-                $q->where('reaction', '>', 0);
+                $q->where('reaction', '<>', null);
             }
         ])
         ->withCount([
@@ -497,10 +497,10 @@ class PostFeedController extends Controller
         /* Check if null values in post request */
         $validate = Validator::make($request->all(), [
             'post_id' => 'required',
-            'reaction_val' => 'required',
+            'reacts' => 'required',
         ], [
                 'post_id.required' => 'Something\'s wrong, Please try again!',
-                'reaction_val.required' => 'Something\'s wrong, Please try again!'
+                'reacts.required' => 'Something\'s wrong, Please try again!'
             ]);
 
         if ($validate->fails()) {
@@ -513,23 +513,12 @@ class PostFeedController extends Controller
 
         /* Re-check post reaction request values */
 
-        switch ($request->input('reaction_val')) {
-            case '1':
-                $post_reaction = '1';
-                break;
-
-            case '2':
-                $post_reaction = '2';
-                break;
-
-            case '3':
-                $post_reaction = '3';
-                break;
-
-            default:
-                $post_reaction = '1';
-                break;
+        $reacts = json_decode($request->input('reacts')) ?? [];
+        $reacts_holder = '';
+        foreach ($reacts as $react) {
+            $reacts_holder .= $react . ', ';
         }
+        $reacts_holder = substr($reacts_holder, 0, -2);
 
         /* Check if user reacted to post already */
 
@@ -538,40 +527,26 @@ class PostFeedController extends Controller
             ['uuid', '=', Auth::guard('web')->user()->uuid]
         ]);
 
-
-
         if ($PostReaction->count() > 0) {
 
             /* Check what's user reaction to post then update user reaction */
             $id = $PostReaction->first()->id;
             $post_id = $request->input('post_id');
+            
+            /* Update reaction to reaction value */
+            $upReaction = PostReaction::find($id);
 
-            if ($PostReaction->first()->reaction == $post_reaction) {
+            $upReaction->reaction = $reacts_holder;
+            $upReaction->updated_at = Carbon::now();
+            $upReaction->save();
 
-                /* Update reaction to 0 */
-                $upReaction = PostReaction::find($id);
+            $data = [
+                'post_uuid' => $post_id,
+                'from_user_uuid' => Auth::guard('web')->user()->uuid,
+                'reaction_value' => $reacts_holder,
+            ];
 
-                $upReaction->reaction = 0;
-                $upReaction->updated_at = Carbon::now();
-                $upReaction->save();
-
-                $post_reaction = 0;
-            } else {
-                /* Update reaction to reaction value */
-                $upReaction = PostReaction::find($id);
-
-                $upReaction->reaction = $post_reaction;
-                $upReaction->updated_at = Carbon::now();
-                $upReaction->save();
-
-                $data = [
-                    'post_uuid' => $post_id,
-                    'from_user_uuid' => Auth::guard('web')->user()->uuid,
-                    'reaction_value' => $post_reaction,
-                ];
-
-                BroadcastingHelpers::eventReactionNotification($data);
-            }
+            BroadcastingHelpers::eventReactionNotification($data);
 
             /* POST DATA */
             $postdet = PostFeed::where('post_id', $request->input('post_id'));
@@ -599,7 +574,7 @@ class PostFeedController extends Controller
                 'status' => 'success',
                 'message' => 'Reaction updated',
                 'postReacted' => $request->input('post_id'),
-                'myReaction' => $post_reaction
+                'myReaction' => $reacts_holder
             ];
             return response()->json($data);
 
@@ -610,7 +585,7 @@ class PostFeedController extends Controller
             $CreateReaction = PostReaction::create([
                 'post_id' => $request->input('post_id'),
                 'uuid' => Auth::guard('web')->user()->uuid,
-                'reaction' => $post_reaction,
+                'reaction' => $reacts_holder,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
@@ -620,7 +595,7 @@ class PostFeedController extends Controller
                 $data = [
                     'post_uuid' => $post_id,
                     'from_user_uuid' => Auth::guard('web')->user()->uuid,
-                    'reaction_value' => $post_reaction,
+                    'reaction_value' => $reacts_holder,
                 ];
 
                 BroadcastingHelpers::eventReactionNotification($data);
@@ -648,7 +623,7 @@ class PostFeedController extends Controller
                     'status' => 'success',
                     'message' => 'Reaction created',
                     'postReacted' => $request->input('post_id'),
-                    'myReaction' => $post_reaction
+                    'myReaction' => $reacts_holder
                 ];
                 return response()->json($data);
 
@@ -657,7 +632,7 @@ class PostFeedController extends Controller
                     'status' => 'error',
                     'message' => 'Reaction failed',
                     'postReacted' => $request->input('post_id'),
-                    'myReaction' => $post_reaction
+                    'myReaction' => $reacts_holder
                 ];
                 return response()->json($data);
             }

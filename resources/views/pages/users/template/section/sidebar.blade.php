@@ -9,7 +9,7 @@
         </div>
         <div class="w-100 d-flex flex-column align-items-center justify-content-center my-2">
             <strong>
-                Hello, {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}!
+                {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}
             </strong>
             <small>
                 <small>
@@ -27,7 +27,7 @@
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="Socialize with other IAGD members!">
-                <a class="nav-link" href="{{ route('dashboard') }}">
+                <a class="nav-link active" href="{{ route('dashboard') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
                             <img class="nav-icon" src="{{ asset('lounge-icons-v1/publication.svg') }}">
@@ -55,7 +55,6 @@
                         </div>
                     </div>
                 </a>
-
             </li>
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
