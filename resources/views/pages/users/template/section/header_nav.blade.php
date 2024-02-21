@@ -72,7 +72,7 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle removeCaret header-menu-link user_notification" href="#"
                             role="button" id="user_notification" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="action-icon" src="{{ asset('lounge-icons-v1/bell.svg') }}">
+                            <i class="action-icon bi bi-bell"></i>
                         </a>
                         <div class="dropdown-menu mt-3 custom-dm-s" aria-labelledby="user_notification">
                             <div
@@ -107,7 +107,7 @@
             <div class="px-2">
                 <a class="header-menu-link" href="{{ route('user.messenger') }}">
                     {{-- <i class="action-icon mdi mdi-chat"></i> --}}
-                    <img class="action-icon" src="{{ asset('lounge-icons-v1/chat.svg') }}">
+                    <i class="action-icon bi bi-chat-dots"></i>
                 </a>
             </div>
 

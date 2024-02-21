@@ -16,7 +16,7 @@
         {{-- TOP NAVIGATION --}}
         @include('pages/users/template/section/header_nav')
 
-        <div class="main" style="height: 105vh;">
+        <div class="main">
 
             {{-- SIDEABAR --}}
             @include('pages/users/template/section/sidebar')
@@ -45,26 +45,24 @@
                                         {{-- <div class="post-control-icon">
                                             <i class="mdi mdi-attachment"></i>
                                         </div> --}}
-                                        <div class="post-control-icon">
-                                            <i class="mdi mdi-file-image-plus add_image_to_post"></i>
-                                        </div>
-                                        <div class="post-control-icon" data-bs-toggle="modal"
-                                            data-bs-target="#insert_emojiinPost">
-                                            <i class="mdi mdi-emoticon"></i>
-                                        </div>
-                                        {{-- <div class="post-control-icon">
+                                        <button type="button" class="btn btn-secondary add_image_to_post" style="width: 64px; margin-right: 6px;">
+                                            <i class="bi bi-images"></i>
+                                        </button>
+                                        <button type="button" class="btn non-mica btn-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#insert_emojiinPost" style="width: 64px; margin-right: 6px;">
+                                            <i class="bi bi-emoji-smile"></i>
+                                        </button>
+                                        {{-- <button type="button" class="btn btn-secondary" style="width: 64px;">
                                             <i class="mdi mdi-delete"></i>
-                                        </div> --}}
+                                        </button> --}}
 
-                                        <div class="post-control-icon">
-
+                                        <button type="button" class="btn non-mica btn-secondary">
                                             <div class="dropdown">
-                                                <a class="set-post-status dropdown-toggle" href="#" role="button"
+                                                <div class="set-post-status dropdown-toggle" role="button"
                                                     id="dropdownMenuLink" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
                                                     <i class="mdi mdi-earth"></i> <small>Public</small>
-
-                                                </a>
+                                                </div>
                                                 <input id="post_visibility" type="hidden" name="post_visible"
                                                     value="public">
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -82,7 +80,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </button>
                                     </div>
                                     <div class="post_action text-end">
                                         <button id="publish_post_btn" class="btn btn-primary post-button-submit">Publish
@@ -97,8 +95,65 @@
                         </form>
                         <!-- POST SECTION -->
                         <div class="posts_loader mt-5">
-                            <div class="text-center slide-in">
+                            <!-- <div class="text-center slide-in">
                                 <i class="spinner-border" style="font-size: 24px; width: 128px; height: 128px; color: rgba(255, 255, 255, 0.16);"></i>
+                            </div> -->
+                            <div class="user_post_container card">
+                                <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                    <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
+                                                    
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_post_body skeleton" style="min-height: 154px; border-radius: 4px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_post_container card mt-4">
+                                <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                    <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
+                                                    
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_post_body skeleton" style="min-height: 304px; border-radius: 4px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_post_container card mt-4">
+                                <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                    <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
+                                                    
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_post_body skeleton" style="min-height: 154px; border-radius: 4px;">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {{-- <div class="posts_section" style="display: none;">

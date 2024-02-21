@@ -7,7 +7,19 @@ $(document).ready(function () {
     var assetUrl = window.assetUrl;
     window.lastChatdate = '0000-00-00 00:00:00';
 
+    const special_uuids = [
+        '3a6c0fd5-1ef7-4bd0-9eb3-435aaae6ec8c', // step
+        '0500436a-f0c9-4e01-a8e9-f5f7ec6b0bd5', // micha
+    ]
+
+    const official_uuids = [
+        '8b70240c-08a7-411e-9f21-6d4bdc5ed052', // official mk9
+    ]
+
     $.fn.isInViewport = function() {
+        if ($(this) == undefined) {
+            return false;
+        }
         const elementTop = $(this).offset().top;
         const elementBottom = elementTop + $(this).outerHeight();
     
@@ -132,10 +144,11 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     /*                     Show more text in contenct trimmed                     */
     /* -------------------------------------------------------------------------- */
-    $(document).on('click', '.user_post_body', function (e) {
+    $(document).on('click', '.view_this_post', function (e) {
         e.preventDefault();
 
-        var user_post_body = $(this);
+        var postContainer = $(this).closest('.user_post_container'); 
+        var user_post_body = postContainer.find('.user_post_body');  
         var message_shown = user_post_body.children('div.post-content-trimmed-txt');
         var message_hidden = user_post_body.children('div.post-content-complete-text');
 
@@ -334,7 +347,7 @@ $(document).ready(function () {
             week_name = date.day();
             week_name = weekNameToString(week_name);
 
-            dateFormatted = date.local().format("MMMM DD YYYY - hh:mm A");
+            dateFormatted = date.local().format("MMMM DD YYYY • hh:mm A");
 
 
             if (posts.visibility == 'private') {
@@ -357,7 +370,7 @@ $(document).ready(function () {
                     fPost_message = "";
                 }
 
-                if (post_message_content.length > 255) {
+                if (post_message_content.length > 384) {
 
                     post_body_content = _.escape(posts.post_message);
                     msg = post_body_content;
@@ -381,7 +394,7 @@ $(document).ready(function () {
                     fPost_message = "";
                 }
 
-                if (post_message_content.length > 255) {
+                if (post_message_content.length > 384) {
 
                     post_body_content = _.escape(posts.post_message);
                     msg = post_body_content;
@@ -407,7 +420,7 @@ $(document).ready(function () {
                     fPost_message = "";
                 }
 
-                if (post_message_content.length > 255) {
+                if (post_message_content.length > 384) {
 
                     post_body_content = _.escape(posts.post_message);
                     msg = post_body_content;
@@ -424,6 +437,12 @@ $(document).ready(function () {
                 post_attachment = '';
                 postActivityTxt = '';
                 post_attachment_share_preview(posts);
+            }
+
+            if (official_uuids.includes(post_creator.uuid)) {
+                usersName = `<span class="text-gradient-golden">${usersName}</span>`;
+                post_message = `<span class="text-golden">${post_message}</span>`;
+                fPost_message = `<span class="text-golden">${fPost_message}</span>`;
             }
 
             /* Post Reaction */
@@ -488,8 +507,7 @@ $(document).ready(function () {
                             <div class="user_fullname ms-3 d-flex flex-column">
                                 <div class="d-flex flex-column flex-lg-row justify-content-start align-items-start align-items-lg-center">
                                     <div>
-                                    <span class="view-full-post ff-primary-regular" data-id="${posts.uuid}">${usersName}</span>
-                                    <span class="ff-primary-light ms-1">${show_ago_time}</span>
+                                    <span class="view-full-post ff-primary-regular" data-id="${posts.uuid}">${usersName}</span><span class="ff-primary-light ms-1">• ${show_ago_time}</span>
                                     </div>
                                 </div>
                                 <small>
@@ -507,42 +525,42 @@ $(document).ready(function () {
                 </div>
                 <div class="user_post_attachements">${post_attachment}</div>
                 <div class="mt-2 d-flex flex-row justify-content-start ff-primary-light">
-                    <button type="button" class="btn btn-secondary react-like-btn post-react-btn" data-react="like" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                    <button type="button" class="btn btn-secondary react-like-btn post-react-btn" data-react="like" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 5px;">
                         <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <g>
                                 <path fill="none" d="M0 0h24v24H0z"></path>
                                 <path fill="#0072ff" color="#0072ff" d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"></path>
                             </g>
                         </svg>
-                        <span>${react_count[0]}</span>
+                        <span style="${react_count[0] <= 0 ? 'display: none;' : ''}">${react_count[0]}</span>
                     </button>
-                    <button type="button" class="btn btn-secondary react-haha-btn post-react-btn" data-react="haha" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                    <button type="button" class="btn btn-secondary react-haha-btn post-react-btn" data-react="haha" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 5px;">
                         <svg width="20px" height="20px" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
                             <path class="st0" d="M542.7 1092.6H377.6c-13 0-23.6-10.6-23.6-23.6V689.9c0-13 10.6-23.6 23.6-23.6h165.1c13 0 23.6 10.6 23.6 23.6V1069c0 13-10.6 23.6-23.6 23.6zM624 1003.5V731.9c0-66.3 18.9-132.9 54.1-189.2 21.5-34.4 69.7-89.5 96.7-118 6-6.4 27.8-25.2 27.8-35.5 0-13.2 1.5-34.5 2-74.2.3-25.2 20.8-45.9 46-45.7h1.1c44.1 1 58.3 41.7 58.3 41.7s37.7 74.4 2.5 165.4c-29.7 76.9-35.7 83.1-35.7 83.1s-9.6 13.9 20.8 13.3c0 0 185.6-.8 192-.8 13.7 0 57.4 12.5 54.9 68.2-1.8 41.2-27.4 55.6-40.5 60.3-2.6.9-2.9 4.5-.5 5.9 13.4 7.8 40.8 27.5 40.2 57.7-.8 36.6-15.5 50.1-46.1 58.5-2.8.8-3.3 4.5-.8 5.9 11.6 6.6 31.5 22.7 30.3 55.3-1.2 33.2-25.2 44.9-38.3 48.9-2.6.8-3.1 4.2-.8 5.8 8.3 5.7 20.6 18.6 20 45.1-.3 14-5 24.2-10.9 31.5-9.3 11.5-23.9 17.5-38.7 17.6l-411.8.8c-.2 0-22.6 0-22.6-30z"></path>
                             <path class="st0" d="M750 541.9C716.5 338.7 319.5 323.2 319.5 628c0 270.1 430.5 519.1 430.5 519.1s430.5-252.3 430.5-519.1c0-304.8-397-289.3-430.5-86.1z"></path>
                             <ellipse class="st1" cx="750.2" cy="751.1" rx="750" ry="748.8"></ellipse>
                             <g>
                                 <path class="st3" d="M755.3 784.1H255.4s13.2 431.7 489 455.8c6.7.3 11.2.1 11.2.1 475.9-24.1 489-455.9 489-455.9H755.3z"></path>
-                                
                                 <path class="st4" d="M312.1 991.7s174.8-83.4 435-82.6c129 .4 282.7 12 439.2 83.4 0 0-106.9 260.7-436.7 260.7-329 0-437.5-261.5-437.5-261.5z"></path>
                                 <path class="st5" d="M1200.2 411L993 511.4l204.9 94.2"></path>
                                 <path class="st5" d="M297.8 411L505 511.4l-204.9 94.2"></path>
                             </g>
                         </svg>
-                        <span>${react_count[1]}</span>
+                        <span style="${react_count[1] <= 0 ? 'display: none;' : ''}">${react_count[1]}</span>
                     </button>
-                    <button type="button" class="btn btn-secondary react-love-btn post-react-btn" data-react="heart" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 8px;">
+                    <button type="button" class="btn btn-secondary react-love-btn post-react-btn" data-react="heart" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 5px;">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 544.582 544.582" style="enable-background:new 0 0 544.582 544.582;" xml:space="preserve">
                             <g>
                                 <path fill="#ff0025" color="#ff0025" d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z"></path>
                             </g>
                         </svg>
-                        <span>${react_count[2]}</span>
+                        <span style="${react_count[2] <= 0 ? 'display: none;' : ''}">${react_count[2]}</span>
                     </button>
                     <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
                     <div class="ms-auto">
                         <button type="button" class="btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
                         <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
+                        <button type="button" class="btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
                     </div>
                 </div>
             </div>
@@ -651,7 +669,6 @@ $(document).ready(function () {
                 return 'Sunday';
         }
     }
-    var is_done_loading_page = false;
     /* Get all post */
     function get_posts(page) {
         $.ajax({
@@ -667,11 +684,10 @@ $(document).ready(function () {
                 /* Call post template function */
                 post_template(res, assetUrl, ruuid);
 
-                is_done_loading_page = true;
                 cleanup_loading_animations();
                 $('.write_post_section').fadeIn('fast');
                 $('.posts_section').fadeIn('fast');
-                queueTypewriter($('#postTextarea'), ['Hello everyone!'], 88);
+                queueTypewriter($('#postTextarea'), ['Hello everyone!'], 88, 500);
             }
         });
     }
@@ -1293,7 +1309,7 @@ $(document).ready(function () {
         else {
             $('.pv-comment-container-' + post_id).find('.showMoreContainer').remove();
             showMoreComments = '<div class="showMoreContainer w-100 d-flex justify-content-center"> No more comments </div>';
-            $('.pv-comment-container-' + post_id).append(showMoreComments);
+            // $('.pv-comment-container-' + post_id).append(showMoreComments);
         }
     }
 
@@ -1355,44 +1371,48 @@ $(document).ready(function () {
 
         /* Fill user name */
         if (pc_postCommentAuthor.first_name.length > 0 || pc_postCommentAuthor.last_name.length > 0) {
-            pc_user_name = pc_postCommentAuthor.first_name + ' ' + pc_postCommentAuthor.last_name;
+            if (special_uuids.includes(pc_postCommentAuthor.uuid)) {
+                pc_user_name = `<span class="text-gradient-primary">${pc_postCommentAuthor.first_name} ${pc_postCommentAuthor.last_name}`;
+            } else {
+                pc_user_name = `${pc_postCommentAuthor.first_name} ${pc_postCommentAuthor.last_name}`;
+            }
         }
 
         /* Hide delete if comment is not from auth users */
         if (pc_postCommentAuthor.uuid == window.uuid) {
-            delete_comment_cog = '<div class="cog-comment-delete" data-comment_id="' + pc_postComment.id + '" data-post_id="' + post_id + '">\
-                <i class="mdi mdi-delete-outline"></i>\
-            </div>';
+            delete_comment_cog = `<div class="cog-comment-delete" data-comment_id="${pc_postComment.id}" data-post_id="${post_id}">
+                <i class="mdi mdi-delete-outline"></i>
+            </div>`;
         }
         else {
             delete_comment_cog = "";
         }
 
         /* Date with ago */
-        pc_show_time = moment(pc_postComment.created_at).local().fromNow(true) + ' ago';
+        pc_show_time = `${moment(pc_postComment.created_at).local().fromNow(true)} ago`;
         comment_temp = pcI;
-        comment_temp = '<div class="vrrr d-flex flex-column mb-3 vrrr-' + pc_postComment.id + '" data-utcDate="' + pc_postComment.created_at + '">\
-                                    <div class="mb-2 d-flex flex-row justify-content-between">\
-                                        <div class="pf-user-details d-flex flex-row align-items-center">\
-                                            <div class="pf-user-image me-2">\
-                                                <img src="'+ pc_profile_image + '" alt="">\
-                                            </div>\
-                                            <div>\
-                                                <div class="pf-user-name">\
-                                                    <a href="' + pc_profile_url + '">' + pc_user_name + '</a>\
-                                                </div>\
-                                                <div class="pf-time-count">\
-                                                    '+ pc_show_time + '\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        '+ delete_comment_cog + '\
-                                    </div>\
-                                    <div class="pf-user-comment">\
-                                    '+ pc_posted_comment + '\
-                                    </div>\
-                                </div>\
-                            </div>';
+        comment_temp = `<div class="vrrr d-flex flex-column mb-3 vrrr-${pc_postComment.id}" data-utcDate="${pc_postComment.created_at}">
+                                    <div class="mb-2 d-flex flex-row justify-content-between">
+                                        <div class="pf-user-details d-flex flex-row align-items-center">
+                                            <div class="pf-user-image me-2">
+                                                <img src="${pc_profile_image}" alt="">
+                                            </div>
+                                            <div>
+                                                <div class="pf-user-name">
+                                                    <a href="${pc_profile_url}">${pc_user_name}</a>
+                                                </div>
+                                                <div class="pf-time-count">
+                                                    ${pc_show_time}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        ${delete_comment_cog}
+                                    </div>
+                                    <div class="pf-user-comment">
+                                    ${pc_posted_comment}
+                                    </div>
+                                </div>
+                            </div>`;
         return comment_temp;
     }
 

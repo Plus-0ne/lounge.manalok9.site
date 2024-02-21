@@ -83,6 +83,10 @@
     cursor: pointer;
 }
 
+.post_title_input {
+    position: relative;
+}
+
 .post_att_container {
     margin-right: 5px;
     border: 1px solid rgb(202, 202, 202);
@@ -128,7 +132,6 @@
     padding: 0.2rem 1rem 0.2rem 1rem;
     border-radius: 50px;
     cursor: pointer;
-
 }
 
 .post-section-container {
@@ -275,14 +278,12 @@
 }
 
 .user_post_body {
-    cursor: pointer;
-
     white-space: pre;
     white-space: pre-line;
     word-break: break-all;
 }
 .user_post_body:hover {
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
 }
 
 .cus-disabled {

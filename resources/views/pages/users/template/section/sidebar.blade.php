@@ -19,7 +19,6 @@
                 </small>
             </small>
         </div>
-
     </div>
 
     <div class="sidebar-menu">
@@ -30,7 +29,7 @@
                 <a class="nav-link active" href="{{ route('dashboard') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
-                            <img class="nav-icon" src="{{ asset('lounge-icons-v1/publication.svg') }}">
+                            <i class="nav-icon bi bi-feather"></i>
                         </div>
                         <div>
                             <span>
@@ -46,7 +45,7 @@
                 <a class="nav-link" href="{{ route('user.pet_list') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
-                            <img class="nav-icon" src="{{ asset('lounge-icons-v1/pet.svg') }}">
+                            <i class="nav-icon bi bi-search-heart"></i>
                         </div>
                         <div>
                             <span>
@@ -62,7 +61,7 @@
                 <a class="nav-link" href="{{ route('kennel') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
-                            <img class="nav-icon" src="{{ asset('lounge-icons-v1/corgi.svg') }}">
+                            <i class="nav-icon bi bi-postcard-heart"></i>
                         </div>
                         <div>
                             <span>
@@ -106,7 +105,7 @@
                 <a class="nav-link" href="{{ route('user.products.list') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
-                            <img class="nav-icon" src="{{ asset('lounge-icons-v1/shopping-bag.svg') }}">
+                            <i class="nav-icon bi bi-shop"></i>
                         </div>
                         <div>
                             <span>
@@ -124,7 +123,7 @@
                     aria-expanded="false" data-bs-container="body">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
-                            <img class="nav-icon" src="{{ asset('lounge-icons-v1/adopt.svg') }}">
+                            <i class="nav-icon bi bi-disc"></i>
                         </div>
                         <div>
                             <span>
