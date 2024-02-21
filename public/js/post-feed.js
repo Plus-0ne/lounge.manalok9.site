@@ -144,7 +144,7 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     /*                     Show more text in contenct trimmed                     */
     /* -------------------------------------------------------------------------- */
-    $(document).on('click', '.view_this_post', function (e) {
+    $(document).on('click', '.view_this_post, .btn_fullvpost', function (e) {
         e.preventDefault();
 
         var postContainer = $(this).closest('.user_post_container'); 
@@ -481,7 +481,6 @@ $(document).ready(function () {
         return http.status != 404;
     }
 
-    var posts_array = [];
     function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt) {
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
         var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
@@ -570,8 +569,6 @@ $(document).ready(function () {
 
         /* Append to container */
         $('.post-section-container').append(post_temp);
-        posts_array.push($(post_temp));
-        console.log('posts_array:', posts_array);
 
         $('.eja_' + posts.post_id).emojioneArea({
             pickerPosition: "bottom",
@@ -1292,6 +1289,7 @@ $(document).ready(function () {
             comment_append = commentFormTemplate(post_id, comment_temp, pcI, pcVal, delete_comment_cog);
 
             /* append comment to pv-comment-container-'+ posts.post_id + ' */
+            $(comment_append).show('fast');
             $('.pv-comment-container-' + post_id).append(comment_append);
             $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
         });
@@ -1391,7 +1389,7 @@ $(document).ready(function () {
         /* Date with ago */
         pc_show_time = `${moment(pc_postComment.created_at).local().fromNow(true)} ago`;
         comment_temp = pcI;
-        comment_temp = `<div class="vrrr d-flex flex-column mb-3 vrrr-${pc_postComment.id}" data-utcDate="${pc_postComment.created_at}">
+        comment_temp = `<div class="vrrr d-flex flex-column mb-3 vrrr-${pc_postComment.id}" data-utcDate="${pc_postComment.created_at}" style="display: none;">
                                     <div class="mb-2 d-flex flex-row justify-content-between">
                                         <div class="pf-user-details d-flex flex-row align-items-center">
                                             <div class="pf-user-image me-2">
