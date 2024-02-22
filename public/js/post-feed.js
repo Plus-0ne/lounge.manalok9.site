@@ -1,3 +1,6 @@
+window.onbeforeunload = function () {
+    
+};
 $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     /*                              Global variables                              */
@@ -42,7 +45,6 @@ $(document).ready(function () {
 
         /* Submit form */
         $('form#form-post-content').submit();
-
 
     });
 
@@ -316,6 +318,10 @@ $(document).ready(function () {
                 usersName = post_creator.first_name + ' ' + post_creator.last_name;
             }
 
+            if (official_uuids.includes(post_creator.uuid)) {
+                usersName = `${usersName} <i class="bi bi-check-circle-fill text-gradient-golden"></i>`;
+            }
+
             /* Hide edit dot if user is not the post creator */
 
             if (post_creator.uuid == my_uuid) {
@@ -458,8 +464,14 @@ $(document).ready(function () {
             /* Comment count */
             comment_count = posts.comment_per_post_count;
 
+            /* Background Icon */
+            let background_icon = '';
 
-            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt);
+            if (official_uuids.includes(post_creator.uuid)) {
+                background_icon = `<div class="user_post_background-icon"><img src="${window.assetUrl}img/IAGD_LOGO.png"</div>`
+            }
+
+            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon);
 
 
         });
@@ -481,7 +493,7 @@ $(document).ready(function () {
         return http.status != 404;
     }
 
-    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt) {
+    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon = null) {
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
         var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
         var new_image = (ImageNotFound(profile_picture) == false) ? profile_picture_new : profile_picture;
@@ -565,6 +577,7 @@ $(document).ready(function () {
             </div>
             <div class="pv-comment-container-${posts.post_id} pv-check-comment-section" data-post_id="${posts.post_id}">\
             </div>
+            ${background_icon}
         </div>`;
 
         /* Append to container */
@@ -796,14 +809,14 @@ $(document).ready(function () {
 
 
             if (post_attachment_ext == 'mp4' || post_attachment_ext == 'webm' || post_attachment_ext == 'ogg') {
-                post_attachment_media = '<video class="postViewModal-btn" src="' + post_attachment_file_path + '" data-post_id="' + posts.post_id + '"></video>';
+                post_attachment_media = `<video class="video-play-btn postViewModal-btn" src="${post_attachment_file_path}" data-post_id="${posts.post_id}"></video>`;
             }
             else {
-                post_attachment_media = '<img class="pf-content-media postViewModal-btn" src="' + post_attachment_file_path + '" alt="Post attachments" style="object-fit:cover" data-post_id="' + posts.post_id + '">';
+                post_attachment_media = `<img class="pf-content-media postViewModal-btn" src="${post_attachment_file_path}" alt="Post attachments" style="object-fit:cover" data-post_id="${posts.post_id}">`;
             }
-            post_attachment += '<div class="pf-attachment-content d-flex justify-content-center" style="height:326px;">\
-                                                '+ post_attachment_media + '\
-                                            </div>';
+            post_attachment += `<div class="pf-attachment-content d-flex justify-content-center" style="height:326px;">
+                                    ${post_attachment_media}
+                                </div>`;
 
         } else if (posts.post_attachments.length == 2) {
 
@@ -1224,6 +1237,32 @@ $(document).ready(function () {
     var cPageCount = 1;
 
     function getAllComments(cPageCount, post_id, pv_comment_container_id, comment_lastDate) {
+        /* Start skeleton loading display */
+        function create_skeleton_element() {
+            const skeleton_random_comment_user_width = Math.random() * (250 - 150) + 150;
+            const skeleton_random_comment_tooltip_width = Math.random() * (450 - 200) + 200;
+            const skeleton_element = `<div class="vrrr comment-skeleton-group d-flex flex-column mb-3">
+                                        <div class="mb-2 d-flex flex-row justify-content-between">
+                                            <div class="pf-user-details d-flex flex-row align-items-center">
+                                                <div class="pf-user-image me-2 skeleton" style="border-radius: 50%;">
+                                                </div>
+                                                <div>
+                                                    <div class="pf-user-name skeleton" style="width: ${skeleton_random_comment_user_width}px; height: 38px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pf-user-comment skeleton" style="width: ${skeleton_random_comment_tooltip_width}px; height: 17px;"></div>
+                                    </div>`;
+            return skeleton_element;
+        }
+
+        $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
+        const comments_count = parseInt(pv_comment_container_id.parent().find('.show_comment_section').text());
+        for (let i = 0; i < comments_count; i++) {
+            pv_comment_container_id.append(create_skeleton_element());
+        }
+
         /* Get post comments */
         $.ajax({
             type: "post",
@@ -1261,12 +1300,15 @@ $(document).ready(function () {
             },
             complete: function () {
                 pv_comment_container_id.find('.custom-spinner').remove();
+                pv_comment_container_id.find('.comment-skeleton-group').remove();
             }
         });
     }
     $(document).on('click', '.show_comment_section', function () {
         var post_id = $(this).attr('data-post_id');
         var pv_comment_container_id = $('.pv-comment-container-' + post_id);
+        
+        auto_clicked_comments.push(post_id);
 
         pv_comment_container_id.html("");
         cPageCount = 1;
@@ -1291,7 +1333,6 @@ $(document).ready(function () {
             /* append comment to pv-comment-container-'+ posts.post_id + ' */
             $(comment_append).show('fast');
             $('.pv-comment-container-' + post_id).append(comment_append);
-            $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
         });
 
         if (res.postComments.next_page_url != null) {

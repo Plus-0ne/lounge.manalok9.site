@@ -194,9 +194,6 @@
 
 .user_image-backdrop {
     position: absolute;
-}
-
-.user_image-backdrop {
     filter: blur(12px);
     /* transform: scale(1.5); */
     /* opacity: 0.25; */
@@ -225,6 +222,14 @@
 .user_post_comments {
     color: var(--font-color-primary);
     font-size: 14px;
+}
+
+.user_post_background-icon {
+    position: absolute;
+    transform: scale(0.66);
+    opacity: 0.05;
+    top: -11%;
+    left: 64%;
 }
 
 .post_date_label {

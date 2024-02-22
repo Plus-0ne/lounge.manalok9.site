@@ -45,11 +45,11 @@
                                         {{-- <div class="post-control-icon">
                                             <i class="mdi mdi-attachment"></i>
                                         </div> --}}
-                                        <button type="button" class="btn btn-secondary add_image_to_post" style="width: 64px; margin-right: 6px;">
+                                        <button type="button" class="btn btn-secondary add_image_to_post" style="width: 64px; margin-right: 5px;">
                                             <i class="bi bi-images"></i>
                                         </button>
                                         <button type="button" class="btn non-mica btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#insert_emojiinPost" style="width: 64px; margin-right: 6px;">
+                                            data-bs-target="#insert_emojiinPost" style="width: 64px; margin-right: 5px;">
                                             <i class="bi bi-emoji-smile"></i>
                                         </button>
                                         {{-- <button type="button" class="btn btn-secondary" style="width: 64px;">
@@ -83,7 +83,7 @@
                                         </button>
                                     </div>
                                     <div class="post_action text-end">
-                                        <button id="publish_post_btn" class="btn btn-primary post-button-submit">Publish
+                                        <button type="submit" id="publish_post_btn" class="btn btn-primary post-button-submit">Publish
                                             Post</button>
                                     </div>
                                 </div>
@@ -94,11 +94,45 @@
                             </div>
                         </form>
                         <!-- POST SECTION -->
-                        <div class="posts_loader mt-5">
+                        <div class="posts_loader">
                             <!-- <div class="text-center slide-in">
                                 <i class="spinner-border" style="font-size: 24px; width: 128px; height: 128px; color: rgba(255, 255, 255, 0.16);"></i>
                             </div> -->
                             <div class="user_post_container card">
+                                <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                    <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
+                                                    
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_post_body skeleton" style="min-height: 154px; border-radius: 4px;">
+
+                                    </div>
+                                    <div class="user_post_header mt-2 d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 50px;">
+                                                    
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 50px;">
+
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 100px;">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user_post_container card mt-4">
                                 <div class="px-3 py-3 px-lg-4 py-lg-4">
                                     <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
                                         <div class="user_post_details d-flex flex-column">
