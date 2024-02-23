@@ -24,6 +24,10 @@
             <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row">
+                        <!-- WRITE A POST BUTTON -->
+                        <button type="button" class="btn btn-primary write_a_post-btn" style="display: none;">
+                            <i class="bi bi-feather"></i> Write a post about your <span class="write_a_post-text text-gradient-golden"></span>
+                        </button>
                         <!-- WRITE POST -->
                         <form id="form-post-content" action="{{ route('user.create_new_post') }}" method="post"
                             enctype="multipart/form-data">
@@ -55,32 +59,9 @@
                                         {{-- <button type="button" class="btn btn-secondary" style="width: 64px;">
                                             <i class="mdi mdi-delete"></i>
                                         </button> --}}
-
-                                        <button type="button" class="btn non-mica btn-secondary">
-                                            <div class="dropdown">
-                                                <div class="set-post-status dropdown-toggle" role="button"
-                                                    id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <i class="mdi mdi-earth"></i> <small>Public</small>
-                                                </div>
-                                                <input id="post_visibility" type="hidden" name="post_visible"
+                                        <input id="post_visibility" type="hidden" name="post_visible"
                                                     value="public">
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                    <li>
-                                                        <a id="set_post_visibility_public" class="dropdown-item"
-                                                            href="#">
-                                                            <small style="margin-top: -2px;">Public</small>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a id="set_post_visibility_private" class="dropdown-item"
-                                                            href="#">
-                                                            <small style="margin-top: -2px;">Private</small>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </button>
+                                        <button type="button" class="btn set_visibility-btn btn-secondary" data-visibility="public"><i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Share to everyone</span></button>
                                     </div>
                                     <div class="post_action text-end">
                                         <button type="submit" id="publish_post_btn" class="btn btn-primary post-button-submit">Publish

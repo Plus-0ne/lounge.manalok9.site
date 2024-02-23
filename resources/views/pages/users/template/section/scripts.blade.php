@@ -89,10 +89,12 @@
                 }
             });
         }
-        $('body').on('click', '.btn', function() {
-            let button = this;
+        $('body').on('click', '.btn', function(event) {
+            let clickedElement = event.target;
+            let button = $(clickedElement).closest('.btn');
+
             setTimeout(function() {
-                $(button).blur();
+                button.blur();
             }, 300)
         });
     });

@@ -134,6 +134,25 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     /*                             Visibility dropdown                            */
     /* -------------------------------------------------------------------------- */
+    $('.set_visibility-btn').on('click', function() {
+        let button = $(this); 
+        let visibility = button.data('visibility') ?? 'public';
+    
+        visibility = (visibility === 'public') ? 'private' : 'public'; 
+    
+        if (visibility === 'public') { 
+            button.html('<i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Share to everyone</span>');
+        } else {
+            button.html('<i class="bi bi-circle"></i> <span style="font-size: 14px; vertical-align: 1px; opacity: 0.25;">Share to everyone</span>');
+        }
+    
+        button.data('visibility', visibility).attr('data-visibility', visibility);
+        $('#post_visibility').val(visibility);
+    
+        setTimeout(function() {
+            button.blur();
+        }, 300);
+    });    
     $(document).on('click', '#set_post_visibility_public', function () {
         $("#post_visibility").val('public');
         $('.set-post-status').html('<i class="mdi mdi-earth"></i> <small>Public</small>');
@@ -454,7 +473,7 @@ $(document).ready(function () {
             /* Post Reaction */
             let user_reactions = [];
             if (posts.post_reaction.length > 0) {
-                user_reactions = posts.post_reaction[0].reaction.split(', ');
+                user_reactions = posts.post_reaction[0].reaction.toString().split(', ');
                 console.log(user_reactions);
             }
 
@@ -468,7 +487,7 @@ $(document).ready(function () {
             let background_icon = '';
 
             if (official_uuids.includes(post_creator.uuid)) {
-                background_icon = `<div class="user_post_background-icon"><img src="${window.assetUrl}img/IAGD_LOGO.png"</div>`
+                background_icon = `<div class="user_post_background-icon"><img src="${window.assetUrl}img/IAGD_LOGO.png"></div>`
             }
 
             htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon);
@@ -695,9 +714,10 @@ $(document).ready(function () {
                 post_template(res, assetUrl, ruuid);
 
                 cleanup_loading_animations();
+                // $('.write_a_post-btn').fadeIn('fast');
                 $('.write_post_section').fadeIn('fast');
                 $('.posts_section').fadeIn('fast');
-                queueTypewriter($('#postTextarea'), ['Hello everyone!'], 88, 500);
+                // typeWriterEffect($('.write_a_post-text'), ['cat', 'dog', 'rabbit', 'bird'], 333, true); 
             }
         });
     }
@@ -706,41 +726,46 @@ $(document).ready(function () {
         $('.posts_loader').hide();
     }
 
-    function typeWriterEffect(textarea, text, speed) {
-        let i = 0; 
-        let currentWord = '';
+    function typeWriterEffect(element, words, speed, loopInfinitely) {
+        // TODO: NOT WORKING
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isTyping = true;
     
-        const typeInterval = setInterval(function() {
-            if (i < text.length) {
-                currentWord += text.charAt(i);
-                textarea.attr('placeholder', currentWord); 
-                i++;
-            } else {
-                clearInterval(typeInterval); 
-            }
-        }, speed); 
-    }
+        function typeEffect() {
+            let word = words[wordIndex];
+            let current_word = element.html;
+            let typed_word = '';
+            console.log('typeEffect -> word: ', word);
     
-    function queueTypewriter(textarea, wordQueue, speed, delay) {
-        let currentWordIndex = 0; 
-        let isTyping = false;
-    
-        function typeNextWord() {
-            if (currentWordIndex < wordQueue.length && !isTyping) { 
-                isTyping = true; 
-                typeWriterEffect(textarea, wordQueue[currentWordIndex], speed);
-                currentWordIndex++;
-    
-                setTimeout(function() {
-                    textarea.attr('placeholder', '');
+            if (isTyping) {
+                if (charIndex < word.length) {
+                    typed_word += word.charAt(charIndex);
+                    element.html(typed_word);
+                    charIndex++;
+                } else {
                     isTyping = false;
-                    setTimeout(typeNextWord, delay); 
-                }, delay);
+                    setTimeout(typeEffect, speed * 2); 
+                }
+            } else {
+                if (charIndex > 0) {
+                    typed_word += current_word.slice(0, -1);
+                    element.html(typed_word);
+                    charIndex--;
+                } else {
+                    isTyping = true;
+    
+                    if (loopInfinitely) {
+                        wordIndex = (wordIndex + 1) % words.length; 
+                    }
+                }
             }
+            setTimeout(typeEffect, speed); 
         }
     
-        typeNextWord(); 
+        typeEffect(); 
     }
+    
 
     /* -------------------------------------------------------------------------- */
     /*                             Initiate get_posts                             */
@@ -1247,12 +1272,12 @@ $(document).ready(function () {
                                                 <div class="pf-user-image me-2 skeleton" style="border-radius: 50%;">
                                                 </div>
                                                 <div>
-                                                    <div class="pf-user-name skeleton" style="width: ${skeleton_random_comment_user_width}px; height: 38px;">
+                                                    <div class="pf-user-name skeleton" style="width: ${skeleton_random_comment_user_width}px; height: 38px; border-radius: 4px;">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="pf-user-comment skeleton" style="width: ${skeleton_random_comment_tooltip_width}px; height: 17px;"></div>
+                                        <div class="pf-user-comment skeleton" style="width: ${skeleton_random_comment_tooltip_width}px; height: 17px; border-radius: 4px;"></div>
                                     </div>`;
             return skeleton_element;
         }
