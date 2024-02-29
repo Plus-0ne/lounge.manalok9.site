@@ -456,10 +456,10 @@ div.emojionearea-button-close {
     transition: transform 0.35s ease-in-out;
 }
 .nav-link:hover .nav-icon-container {
-    transform: rotate(360deg);
+    /* transform: rotate(360deg); */
 }
 .collapse-item:hover .collapse-icon-container {
-    transform: rotate(360deg);
+    /* transform: rotate(360deg); */
 }
 .collapse-item-text {
     font-size: 0.75rem !important;
@@ -475,12 +475,17 @@ a {
 
 .nav-link:hover {
     color: #fdfdfd;
-    background-color: #2d3848;
+    background-color: #312c53;
+}
+
+.nav-link:hover i {
+    color: #fdfdfd !important;
+    transition: 0.25s;
 }
 
 .nav-link:focus {
     color: #fdfdfd;
-    background-color: #2d3848;
+    background-color: #312c53;
 }
 
 .collapse-item {
@@ -2418,6 +2423,10 @@ span.toggle-handle {
     opacity: 0.15;
 }
 
+.rotating {
+    animation: rotating 1.33s ease-in-out infinite;
+}
+
 @keyframes delay-animation {
     0% {
         opacity: 1;
@@ -2437,4 +2446,9 @@ span.toggle-handle {
 	to {
 		background-position: right -40px top 0;
 	}
+}
+
+@keyframes rotating {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

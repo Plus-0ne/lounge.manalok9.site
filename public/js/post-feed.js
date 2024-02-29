@@ -284,6 +284,7 @@ $(document).ready(function () {
     /*                                Post template                               */
     /* -------------------------------------------------------------------------- */
     function post_template(res, assetUrl, ruuid, is_append = true) {
+        console.log(`post_template called: ruuid: ${ruuid}, is_append: ${is_append}`);
         var my_uuid = ruuid;
         var post_temp = null;
         var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
@@ -325,6 +326,7 @@ $(document).ready(function () {
             /* Profile picture */
             profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
 
+            console.log('post_creator', post_creator);
             if (post_creator.profile_image != null) {
 
 
@@ -492,15 +494,16 @@ $(document).ready(function () {
 
             htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon, is_append);
 
-
         });
 
         /* Show button show more post if next page url is not null */
-        if (res.data.next_page_url != null) {
-            $('.post_nextpage').html('<button id="show_more_post_available" class="btn btn-primary"> More posts </button>');
-        }
-        else {
-            $('.post_nextpage').html('<p> No more posts to show. </p>');
+        if (is_append == true) {
+            if (res.data.next_page_url != null) {
+                $('.post_nextpage').html('<button id="show_more_post_available" class="btn btn-primary"> More posts </button>');
+            }
+            else {
+                $('.post_nextpage').html('<p> No more posts to show. </p>');
+            }
         }
     }
 
@@ -513,6 +516,7 @@ $(document).ready(function () {
     }
 
     function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon = null, is_append) {
+        console.log(`htmlContentPost called: is_append: ${is_append}`);
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
         var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
         var new_image = (ImageNotFound(profile_picture) == false) ? profile_picture_new : profile_picture;
@@ -603,7 +607,7 @@ $(document).ready(function () {
         if (is_append) {
             $('.post-section-container').append(post_temp);
         } else {
-            $('.post-section-container').prepend(post_temp);
+            const posted_content = $('.post-section-container').prepend(post_temp);
         }
 
         $('.eja_' + posts.post_id).emojioneArea({
@@ -2180,6 +2184,7 @@ $(document).ready(function () {
     /*                                Create a post                               */
     /* -------------------------------------------------------------------------- */
 
+    let loading_post_animation;
     $('#form-post-content').on('submit', function(event) {
         event.preventDefault();
 
@@ -2196,6 +2201,31 @@ $(document).ready(function () {
             beforeSend: function() {
                 submit_button.prop('disabled', true);
                 submit_button.html('<i class="spinner-border spinner-border-sm"></i> Publishing...');
+                $('.clear_input_images').trigger('click');
+                const loading_post_element = `<div class="user_post_container card" style="display: none;">
+                                            <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                                <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                                    <div class="user_post_details d-flex flex-column">
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
+                                                                
+                                                            </div>
+                                                            <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="user_post_body skeleton" style="min-height: 154px; border-radius: 4px;">
+                                                    <div class="text-center rotating">
+                                                        <i class="bi bi-feather2" style="font-size: 72px; color: #312c57"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                loading_post_animation = $(loading_post_element)
+                $('.post-section-container').prepend(loading_post_animation);
+                loading_post_animation.fadeIn();
             },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -2206,10 +2236,7 @@ $(document).ready(function () {
                 submit_button.html(submit_button_text);
 
                 const post_id = response.post_uuid;
-                const submitted_post = get_specific_post(post_id);
-                if (submitted_post) {
-                    post_template(submitted_post, assetUrl, ruuid);
-                }
+                get_specific_post(post_id);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 submit_button.prop('disabled', false);
@@ -2230,7 +2257,9 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function(response) {
-                return response;
+                loading_post_animation.hide();
+                post_template(response, assetUrl, ruuid, false);
+                return true;
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 return false;

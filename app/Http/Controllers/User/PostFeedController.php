@@ -439,10 +439,8 @@ class PostFeedController extends Controller
                 return $mm->select('id', 'uuid', 'iagd_number', 'email_address', 'profile_image', 'first_name', 'last_name');
             }
         ])
-
-        ->where([
-            ['post_id', '=', $request->input('post_id')]
-        ])
+        
+        ->where('post_id', $request->input('post_id'))
 
         ->with([
             'PostReaction' => function ($pr) use ($my_uuid) {
@@ -477,8 +475,15 @@ class PostFeedController extends Controller
         ->with('sharedSource')
         ->with('sourceAttachments')
 
-        ->orderBy('updated_at', 'DESC');
-        return response()->json(['data' => $PostFeed, 'post_id' => $request->input('post_id')]);
+        ->orderBy('updated_at', 'DESC')
+        ->first();
+        return response()->json([
+            'data' => [
+                'data' => [
+                    0 => $PostFeed
+                ]
+            ]
+        ]);
     }
 
     /* -------------------------------------------------------------------------- */
