@@ -283,7 +283,7 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     /*                                Post template                               */
     /* -------------------------------------------------------------------------- */
-    function post_template(res, assetUrl, ruuid) {
+    function post_template(res, assetUrl, ruuid, is_append = true) {
         var my_uuid = ruuid;
         var post_temp = null;
         var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
@@ -490,7 +490,7 @@ $(document).ready(function () {
                 background_icon = `<div class="user_post_background-icon"><img src="${window.assetUrl}img/IAGD_LOGO.png"></div>`
             }
 
-            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon);
+            htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon, is_append);
 
 
         });
@@ -512,7 +512,7 @@ $(document).ready(function () {
         return http.status != 404;
     }
 
-    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon = null) {
+    function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon = null, is_append) {
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
         var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
         var new_image = (ImageNotFound(profile_picture) == false) ? profile_picture_new : profile_picture;
@@ -600,7 +600,11 @@ $(document).ready(function () {
         </div>`;
 
         /* Append to container */
-        $('.post-section-container').append(post_temp);
+        if (is_append) {
+            $('.post-section-container').append(post_temp);
+        } else {
+            $('.post-section-container').prepend(post_temp);
+        }
 
         $('.eja_' + posts.post_id).emojioneArea({
             pickerPosition: "bottom",
@@ -2168,8 +2172,69 @@ $(document).ready(function () {
             complete: function () {
                 thisBtn.prop('disabled', false);
                 thisBtn.html('<span class="mdi mdi-share"></span> Share');
-
             }
         });
     });
+
+    /* -------------------------------------------------------------------------- */
+    /*                                Create a post                               */
+    /* -------------------------------------------------------------------------- */
+
+    $('#form-post-content').on('submit', function(event) {
+        event.preventDefault();
+
+        const submit_button = $('#publish_post_btn');
+        const submit_button_text = submit_button.html();
+        const formData = new FormData(this);
+
+        $.ajax({
+            url: window.thisUrl + "/ajax/post/create",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                submit_button.prop('disabled', true);
+                submit_button.html('<i class="spinner-border spinner-border-sm"></i> Publishing...');
+            },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function(response) {
+                submit_button.prop('disabled', false);
+                $('#form-post-content').trigger("reset");
+                submit_button.html(submit_button_text);
+
+                const post_id = response.post_uuid;
+                const submitted_post = get_specific_post(post_id);
+                if (submitted_post) {
+                    post_template(submitted_post, assetUrl, ruuid);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                submit_button.prop('disabled', false);
+                console.error("Error:", textStatus, errorThrown);
+                submit_button.html('<i class="bi bi-arrow-clockwise" style="vertical-align: 0;"></i> Error: Try Again');
+            }
+        });
+    });
+
+    function get_specific_post(post_id) {
+        $.ajax({
+            url: window.thisUrl + "/ajax/post/get_specific",
+            type: "GET",
+            data: {
+                post_id: post_id
+            },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function(response) {
+                return response;
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                return false;
+            }
+        });
+    }
 });

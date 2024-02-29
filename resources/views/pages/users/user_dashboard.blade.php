@@ -29,7 +29,7 @@
                             <i class="bi bi-feather"></i> Write a post about your <span class="write_a_post-text text-gradient-golden"></span>
                         </button>
                         <!-- WRITE POST -->
-                        <form id="form-post-content" action="{{ route('user.create_new_post') }}" method="post"
+                        <form id="form-post-content" action="#" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="write_post_section" style="display: none;">
@@ -64,7 +64,7 @@
                                         <button type="button" class="btn set_visibility-btn btn-secondary" data-visibility="public"><i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Share to everyone</span></button>
                                     </div>
                                     <div class="post_action text-end">
-                                        <button type="submit" id="publish_post_btn" class="btn btn-primary post-button-submit">Publish
+                                        <button type="submit" id="publish_post_btn" class="btn btn-primary post-button-submit"><i class="bi bi-feather" style="vertical-align: 0;"></i> Publish
                                             Post</button>
                                     </div>
                                 </div>

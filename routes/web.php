@@ -205,6 +205,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/ajax/get_latest_comments', [PostFeedController::class, 'get_latest_comments'])->name('user.get_latest_comments');
     Route::post('/ajax/post/delete', [PostFeedController::class, 'post_delete'])->name('user.post_delete');
     Route::get('/ajax/post/get', [PostFeedController::class, 'post_get'])->name('user.post_get');
+    Route::get('/ajax/post/get_specific', [PostFeedController::class, 'post_get_specific'])->name('user.post_get_specific');
     Route::post('/ajax/post/reaction/create', [PostFeedController::class, 'post_reaction_create'])->name('user.post_reaction_create');
     Route::post('/ajax/post/reaction/view', [PostFeedController::class, 'post_reaction_view'])->name('user.post_reaction_view');
     Route::post('/ajax/post/create', [PostFeedController::class, 'create_new_post'])->name('user.create_new_post');

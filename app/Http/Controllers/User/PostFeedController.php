@@ -419,6 +419,68 @@ class PostFeedController extends Controller
         return response()->json(['data' => $PostFeed]);
     }
 
+    public function post_get_specific(Request $request)
+    {
+        /* Check if request is ajax */
+
+        if (!$request->input('post_id')) {
+            $data = [
+                'status' => 'error',
+                'message' => '`post_id` cannot be missing.'
+            ];
+            return response()->json($data);
+        }
+
+        /* Variables */
+        $my_uuid = Auth::guard('web')->user()->uuid;
+
+        $PostFeed = PostFeed::with([
+            'MembersModel' => function ($mm) {
+                return $mm->select('id', 'uuid', 'iagd_number', 'email_address', 'profile_image', 'first_name', 'last_name');
+            }
+        ])
+
+        ->where([
+            ['post_id', '=', $request->input('post_id')]
+        ])
+
+        ->with([
+            'PostReaction' => function ($pr) use ($my_uuid) {
+                $pr->where([
+                    ['uuid', $my_uuid],
+                    ['reaction', '<>', null]
+                ]);
+            }
+        ])
+        ->withCount([
+            'PostReaction as total_reaction' => function ($q) {
+                $q->where('reaction', '<>', null);
+            }
+        ])
+        ->withCount([
+            'PostReaction as total_r1' => function ($q) {
+                $q->where('reaction', 1);
+            }
+        ])
+        ->withCount([
+            'PostReaction as total_r2' => function ($q) {
+                $q->where('reaction', 2);
+            }
+        ])
+        ->withCount([
+            'PostReaction as total_r3' => function ($q) {
+                $q->where('reaction', 3);
+            }
+        ])
+        ->withCount('CommentPerPost')
+        ->with('PostAttachments')->skip(0)
+        ->with('sharedSource')
+        ->with('sourceAttachments')
+
+        ->orderBy('updated_at', 'DESC');
+        return response()->json(['data' => $PostFeed, 'post_id' => $request->input('post_id')]);
+    }
+
     /* -------------------------------------------------------------------------- */
     /*                               View reaction                                */
     /* -------------------------------------------------------------------------- */
@@ -678,11 +740,10 @@ class PostFeedController extends Controller
             /* Check file extension */
             foreach ($request->file('file_attachment') as $row) {
                 if (!in_array($row->extension(), $supported_file_format)) {
-                    $data = [
-                        'status' => 'error',
-                        'message' => 'format not supported'
-                    ];
-                    return redirect()->back()->with($data);
+                    return response()->json([
+                        'status' => 'error', 
+                        'message' => 'Format not supported'
+                    ]);
                 }
             }
 
@@ -697,11 +758,10 @@ class PostFeedController extends Controller
 
                 if ($row->extension() == 'mp4' || $row->extension() == 'webm' || $row->extension() == 'ogg') {
                     if ($row->getSize() > '500000000') {
-                        $data = [
-                            'status' => 'error',
+                        return response()->json([
+                            'status' => 'error', 
                             'message' => 'You can upload up to 500mb file size.'
-                        ];
-                        return redirect()->back()->with($data);
+                        ]);
                     }
                     $max_video_count++;
                 }
@@ -709,20 +769,18 @@ class PostFeedController extends Controller
 
             if ($max_image_count > 3) {
 
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => 'Maximum image upload limited to 3'
-                ];
-                return redirect()->back()->with($data);
+                ]);
             }
 
             if ($max_video_count > 1) {
 
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => 'Maximum video upload limited to 1 only'
-                ];
-                return redirect()->back()->with($data);
+                ]);
             }
 
 
@@ -781,12 +839,10 @@ class PostFeedController extends Controller
                         File::delete($folderPath . '/' . $value);
                     }
                 }
-
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => 'File upload failed.'
-                ];
-                return redirect()->back()->with($data);
+                ]);
 
             }
 
@@ -798,22 +854,20 @@ class PostFeedController extends Controller
                 ]);
 
             if ($validate->fails()) {
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => $validate->errors()->first()
-                ];
-                return redirect()->back()->with($data);
+                ]);
             }
 
             $post_type = 'post_attachments';
 
         } else {
             if ($request->input('post_msg') == null || $request->input('post_msg') == " ") {
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => 'Write what you want to share.'
-                ];
-                return redirect()->back()->with($data);
+                ]);
             }
             $validate = Validator::make($request->all(), [
                 'post_msg' => 'required',
@@ -824,11 +878,10 @@ class PostFeedController extends Controller
                 ]);
 
             if ($validate->fails()) {
-                $data = [
-                    'status' => 'error',
+                return response()->json([
+                    'status' => 'error', 
                     'message' => $validate->errors()->first()
-                ];
-                return redirect()->back()->with($data);
+                ]);
             }
 
             $post_type = 'post';
@@ -898,7 +951,12 @@ class PostFeedController extends Controller
             BroadcastingHelpers::eventNewPostCreated($data);
 
 
-            return redirect()->back()->with('response', 'post_created');
+            return response()->json([
+                'status' => 'success',
+                'post_uuid' => $post_id,
+                'from_user_uuid' => Auth::guard('web')->user()->uuid,
+                'message' => 'Post created successfully'
+            ]);
         } else {
             if ($post_images > 0) {
                 foreach ($post_images as $key => $value) {
@@ -910,11 +968,10 @@ class PostFeedController extends Controller
 
             PostFeed::find($create_new_post->id)->forceDelete();
 
-            $data = [
-                'status' => 'error',
-                'message' => 'Error posting...'
-            ];
-            return redirect()->back()->with($data);
+            return response()->json([
+                'status' => 'error', 
+                'message' => 'Error posting'
+            ]);
         }
 
     }
