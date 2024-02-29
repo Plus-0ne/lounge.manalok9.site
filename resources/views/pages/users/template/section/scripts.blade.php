@@ -109,6 +109,8 @@
     window.uuid = '{{ Auth::guard('web')->user()->uuid }}';
     window.urlAssets = "{{ asset('/') }}";
     window.thisUrl = "{{ URL::to('/') }}";
+    window.first_name = '{{ Auth::guard('web')->user()->first_name }}';
+    window.profile_image = '{{ Auth::guard('web')->user()->profile_image }}';
 </script>
 <script src="{{ asset('js/user-global-scripts.js') }}"></script>
 <script src="{{ asset('js/members_js/users-scripts.js') }}"></script>

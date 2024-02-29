@@ -199,7 +199,6 @@
     @include('pages/users/template/section/scripts')
     @include('pages/users/template/section/scripts-var')
 
-
     <script src="https://unpkg.com/picmo@5.1.0/dist/umd/picmo.js"></script>
     <script src="https://unpkg.com/@picmo/popup-picker@5.1.0/dist/umd/picmo-popup.js"></script>
     <script src="https://unpkg.com/@picmo/renderer-twemoji@5.1.0/dist/umd/picmo-twemoji.js"></script>

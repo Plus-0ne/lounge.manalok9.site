@@ -8,6 +8,8 @@ $(document).ready(function () {
     var page = 1;
     var ruuid = window.ruuid;
     var assetUrl = window.assetUrl;
+    var first_name = window.first_name;
+    var profile_image = window.profile_image;
     window.lastChatdate = '0000-00-00 00:00:00';
 
     const special_uuids = [
@@ -1520,7 +1522,7 @@ $(document).ready(function () {
                 var res = response;
 
                 console.log(response);
-                emojionearea_editor.data("emojioneArea").setText('');
+                emojionearea_editor.data("emojioneArea").setText(''); // clears hidden data text
                 comment_txt.val("");
 
                 switch (res.status) {
@@ -1623,6 +1625,35 @@ $(document).ready(function () {
                             </div>';
         return comment_append;
 
+    }
+
+    $(document).on('click', '.show_reply_section', function() {
+        const post_id = $(this).data('post_id');
+        generateReplyElement(post_id);
+    });
+
+    function generateReplyElement(post_id) {
+        $(`.user-reply-container[data-post_id="${post_id}"]`).remove();
+        const reply_template = `<div class="user-reply-container vrrr d-flex flex-column mb-3" data-post_id="${post_id}" style="display: none;">
+                                    <div class="mb-2 d-flex flex-row justify-content-between">
+                                        <div class="pf-user-details d-flex flex-row align-items-center">
+                                            <div class="pf-user-image me-2">
+                                                <img src="${assetUrl}${profile_image}" alt="">
+                                            </div>
+                                            <div>
+                                                <div class="pf-user-name">
+                                                    <a href="#">${first_name}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pf-user-comment"><textarea class="form-control eja_${post_id}" rows="1" style="font-size: 12px; height: 108px;"></textarea>
+                                    <button type="button" class="submit_comment btn btn-primary" style="position: absolute;width: 100px;bottom: 0%;right: 3%;font-size: 12px;"><i class="bi bi-reply-fill" style="vertical-align: 0;"></i> Reply</button></div>
+                                </div>`;
+        const reply_element = $(reply_template);
+        $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4').append(reply_element);
+        reply_element.fadeIn();
+        reply_element.find('textarea').trigger('focus');
     }
     /* -------------------------------------------------------------------------- */
     /*                             Show more comments                             */
