@@ -1271,26 +1271,27 @@ $(document).ready(function () {
     /* -------------------------------------------------------------------------- */
     var cPageCount = 1;
 
-    function getAllComments(cPageCount, post_id, pv_comment_container_id, comment_lastDate) {
-        /* Start skeleton loading display */
-        function create_skeleton_element() {
-            const skeleton_random_comment_user_width = Math.random() * (250 - 150) + 150;
-            const skeleton_random_comment_tooltip_width = Math.random() * (450 - 200) + 200;
-            const skeleton_element = `<div class="vrrr comment-skeleton-group d-flex flex-column mb-3">
-                                        <div class="mb-2 d-flex flex-row justify-content-between">
-                                            <div class="pf-user-details d-flex flex-row align-items-center">
-                                                <div class="pf-user-image me-2 skeleton" style="border-radius: 50%;">
-                                                </div>
-                                                <div>
-                                                    <div class="pf-user-name skeleton" style="width: ${skeleton_random_comment_user_width}px; height: 38px; border-radius: 4px;">
-                                                    </div>
+    function create_skeleton_element() {
+        const skeleton_random_comment_user_width = Math.random() * (250 - 150) + 150;
+        const skeleton_random_comment_tooltip_width = Math.random() * (450 - 200) + 200;
+        const skeleton_element = `<div class="vrrr comment-skeleton-group d-flex flex-column mb-3">
+                                    <div class="mb-2 d-flex flex-row justify-content-between">
+                                        <div class="pf-user-details d-flex flex-row align-items-center">
+                                            <div class="pf-user-image me-2 skeleton" style="border-radius: 50%;">
+                                            </div>
+                                            <div>
+                                                <div class="pf-user-name skeleton" style="width: ${skeleton_random_comment_user_width}px; height: 38px; border-radius: 4px;">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="pf-user-comment skeleton" style="width: ${skeleton_random_comment_tooltip_width}px; height: 17px; border-radius: 4px;"></div>
-                                    </div>`;
-            return skeleton_element;
-        }
+                                    </div>
+                                    <div class="pf-user-comment skeleton" style="width: ${skeleton_random_comment_tooltip_width}px; height: 17px; border-radius: 4px;"></div>
+                                </div>`;
+        return skeleton_element;
+    }
+
+    function getAllComments(cPageCount, post_id, pv_comment_container_id, comment_lastDate) {
+        /* Start skeleton loading display */
 
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
         const comments_count = parseInt(pv_comment_container_id.parent().find('.show_comment_section').text());
@@ -1494,11 +1495,10 @@ $(document).ready(function () {
     /*                                Send comment                                */
     /* -------------------------------------------------------------------------- */
     $(document).on('click', '.submit_comment', function (e) {
-        var post_id = $(this).attr('data-post_id');
+        var post_id = $(this).data('post_id');
         var comment_txt = $('.eja_' + post_id);
 
         var textComment_area = comment_txt.parent();
-        var emojionearea_editor = textComment_area.find('.emojionearea-editor');
 
         var thisbtn = $(this);
 
@@ -1507,6 +1507,8 @@ $(document).ready(function () {
 
         thisbtn.prop('disabled', true);
         e.preventDefault();
+
+        pv_comment_container_id.find('.vrrr').eq(-2).after(create_skeleton_element());
 
         $.ajax({
             type: "post",
@@ -1521,8 +1523,8 @@ $(document).ready(function () {
             success: function (response) {
                 var res = response;
 
-                console.log(response);
-                emojionearea_editor.data("emojioneArea").setText(''); // clears hidden data text
+                // console.log(response);
+                // emojionearea_editor.data("emojioneArea").setText(''); // clears hidden data text
                 comment_txt.val("");
 
                 switch (res.status) {
@@ -1538,7 +1540,7 @@ $(document).ready(function () {
                         if (response.status == 'success') {
                             if (pv_comment_container_id.find('.vrrr').length > 0) {
 
-                                $('.pv-comment-container-' + post_id).find('.vrrr').last().after(appendMyComment(res, post_id, delete_comment_cog));
+                                $('.pv-comment-container-' + post_id).find('.vrrr').eq(-3).after(appendMyComment(res, post_id, delete_comment_cog));
 
                             }
                             else {
@@ -1550,10 +1552,13 @@ $(document).ready(function () {
                         break;
                 }
                 thisbtn.prop('disabled', false);
+            },
+            complete: function () {
+                pv_comment_container_id.find('.comment-skeleton-group').remove();
             }
         });
     });
-
+    
     function appendMyComment(res, post_id, delete_comment_cog) {
         var post_id = post_id;
         var pv_comment_container_id = $('.pv-comment-container-' + post_id);
@@ -1599,30 +1604,28 @@ $(document).ready(function () {
         }
 
         comment_append = "";
-        comment_append = '<div class="vrrr d-flex flex-column mb-3 vrrr-' + pc_postComment.id + '" data-utcDate="' + pc_postComment.created_at + '">\
-                                    <div class="mb-2 d-flex flex-row justify-content-between">\
-                                        <div class="pf-user-details d-flex flex-row align-items-center">\
-                                            <div class="pf-user-image me-2">\
-                                                <img src="'+ pc_profile_image + '" alt="">\
-                                            </div>\
-                                            <div>\
-                                                <div class="pf-user-name">\
-                                                    <a href="' + pc_profile_url + '">' + pc_user_name + '</a>\
-                                                </div>\
-                                                <div class="pf-time-count">\
-                                                    <small>\
-                                                        <span class="badge rounded-pill bg-success">'+ pc_show_time + '</span>\
-                                                    </small>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        '+ delete_comment_cog + '\
-                                    </div>\
-                                    <div class="pf-user-comment">\
-                                    '+ pc_posted_comment + '\
-                                    </div>\
-                                </div>\
-                            </div>';
+        comment_append = `<div class="vrrr d-flex flex-column mb-3 vrrr-${pc_postComment.id}" data-utcDate="${pc_postComment.created_at}">
+                                    <div class="mb-2 d-flex flex-row justify-content-between">
+                                        <div class="pf-user-details d-flex flex-row align-items-center">
+                                            <div class="pf-user-image me-2">
+                                                <img src="${pc_profile_image}" alt="">
+                                            </div>
+                                            <div>
+                                                <div class="pf-user-name">
+                                                    <a href="${pc_profile_url}">${pc_user_name}</a>
+                                                </div>
+                                                <div class="pf-time-count">
+                                                    ${pc_show_time}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        ${delete_comment_cog}
+                                    </div>
+                                    <div class="pf-user-comment">
+                                    ${pc_posted_comment}
+                                    </div>
+                                </div>
+                            </div>`;
         return comment_append;
 
     }
@@ -1648,7 +1651,7 @@ $(document).ready(function () {
                                         </div>
                                     </div>
                                     <div class="pf-user-comment"><textarea class="form-control eja_${post_id}" rows="1" style="font-size: 12px; height: 108px;"></textarea>
-                                    <button type="button" class="submit_comment btn btn-primary" style="position: absolute;width: 100px;bottom: 0%;right: 3%;font-size: 12px;"><i class="bi bi-reply-fill" style="vertical-align: 0;"></i> Reply</button></div>
+                                    <button type="button" class="submit_comment btn btn-primary" data-post_id="${post_id}" style="position: absolute; width: 100px; bottom: 0%; right: 3%; font-size: 12px;"><i class="bi bi-reply-fill" style="vertical-align: 0;"></i> Reply</button></div>
                                 </div>`;
         const reply_element = $(reply_template);
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4').append(reply_element);
@@ -2297,4 +2300,14 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('#postTextarea').on('click', function() {
+        $(this).css('transition', '0.16s ease-in-out');
+        $(this).css('height', '132px');
+    });
+
+    $('#postTextarea').on('blur', function() {
+        $(this).css('transition', '0.08s ease-in-out');
+        $(this).css('height', '60px');
+    });
 });

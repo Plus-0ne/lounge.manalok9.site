@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="post_title_input pb-2">
-                                    <textarea id="postTextarea" name="post_msg" class="form-control" rows="5" placeholder=""></textarea>
+                                    <textarea id="postTextarea" name="post_msg" class="form-control" placeholder="" style="height: 60px;"></textarea>
                                 </div>
                                 <div
                                     class="w-100 d-flex flex-column flex-xl-row justify-content-between align-items-center">
