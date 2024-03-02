@@ -21,6 +21,8 @@ $(document).ready(function () {
         '8b70240c-08a7-411e-9f21-6d4bdc5ed052', // official mk9
     ]
 
+    let is_already_getting_comments = false;
+
     $.fn.isInViewport = function() {
         if ($(this) == undefined) {
             return false;
@@ -1337,10 +1339,15 @@ $(document).ready(function () {
             complete: function () {
                 pv_comment_container_id.find('.custom-spinner').remove();
                 pv_comment_container_id.find('.comment-skeleton-group').remove();
+                is_already_getting_comments = false;
             }
         });
     }
     $(document).on('click', '.show_comment_section', function () {
+        if (is_already_getting_comments) {
+            return false;
+        }
+        is_already_getting_comments = true;
         var post_id = $(this).attr('data-post_id');
         var pv_comment_container_id = $('.pv-comment-container-' + post_id);
         
@@ -2306,8 +2313,8 @@ $(document).ready(function () {
         $(this).css('height', '132px');
     });
 
-    $('#postTextarea').on('blur', function() {
-        $(this).css('transition', '0.08s ease-in-out');
-        $(this).css('height', '60px');
-    });
+    // $('#postTextarea').on('blur', function() {
+    //     $(this).css('transition', '0.08s ease-in-out');
+    //     $(this).css('height', '60px');
+    // });
 });
