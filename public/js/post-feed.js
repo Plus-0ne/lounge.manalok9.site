@@ -570,7 +570,7 @@ $(document).ready(function () {
                                 <path fill="#0072ff" color="#0072ff" d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"></path>
                             </g>
                         </svg>
-                        <span style="${react_count[0] <= 0 ? 'display: none;' : ''}">${react_count[0]}</span>
+                        <span class="react-counter-text" style="${react_count[0] <= 0 ? 'display: none;' : ''}">${react_count[0]}</span>
                     </button>
                     <button type="button" class="btn btn-secondary react-haha-btn post-react-btn" data-react="haha" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 5px;">
                         <svg width="20px" height="20px" viewBox="0 0 1500 1500" xmlns="http://www.w3.org/2000/svg">
@@ -584,7 +584,7 @@ $(document).ready(function () {
                                 <path class="st5" d="M297.8 411L505 511.4l-204.9 94.2"></path>
                             </g>
                         </svg>
-                        <span style="${react_count[1] <= 0 ? 'display: none;' : ''}">${react_count[1]}</span>
+                        <span class="react-counter-text" style="${react_count[1] <= 0 ? 'display: none;' : ''}">${react_count[1]}</span>
                     </button>
                     <button type="button" class="btn btn-secondary react-love-btn post-react-btn" data-react="heart" data-post_id="${posts.post_id}" style="width: 64px; margin-right: 5px;">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 544.582 544.582" style="enable-background:new 0 0 544.582 544.582;" xml:space="preserve">
@@ -592,7 +592,7 @@ $(document).ready(function () {
                                 <path fill="#ff0025" color="#ff0025" d="M448.069,57.839c-72.675-23.562-150.781,15.759-175.721,87.898C247.41,73.522,169.303,34.277,96.628,57.839C23.111,81.784-16.975,160.885,6.894,234.708c22.95,70.38,235.773,258.876,263.006,258.876c27.234,0,244.801-188.267,267.751-258.876C561.595,160.732,521.509,81.631,448.069,57.839z"></path>
                             </g>
                         </svg>
-                        <span style="${react_count[2] <= 0 ? 'display: none;' : ''}">${react_count[2]}</span>
+                        <span class="react-counter-text" style="${react_count[2] <= 0 ? 'display: none;' : ''}">${react_count[2]}</span>
                     </button>
                     <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
                     <div class="ms-auto">
@@ -652,9 +652,12 @@ $(document).ready(function () {
                 reacts.splice(reactionIndex, 1); 
             }
     
-            counter = parseInt($(this_btn).find('span').text());
+            counter = parseInt($(this_btn).find('.react-counter-text').text());
             counter -= 1;
-            $(this_btn).find('span').text(String(counter));
+            $(this_btn).find('.react-counter-text').text(String(counter));
+            if (counter <= 0) {
+                $(this_btn).find('.react-counter-text').hide();
+            }
     
         } else { 
             $(this_btn).addClass('reacted');
@@ -662,9 +665,12 @@ $(document).ready(function () {
                 reacts.push($(this).data('react'));
             });
     
-            counter = parseInt($(this_btn).find('span').text());
+            counter = parseInt($(this_btn).find('.react-counter-text').text());
             counter += 1; 
-            $(this_btn).find('span').text(String(counter));
+            $(this_btn).find('.react-counter-text').text(String(counter));
+            if (counter > 0) {
+                $(this_btn).find('.react-counter-text').show();
+            }
         }
     
         $.ajax({
@@ -1296,7 +1302,10 @@ $(document).ready(function () {
         /* Start skeleton loading display */
 
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
-        const comments_count = parseInt(pv_comment_container_id.parent().find('.show_comment_section').text());
+        let comments_count = parseInt(pv_comment_container_id.parent().find('.show_comment_section').text());
+        if (comments_count > 5) {
+            comments_count = 5;
+        }
         for (let i = 0; i < comments_count; i++) {
             pv_comment_container_id.append(create_skeleton_element());
         }
@@ -1657,7 +1666,7 @@ $(document).ready(function () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pf-user-comment"><textarea class="form-control eja_${post_id}" rows="1" style="font-size: 12px; height: 108px;"></textarea>
+                                    <div class="pf-user-comment"><textarea class="form-control eja_${post_id}" style="font-size: 12px; height: 48px;"></textarea>
                                     <button type="button" class="submit_comment btn btn-primary" data-post_id="${post_id}" style="position: absolute; width: 100px; bottom: 0%; right: 3%; font-size: 12px;"><i class="bi bi-reply-fill" style="vertical-align: 0;"></i> Reply</button></div>
                                 </div>`;
         const reply_element = $(reply_template);
@@ -2317,4 +2326,9 @@ $(document).ready(function () {
     //     $(this).css('transition', '0.08s ease-in-out');
     //     $(this).css('height', '60px');
     // });
+
+    $('.pf-user-comment textarea').on('click', function() {
+        $(this).css('transition', '0.16s ease-in-out');
+        $(this).css('height', '108px');
+    });
 });
