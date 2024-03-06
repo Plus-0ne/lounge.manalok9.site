@@ -493,7 +493,7 @@ $(document).ready(function () {
             let background_icon = '';
 
             if (official_uuids.includes(post_creator.uuid)) {
-                background_icon = `<div class="user_post_background-icon"><img src="${window.assetUrl}img/IAGD_LOGO.png"></div>`
+                background_icon = `<div class="user_post_background-icon d-none d-md-block"><img src="${window.assetUrl}img/IAGD_LOGO.png"></div>`
             }
 
             htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon, is_append);
@@ -735,7 +735,7 @@ $(document).ready(function () {
                 // $('.write_a_post-btn').fadeIn('fast');
                 $('.write_post_section').fadeIn('fast');
                 $('.posts_section').fadeIn('fast');
-                // typeWriterEffect($('.write_a_post-text'), ['cat', 'dog', 'rabbit', 'bird'], 333, true); 
+                // typeWriterEffect($('.write_a_post-text'), ['cat', 'dog', 'rabbit', 'bird'], 333, true);
             }
         });
     }

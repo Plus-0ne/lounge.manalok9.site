@@ -230,6 +230,7 @@
     opacity: 0.05;
     top: -11%;
     left: 64%;
+    pointer-events: none;
 }
 
 .post_date_label {
@@ -274,6 +275,7 @@
     /* padding: 2rem 1.5rem 2rem 1.5rem; */
     border-radius: 4px;
     border-color: none;
+    overflow: hidden;
 }
 
 .user_post_control {

@@ -79,7 +79,60 @@
                             <!-- <div class="text-center slide-in">
                                 <i class="spinner-border" style="font-size: 24px; width: 128px; height: 128px; color: rgba(255, 255, 255, 0.16);"></i>
                             </div> -->
-                            <div class="user_post_container card">
+                            <div class="write_post_section" style="margin-top: 25px;">
+                                <div class="skeleton" style="width: 55%;height: 32px;margin-bottom: 8px; border-radius: 8px;"></div>
+                                <div class="post_title_input pb-2 skeleton" style="height: 60px; margin-bottom: 8px; border-radius: 8px;"></div>
+                                <div class="w-100 d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                                    <div class="w-75 d-flex justify-content-between justify-content-xl-start pb-2 align-items-center">
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="skeleton" style="width: 175px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                    </div>
+                                    <div class="post_action text-end">
+                                        <div class="skeleton" style="width: 180px; height: 39px; border-radius: 24px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php for ($i = 0; $i < 4; $i++):
+                                $comments_count = rand(1, 4);
+                                $has_skeleton_attachment = rand(0, 1);
+                                $user_fullname_width = rand(85, 225); ?>
+                            <div class="user_post_container card mt-4">
+                                <div class="px-3 py-3 px-lg-4 py-lg-4">
+                                    <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
+                                        <div class="user_post_details d-flex flex-column">
+                                            <div class="d-flex flex-row align-items-center">
+                                                <div class="user_image skeleton" style="width: 39px; height: 39px; border-radius: 100%;">
+                                                </div>
+                                                <div class="user_fullname ms-3 d-flex flex-column">
+                                                    <div class="skeleton" style="width: <?=$user_fullname_width?>px;height: 39px;border-radius: 8px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_post_body">
+                                        <div class="post-content-trimmed-txt" style="margin-top: -25px;">
+                                            <?php for ($j = 0; $j < $comments_count; $j++): ($j == ($comments_count - 1)) ? $skeleton_width = rand(15, 80) : $skeleton_width = 100;?><div class="skeleton" style="width: <?=$skeleton_width?>%; height: 19.5px; border-radius: 4px; margin-bottom: 5px;"></div><?php endfor; ?>
+                                        </div>
+                                    </div>
+                                    <?php if ($has_skeleton_attachment): ?>
+                                    <div class="user_post_attachements skeleton" style="width: 65%; height: 326px; border-radius: 6px;"></div>
+                                    <?php endif; ?>
+                                    <div class="mt-2 d-flex flex-row justify-content-start ff-primary-light">
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
+                                        <div class="ms-auto">
+                                            <div class="skeleton" style="width: 91px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endfor; ?>
+                            <!-- <div class="user_post_container card">
                                 <div class="px-3 py-3 px-lg-4 py-lg-4">
                                     <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
                                         <div class="user_post_details d-flex flex-column">
@@ -100,13 +153,10 @@
                                         <div class="user_post_details d-flex flex-column">
                                             <div class="d-flex flex-row align-items-center">
                                                 <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 50px;">
-                                                    
                                                 </div>
                                                 <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 50px;">
-
                                                 </div>
                                                 <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 100px;">
-
                                                 </div>
                                             </div>
                                         </div>
@@ -118,12 +168,8 @@
                                     <div class="user_post_header d-flex flex-row align-items-center justify-content-between">
                                         <div class="user_post_details d-flex flex-column">
                                             <div class="d-flex flex-row align-items-center">
-                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;">
-                                                    
-                                                </div>
-                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;">
-
-                                                </div>
+                                                <div class="user_image skeleton" style="min-height: 34px; border-radius: 4px; width: 200px;"></div>
+                                                <div class="user_fullname ms-3 d-flex flex-column skeleton" style="min-height: 34px; border-radius: 4px; width: 400px;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -169,7 +215,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         {{-- <div class="posts_section" style="display: none;">
 
