@@ -857,7 +857,7 @@ $(document).ready(function () {
             else {
                 post_attachment_media = `<img class="pf-content-media postViewModal-btn" src="${post_attachment_file_path}" alt="Post attachments" style="object-fit:cover" data-post_id="${posts.post_id}">`;
             }
-            post_attachment += `<div class="pf-attachment-content d-flex justify-content-center" style="height:326px;">
+            post_attachment += `<div class="pf-attachment-content corners d-flex justify-content-center" style="height:326px;">
                                     ${post_attachment_media}
                                 </div>`;
 
@@ -891,7 +891,7 @@ $(document).ready(function () {
 
             });
 
-            post_attachment += '<div class="pf-attachment-content-2 d-flex flex-row justify-content-center align-items-center" style="height: 326px;">\
+            post_attachment += '<div class="pf-attachment-content-2 corners d-flex flex-row justify-content-center align-items-center" style="height: 326px;">\
                                             <div class="col-6 pf-media-container-2 h-100 d-flex justify-content-center">\
                                                 '+ pa_array[0].post_a_content + '\
                                             </div>\
@@ -929,7 +929,7 @@ $(document).ready(function () {
 
             });
 
-            post_attachment += '<div class="pf-attachment-content-3 d-flex flex-row" style="height: 326px;">\
+            post_attachment += '<div class="pf-attachment-content-3 corners d-flex flex-row" style="height: 326px;">\
                                             <div class="col-6">\
                                                 <div class="d-flex justify-content-center align-items-center h-100" style="object-fit: cover;object-fit: cover;">\
                                                     '+ pa_array2[0].post_a_content + '\
@@ -1131,7 +1131,7 @@ $(document).ready(function () {
             else {
                 post_attachment_media = '<img class="pf-content-media postViewModal-btn" src="' + post_attachment_file_path + '" alt="Post attachments" style="object-fit:cover" data-post_id="' + post_source.share_source + '">';
             }
-            spa_content = '<div class="pf-attachment-content d-flex justify-content-center" style="height:326px;">\
+            spa_content = '<div class="pf-attachment-content corners d-flex justify-content-center" style="height:326px;">\
                                                 '+ post_attachment_media + '\
                                             </div>';
 
@@ -1165,7 +1165,7 @@ $(document).ready(function () {
 
             });
 
-            spa_content = '<div class="pf-attachment-content-2 d-flex flex-row justify-content-center align-items-center" style="height: 326px;">\
+            spa_content = '<div class="pf-attachment-content-2 corners d-flex flex-row justify-content-center align-items-center" style="height: 326px;">\
                                             <div class="col-6 pf-media-container-2 h-100 d-flex justify-content-center">\
                                                 '+ pa_array[0].post_a_content + '\
                                             </div>\
@@ -1203,7 +1203,7 @@ $(document).ready(function () {
 
             });
 
-            spa_content = '<div class="pf-attachment-content-3 d-flex flex-row" style="height: 326px;">\
+            spa_content = '<div class="pf-attachment-content-3 corners d-flex flex-row" style="height: 326px;">\
                                             <div class="col-6" style="background-color: red; ">\
                                                 <div class="d-flex justify-content-center align-items-center h-100" style="object-fit: cover;object-fit: cover;">\
                                                     '+ pa_array2[0].post_a_content + '\

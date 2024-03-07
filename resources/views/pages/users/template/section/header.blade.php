@@ -32,7 +32,16 @@
 
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/user-style-v3.css') }}" rel="stylesheet">
 
+    @if (request()->is('dashboard'))
+    <link href="{{ asset('css/user-style-v3.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/user-style-v2.css') }}" rel="stylesheet">
+    @endif
+
+    @if (request()->is('dashboard'))
     <link href="{{ asset('css/style-v3.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/style-v2.css') }}" rel="stylesheet">
+    @endif
 
