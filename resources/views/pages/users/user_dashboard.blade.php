@@ -42,10 +42,8 @@
                                 <div class="post_title_input pb-2">
                                     <textarea id="postTextarea" name="post_msg" class="form-control" placeholder="" style="height: 60px;"></textarea>
                                 </div>
-                                <div
-                                    class="w-100 d-flex flex-column flex-xl-row justify-content-between align-items-center">
-                                    <div
-                                        class="w-75 d-flex justify-content-between justify-content-xl-start pb-2 align-items-center">
+                                <div class="w-100 d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                                    <div class="w-75 d-flex justify-content-between justify-content-xl-start pb-2 align-items-center">
                                         {{-- <div class="post-control-icon">
                                             <i class="mdi mdi-attachment"></i>
                                         </div> --}}
@@ -61,7 +59,7 @@
                                         </button> --}}
                                         <input id="post_visibility" type="hidden" name="post_visible"
                                                     value="public">
-                                        <button type="button" class="btn set_visibility-btn btn-secondary" data-visibility="public"><i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Share to everyone</span></button>
+                                        <button type="button" class="btn set_visibility-btn btn-secondary" data-visibility="public"><i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Public</span></button>
                                     </div>
                                     <div class="post_action text-end">
                                         <button type="submit" id="publish_post_btn" class="btn btn-primary post-button-submit"><i class="bi bi-feather" style="vertical-align: 0;"></i> Publish

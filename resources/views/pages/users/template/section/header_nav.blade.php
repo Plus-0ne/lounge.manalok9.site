@@ -2,8 +2,8 @@
     <div
         class="nav-btn-icon col-12 col-sm-12 col-md-12 d-flex flex-wrap justify-content-start justify-content-lg-between justify-content-xl-end align-items-center">
 
-        <div class="d-flex flex-column justify-content-center align-items-center mb-3 mb-xl-0 logo-container">
-            <div class="logo">
+        <div class="d-flex flex-column justify-content-center align-items-center logo-container">
+            <div class="logo mb-3 mb-xl-0 d-none d-md-block">
                 <img src="{{ asset('lounge-icons-v1/lounge.svg') }}">
             </div>
         </div>
@@ -13,7 +13,7 @@
             </div>
         </div>
         {{-- Search section --}}
-        <div class="px-3 col-11 col-lg-5 search_container">
+        <div class="px-3 col-11 col-lg-5 search_container" style="display: none;">
             <div class="search_icon_container">
                 <span class="mdi mdi-magnify"></span>
             </div>
@@ -22,8 +22,11 @@
         </div>
         {{-- Search end --}}
         <div
-            class="col-12 col-lg-auto ms-0 ms-lg-auto mt-2 mt-lg-0 d-flex flex-row justify-content-end align-items-center px-0 px-lg-3">
+            class="col-11 col-lg-auto ms-0 ms-lg-auto mt-2 mt-lg-0 d-flex flex-row justify-content-end align-items-center px-0 px-lg-3">
 
+            <div class="ads_toggle px-2">
+                <i class="action-icon mdi mdi-magnify"></i>
+            </div>
             <div class="ads_toggle px-2">
                 <i class="action-icon mdi mdi-post-outline"></i>
             </div>
