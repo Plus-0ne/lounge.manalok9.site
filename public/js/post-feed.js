@@ -596,9 +596,10 @@ $(document).ready(function () {
                     </button>
                     <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
                     <div class="ms-auto">
-                        <button type="button" class="btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
-                        <button type="button" class="btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
-                        <button type="button" class="btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
+                        <button type="button" class="mini-mobile-btn btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i></button>
+                        <button type="button" class="non-mobile-btn btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
+                        <button type="button" class="non-mobile-btn btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
+                        <button type="button" class="non-mobile-btn btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
                     </div>
                 </div>
             </div>
@@ -1366,7 +1367,6 @@ $(document).ready(function () {
         cPageCount = 1;
         /* Get all comments */
         getAllComments(cPageCount, post_id, pv_comment_container_id);
-
     });
 
     /* -------------------------------------------------------------------------- */

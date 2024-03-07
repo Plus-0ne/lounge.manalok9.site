@@ -406,6 +406,16 @@
     border: 1px solid #312c57;
 }
 
+.post-actions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    gap: 5px;  
+}
+
+.post-actions-container-right {
+    justify-self: end; 
+}
+
 /* -------------------------------------------------------------------------- */
 /*                            Comment section style                           */
 /* -------------------------------------------------------------------------- */
@@ -561,6 +571,13 @@
     word-break: break-all;
     white-space: pre-line;
 }
+
+.non-mobile-btn {
+    display: none;
+}
+.mini-mobile-btn {
+    display: inline-block;
+}
 /* -------------------------------------------------------------------------- */
 /*                                Media queries                               */
 /* -------------------------------------------------------------------------- */
@@ -579,6 +596,8 @@
         width: 375px;
         height: 375px;
     }
+
+    
 }
 
 @media (min-width: 768px) {
@@ -612,6 +631,13 @@
     .pf-attachment-content-3 {
         width: 490px;
         height: 490px;
+    }
+
+    .non-mobile-btn {
+        display: inline-block;
+    }
+    .mini-mobile-btn {
+        display: none;
     }
 }
 

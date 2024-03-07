@@ -26,7 +26,7 @@
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="Socialize with other IAGD members!">
-                <a class="nav-link active" href="{{ route('dashboard') }}">
+                <a class="nav-link @if (request()->is('dashboard')) active @endif" href="{{ route('dashboard') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
                             <i class="nav-icon bi bi-feather"></i>
@@ -42,7 +42,7 @@
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="Work in progress! New pet gallery and registration.">
-                <a class="nav-link" href="{{ route('user.pet_list') }}">
+                <a class="nav-link @if (request()->is('user/pet/list')) active @endif" href="{{ route('user.pet_list') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
                             <i class="nav-icon bi bi-search-heart"></i>
@@ -58,7 +58,7 @@
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="View and register your pets here!">
-                <a class="nav-link" href="{{ route('kennel') }}">
+                <a class="nav-link @if (request()->is('kennel')) active @endif" href="{{ route('kennel') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
                             <i class="nav-icon bi bi-postcard-heart"></i>
@@ -75,7 +75,7 @@
 
             {{-- @if (!empty(Auth::guard('web')->user()->iagd_number)) --}}
             {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
-                    <a class="nav-link" href="{{ route('advertisements') }}">
+                    <a class="nav-link @if (request()->is('advertisements')) active @endif" href="{{ route('advertisements') }}">
                         <i class="nav-icon mdi mdi-advertisements"></i>
                         <span>
                             Advertisements
@@ -87,7 +87,7 @@
             {{-- ######################################### Pet gallery will be remove replace with album ######################################### --}}
 
             {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
-                <a class="nav-link" href="{{ route('gallery') }}">
+                <a class="nav-link @if (request()->is('gallery')) active @endif" href="{{ route('gallery') }}">
                     <i class="nav-icon mdi mdi-view-gallery"></i>
                     <span>
                         Pet Gallery
@@ -102,7 +102,7 @@
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="Explore our premium products!">
-                <a class="nav-link" href="{{ route('user.products.list') }}">
+                <a class="nav-link @if (request()->is('products/list')) active @endif" href="{{ route('user.products.list') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
                             <i class="nav-icon bi bi-shop"></i>
