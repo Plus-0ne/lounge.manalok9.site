@@ -25,9 +25,9 @@
                 <div class="container-fluid container-xl">
                     <div class="row">
                         <!-- WRITE A POST BUTTON -->
-                        <button type="button" class="btn btn-primary write_a_post-btn" style="display: none;">
+                        <!-- <button type="button" class="btn btn-primary write_a_post-btn" style="display: none;">
                             <i class="bi bi-feather"></i> Write a post about your <span class="write_a_post-text text-gradient-golden"></span>
-                        </button>
+                        </button> -->
                         <!-- WRITE POST -->
                         <form id="form-post-content" action="#" method="post"
                             enctype="multipart/form-data">
@@ -122,9 +122,10 @@
                                         <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
                                         <div class="skeleton" style="width: 64px; height: 39px; margin-right: 5px; border-radius: 24px;"></div>
                                         <div class="ms-auto">
-                                            <div class="skeleton" style="width: 91px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
-                                            <div class="skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
-                                            <div class="skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="non-mobile-display skeleton" style="width: 91px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="mini-mobile-display skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="non-mobile-display skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
+                                            <div class="non-mobile-display skeleton" style="width: 64px;height: 39px;margin-right: 1px;border-radius: 24px;display: inline-block;"></div>
                                         </div>
                                     </div>
                                 </div>

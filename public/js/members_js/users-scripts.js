@@ -18,6 +18,14 @@ $(document).ready(function () {
     $(document).on("click", ".menu-icon", function (event) {
         event.preventDefault();
         $(".sidebar").toggleClass("show");
+        $(".sidebar").css('backdrop-filter', 'blur(8px)');
+        setTimeout(function() {
+            $(".sidebar").css('transition', 'all 1s ease-in-out');
+            $(".sidebar").css('backdrop-filter', 'blur(128px)');
+        }, 500);
+        setTimeout(function() {
+            $(".sidebar").css('transition', 'all 0.3s ease-in-out');
+        }, 1500);
     });
     $(document).on("click", ".ads_toggle", function () {
         $(".rig-side").toggleClass("show");

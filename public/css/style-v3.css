@@ -97,13 +97,13 @@ hr {
     position: fixed;
     height: 100%;
 
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
 
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     overflow-y: auto !important;
-    z-index: 2;
+    z-index: 10;
     color: var(--font-color-primary);
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -133,7 +133,7 @@ hr {
     margin-right: 0px;
     margin-top: -100px;
     overflow: scroll;
-    height: 95vh;
+    height: 105vh;
 }
 .main-content::-webkit-scrollbar {
     display: none;

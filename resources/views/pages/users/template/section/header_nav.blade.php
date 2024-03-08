@@ -21,9 +21,16 @@
             <button type="submit" style="display: none;">Search</button>
         </div>
         {{-- Search end --}}
+        <div class="non-mobile-display col-0 col-lg-5 ms-0 ms-lg-auto mt-2 mt-lg-0 d-flex flex-row justify-content-end align-items-center px-0 px-lg-3">
+            <button type="button" class="btn btn-primary write_a_post-btn" style="width: 250px; float: right; display: none;">
+                <i class="bi bi-feather"></i> Write a post</span>
+            </button>
+        </div>
         <div
             class="col-11 col-lg-auto ms-0 ms-lg-auto mt-2 mt-lg-0 d-flex flex-row justify-content-end align-items-center px-0 px-lg-3">
-
+            <!-- <button type="button" class="mini-mobile-display btn btn-primary write_a_post-btn" style="display: none !important;">
+                <i class="bi bi-feather"></i> <b>Write a post</b></span>
+            </button> -->
             <div class="ads_toggle px-2">
                 <i class="action-icon mdi mdi-magnify"></i>
             </div>

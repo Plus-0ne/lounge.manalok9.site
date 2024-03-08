@@ -572,11 +572,11 @@
     white-space: pre-line;
 }
 
-.non-mobile-btn {
-    display: none;
+.non-mobile-display {
+    display: none !important;
 }
-.mini-mobile-btn {
-    display: inline-block;
+.mini-mobile-display {
+    display: inline-block !important;
 }
 /* -------------------------------------------------------------------------- */
 /*                                Media queries                               */
@@ -633,11 +633,11 @@
         height: 490px;
     }
 
-    .non-mobile-btn {
-        display: inline-block;
+    .non-mobile-display {
+        display: inline-block !important;
     }
-    .mini-mobile-btn {
-        display: none;
+    .mini-mobile-display {
+        display: none !important;
     }
 }
 

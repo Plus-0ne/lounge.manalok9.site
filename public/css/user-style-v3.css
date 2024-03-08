@@ -172,7 +172,7 @@ strong {
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     overflow-y: auto !important;
-    z-index: 2;
+    z-index: 10;
     color: var(--font-color-primary);
 }
 
@@ -435,7 +435,7 @@ div.emojionearea-button-close {
     background-color: rgba(49, 44, 87, 0.75);
 }
 .nav-icon {
-    color: #312c57;
+    color: var(--font-color-primary);
     font-size: 1.2rem;
 }
 .nav-link span {
@@ -1712,6 +1712,10 @@ a {
     .mem-toggle-btn {
         display: none;
     }
+
+    .nav-icon {
+        color: #312c57;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -2413,7 +2417,8 @@ span.toggle-handle {
 .write_a_post-btn {
     width: 98%;
     margin-left: 1%;
-    border-radius: 8px;
+    border-radius: 24px;
+    font-family: 'Poppins', sans-serif;
     position: relative;
     overflow: hidden;
 }
@@ -2436,7 +2441,7 @@ span.toggle-handle {
     position: absolute;
     vertical-align: -1px;
     top: 8px;
-    left: 20px;
+    left: 12px;
     transform: scale(2.5);
     opacity: 0.15;
 }

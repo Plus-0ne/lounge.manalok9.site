@@ -596,10 +596,10 @@ $(document).ready(function () {
                     </button>
                     <button type="button" class="btn btn-secondary show_comment_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}" style="width: 64px;"><i class="bi bi-chat-quote-fill"></i> ${comment_count}</button>
                     <div class="ms-auto">
-                        <button type="button" class="mini-mobile-btn btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i></button>
-                        <button type="button" class="non-mobile-btn btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
-                        <button type="button" class="non-mobile-btn btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
-                        <button type="button" class="non-mobile-btn btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
+                        <button type="button" class="mini-mobile-display btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i></button>
+                        <button type="button" class="non-mobile-display btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
+                        <button type="button" class="non-mobile-display btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
+                        <button type="button" class="non-mobile-display btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
                     </div>
                 </div>
             </div>
@@ -1436,6 +1436,16 @@ $(document).ready(function () {
         if ($('#show_more_post_available').isInViewport()) {
             $('#show_more_post_available').trigger('click');
         }
+        if (!$('.write_post_section').isInViewport()) {
+            $('.write_a_post-btn').fadeIn('fast');
+        } else {
+            $('.write_a_post-btn').css('display', 'none');
+        }
+    });
+
+    $('.write_a_post-btn').on('click', function() {
+        $('#postTextarea').trigger('click'); // to expand and animate
+        $('#postTextarea').trigger('focus'); // to pan towards the element
     });
     /* -------------------------------------------------------------------------- */
     /*                              Comment template                              */
