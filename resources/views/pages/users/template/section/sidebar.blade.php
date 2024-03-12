@@ -1,5 +1,123 @@
 <div class="sidebar">
-    <div class="sidebar-logo d-flex flex-column align-items-center">
+    <div class="sidebar-user-info">
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="badge-user-image-backdrop">
+                @if (!empty(Auth::guard('web')->user()->profile_image))
+                    <img src="{{ asset(Auth::guard('web')->user()->profile_image) }}">
+                @else
+                    <img src="{{ asset('my_custom_symlink_1/user.png') }}">
+                @endif
+            </div>
+            <div class="badge-user-image">
+                @if (!empty(Auth::guard('web')->user()->profile_image))
+                    <img src="{{ asset(Auth::guard('web')->user()->profile_image) }}">
+                @else
+                    <img src="{{ asset('my_custom_symlink_1/user.png') }}">
+                @endif
+            </div>
+            <div>
+                <span class="badge-user-name">
+                    {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}
+                </span>
+                <span class="badge-user-iagd_number">
+                    {{ Auth::guard('web')->user()->iagd_number }}
+                </span>
+                <br>
+                <a href="{{ URL::to('/user/referrals') }}" class="btn btn-primary btn-ssm"><i class="bi bi-cash-coin" style="vertical-align: 0;"></i> Get Paid</a>
+                <a href="{{ URL::to('/be_a_member') }}" class="btn btn-secondary btn-ssm"><i class="bi bi-arrow-up-circle" style="vertical-align: 0;"></i> Upgrade</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="sidebar-badges">
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+            <div class="nav-icon-container">
+                <i class="nav-icon bi bi-feather"></i>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- <div class="sidebar-logo d-flex flex-column align-items-center">
         <div class="logo-section">
             @if (!empty(Auth::guard('web')->user()->profile_image))
                 <img src="{{ asset(Auth::guard('web')->user()->profile_image) }}">
@@ -19,8 +137,7 @@
                 </small>
             </small>
         </div>
-    </div>
-
+    </div> -->
     <div class="sidebar-menu">
         <ul class="nav flex-column mt-3">
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"

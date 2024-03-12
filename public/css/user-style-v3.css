@@ -432,7 +432,7 @@ div.emojionearea-button-close {
     width: 8px;
     height: 30px;
     border-radius: 64px;
-    background-color: rgba(49, 44, 87, 0.75);
+    background-color: rgba(214, 167, 255, 0.05);
 }
 .nav-icon {
     color: var(--font-color-primary);
@@ -518,6 +518,29 @@ a {
 
 .sidebar-user {
     padding: 10px;
+}
+
+.badge-user-image-backdrop img {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    filter: blur(12px);
+    top: 0px;
+}
+.badge-user-image img {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+}
+
+.badge-user-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.badge-user-iagd_number {
+    font-size: 11px;
+    color: var(--font-color-secondary);
 }
 
 .write_post_section {
@@ -2165,6 +2188,11 @@ textarea.form-control:active, textarea.form-control:focus {
 	background-color: rgba(49, 44, 87, 0.75);
 	border: 2px solid transparent;
     border-top: 1px solid rgba(49, 44, 87, 0.75);
+}
+.btn-ssm {
+    border-radius: 8px;
+    font-size: 11px;
+    padding: 4px;
 }
 
 /* BUTTON SIZE */
