@@ -1061,9 +1061,9 @@ $(document).ready(function () {
                                                 <span class="view-full-post ff-primary-regular" data-id="'+ post_source.uuid + '">' + usersName + '</span>\
                                                 <span class="ff-primary-light ms-1">'+ post_type_text + '</span>\
                                                 </div>\
-                                                <div class="fs-extra-small">\
-                                                    <span class="badge rounded-pill bg-success ms-0 ms-lg-2 mb-1">'+ show_ago_time + '</span>\
-                                                </div>\
+                                                <small>\
+                                                    '+ show_ago_time + '\
+                                                </small>\
                                             </div>\
                                             <small>\
                                             <span class="post_date_label ff-primary-light">'+ week_name + ', ' + dateFormatted + '  ' + post_visibility + '</span>\
@@ -1958,11 +1958,11 @@ $(document).ready(function () {
                 /* Toggle modal */
                 myModal.toggle();
 
-                $('#shareTextArea').emojioneArea({
-                    pickerPosition: "bottom",
-                    tonesStyle: "radio",
-                    autocomplete: false
-                });
+                // $('#shareTextArea').emojioneArea({
+                //     pickerPosition: "bottom",
+                //     tonesStyle: "radio",
+                //     autocomplete: false
+                // });
 
                 /* Set user image */
                 $('.share-profile-pic img').attr('src', (userDetails.profile_image == null ? window.assetUrl+'my_custom_symlink_1/user.png': userDetails.profile_image));
