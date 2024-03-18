@@ -30,91 +30,23 @@
     </div>
     <hr>
     <div class="sidebar-badges">
-        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
+        <div class="text-center mb-2">
+            <span style="border-radius: 24px;
+                        background-color: rgba(89, 2, 153, 0.2);
+                        padding: 8px;
+                        font-size: 12px;">
+                        <i class="bi bi-exclamation-circle" style="vertical-align: 0;"></i> Badges coming soon!
+            </span>
         </div>
+        @for ($i = 0; $i < 5; $i++)
         <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+            @for ($j = 0; $j < 5; $j++)
             <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
+                <i class="nav-icon bi bi-lock-fill"></i>
             </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
+            @endfor
         </div>
-        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-            <div class="nav-icon-container">
-                <i class="nav-icon bi bi-feather"></i>
-            </div>
-        </div>
+        @endfor
     </div>
     <hr>
     <!-- <div class="sidebar-logo d-flex flex-column align-items-center">

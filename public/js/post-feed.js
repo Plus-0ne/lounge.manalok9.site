@@ -145,9 +145,9 @@ $(document).ready(function () {
         visibility = (visibility === 'public') ? 'private' : 'public'; 
     
         if (visibility === 'public') { 
-            button.html('<i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Share to everyone</span>');
+            button.html('<i class="bi bi-check2-circle"></i> <span style="font-size: 14px; vertical-align: 1px;">Public</span>');
         } else {
-            button.html('<i class="bi bi-circle"></i> <span style="font-size: 14px; vertical-align: 1px; opacity: 0.25;">Share to everyone</span>');
+            button.html('<i class="bi bi-circle"></i> <span style="font-size: 14px; vertical-align: 1px; opacity: 0.25;">Public</span>');
         }
     
         button.data('visibility', visibility).attr('data-visibility', visibility);

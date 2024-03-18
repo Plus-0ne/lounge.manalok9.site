@@ -1926,6 +1926,7 @@ a {
 .modal {
     /*z-index: 99999999999;*/
     width: 100%;
+    backdrop-filter: blur(64px);
 }
 
 .dashboard-section {
@@ -2127,7 +2128,8 @@ textarea.form-control:active, textarea.form-control:focus {
 }
 
 .modal-content {
-    border-radius: 2px;
+    background-color: rgba(214, 167, 255, 0.05);
+    border-radius: 12px;
     border: none;
 }
 
