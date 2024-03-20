@@ -2,7 +2,13 @@
 @include('pages/users/template/section/header')
 
 </head>
-
+<style>
+    .card {
+        border: 1px solid #312c57;
+        border-radius: 8px;
+        padding: 8px;
+    }
+</style>
 <body>
     <div class="wrapper">
 
@@ -24,12 +30,12 @@
                                 <div class="row mb-3">
                                     <div class="col-12 col-xxl-4">
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-8">
+                                            <div class="col-sm-8">
                                                 <input id="pet_name_search" type="text"
                                                     class="form-control form-control-sm" placeholder="Search product"
                                                     list="productList">
                                             </div>
-                                            <div class="col-sm-12 col-md-4">
+                                            <div class="col-sm-4">
                                                 <button id="showMyCartModalButton" type="button" class="btn btn-success btn-sm" style="float: right; display: inline-block;">
                                                     <span class="mdi mdi-cart-outline"></span> My Cart
                                                 </button>

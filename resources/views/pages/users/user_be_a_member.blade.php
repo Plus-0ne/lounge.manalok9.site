@@ -13,18 +13,16 @@
             {{-- SIDABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row">
                         <div class="col-12 px-4 pt-4 pb-5 gallery_container d-flex flex-wrap">
                             <div class="p-3 col-12">
-                                <h5>
+                                <h5 class="text-gradient-primary">
                                     Upgrade your IAGD membership
                                 </h5>
                             </div>
-                            <div class="col-12 my-2">
-                                <hr>
-                            </div>
+                            <hr>
                             {{-- Be a member custom style --}}
                             <style>
                                 .dh-text {
@@ -62,7 +60,7 @@
 
                                 .form-area-for-bam {
                                     padding: 1.5rem;
-                                    border: 1px solid rgb(216, 216, 216);
+                                    /*border: 1px solid rgb(216, 216, 216);*/
                                     /* background-color: #1e2530; */
                                 }
 
@@ -154,7 +152,7 @@
 
                                 </div> --}}
 
-                                <div class="col-12 col-xl-12 form-area-for-bam px-3 py-3 px-xl-5 py-xl-5">
+                                <div class="col-12 col-xl-12 form-area-for-bam">
                                     <div class="py-1">
                                         <span class="df-text">
                                             Fill up this form
@@ -186,7 +184,7 @@
                                             </div>
                                             <div class="mb-3 col-12 col-xl-2">
                                                 <label for="inp_middle_initial" class="form-label">
-                                                    MI
+                                                    M. I.
                                                 </label>
                                                 <input type="text" class="form-control fc-custom-s"
                                                     name="inp_middle_initial" id="inp_middle_initial"
@@ -228,7 +226,7 @@
                                             </div>
                                             <div class="mb-3 col-12 col-xl-12">
                                                 <label for="inp_ship_address" class="form-label">
-                                                    <i class="text-danger fw-bold me-1">*</i>Shipping address
+                                                    <i class="text-danger fw-bold me-1">*</i>Shipping Address
                                                 </label>
                                                 <input type="text" class="form-control fc-custom-s"
                                                     name="inp_ship_address" id="inp_ship_address"
@@ -249,7 +247,7 @@
 
                                             <div class="mb-3 col-12 col-xl-12">
                                                 <label for="inp_name_card" class="form-label">
-                                                    <i class="text-danger fw-bold me-1">*</i>Name on card
+                                                    <i class="text-danger fw-bold me-1">*</i>Name on Card
                                                 </label>
                                                 <input type="text" class="form-control fc-custom-s"
                                                     name="inp_name_card" id="inp_name_card" aria-describedby="helpId"
@@ -260,7 +258,7 @@
 
                                             <div class="mb-3 col-12 col-xl-12">
                                                 <label for="inp_fb_url" class="form-label">
-                                                    Facebook url
+                                                    Facebook URL
                                                 </label>
                                                 <input type="text" class="form-control fc-custom-s"
                                                     name="inp_fb_url" id="inp_fb_url" aria-describedby="helpId"
@@ -270,7 +268,7 @@
 
                                             <div class="mb-3 col-12 col-xl-12">
                                                 <label for="inp_valid_id" class="form-label">
-                                                    <i class="text-danger fw-bold me-1">*</i>Upload Valid ID (Max. 3)
+                                                    <i class="text-danger fw-bold me-1">*</i>Upload Valid ID (Max: 3)
                                                 </label>
                                                 <input type="file" class="form-control fc-custom-s"
                                                     name="valid_id[]" id="inp_valid_id" multiple
@@ -285,7 +283,7 @@
 
                                             <div class="mb-3 col-12 col-xl-12">
                                                 <label for="inp_clear_11image" class="form-label">
-                                                    <i class="text-danger fw-bold me-1">*</i>Upload clear 1x1 image (Max. 2)
+                                                    <i class="text-danger fw-bold me-1">*</i>Upload Clear 1x1 Image (Max: 2)
                                                 </label>
                                                 <input type="file" class="form-control fc-custom-s"
                                                     name="clear_11image[]" id="inp_clear_11image" multiple
@@ -348,9 +346,9 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3 col-12 col-xl-12">
-                                                <button id="register_newMember" class="btn btn-primary"
+                                                <button id="register_newMember" class="btn btn-primary w-100"
                                                     type="submit">
-                                                    Register
+                                                    <i class="bi bi-arrow-up-circle" style="vertical-align: 0;"></i> <b>Upgrade Your Membership</b>
                                                 </button>
                                             </div>
 

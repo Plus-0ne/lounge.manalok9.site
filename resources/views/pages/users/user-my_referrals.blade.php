@@ -9,14 +9,10 @@
         background: linear-gradient(156deg, rgba(174,181,193,1) 0%, rgba(255,255,255,1) 26%);
     }
     .wrapper {
-        background: rgb(227,200,255);
-        background: linear-gradient(168deg, rgba(227,200,255,1) 0%, rgba(251,250,204,1) 87%, rgba(252,250,179,1) 94%, rgba(253,249,113,1) 99%, rgba(255,248,0,1) 100%);
+
     }
     .main {
-        background: rgb(227,200,255);
-        background: linear-gradient(168deg, rgba(227,200,255,1) 0%, rgba(251,250,204,1) 87%, rgba(252,250,179,1) 94%, rgba(253,249,113,1) 99%, rgba(255,248,0,1) 100%);
-        background-attachment: fixed;
-        background-size: cover;
+
     }
     .main-content {
         background-color: transparent;
@@ -49,6 +45,19 @@
     .referral-tin-input.enlarge {
         transform: scale(1.1); /* Adjust the scale value to control the amount of enlargement */
     }
+
+    .text-primary {
+        color: #ffd400 !important;
+    }
+
+    .table {
+        color: #eee;
+    }
+    td {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
 </style>
 <body>
     <div class="wrapper">
@@ -61,7 +70,7 @@
             {{-- SIDABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row mb-3">
                         <div class="col-sm-12 col-md-12">
@@ -110,11 +119,12 @@
                     </div>
                     <div class="row">
                         @for ($i = 1; $i <= 7; $i++)
-                            <div class="col-12 col-md-12 mt-5 mt-md-0 reference-text" data-level="{{ $i }}" style="display: none; padding-bottom: 5px; border-bottom: 2px solid var(--bs-blue); opacity: 0.5; margin-left: 20px;">
+                            <div class="col-12 col-md-12 mt-5 mt-md-0 reference-text" data-level="{{ $i }}" style="display: none; padding-bottom: 5px; margin-left: 20px;">
                                 <h2 class="text-primary">
                                     Level {{ $i }}
                                 </h2>
                             </div>
+                            <hr>
                             <div class="col-12 col-md-12 mt-md-0 reference-container" data-level="{{ $i }}" style="display: none; margin-bottom: 85px; margin-left: 20px;"></div>
                         @endfor
                     </div>

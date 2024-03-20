@@ -198,9 +198,7 @@ hr {
 }
 .card {
     background: transparent;
-    border: 1px solid #312c57;
-    border-radius: 8px;
-    padding: 8px;
+    border: none;
 }
 .card-footer {
     background-color: transparent;

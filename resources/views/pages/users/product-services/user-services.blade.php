@@ -14,35 +14,30 @@
             {{-- SIDEABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row">
 
                         <div class="col-12 write_post_section d-flex flex-wrap">
                             {{-- Content here --}}
                             <div class="d-flex flex-column p-0 p-lg-3 w-100">
-                                <div class="col-12">
-                                    <h4>
-                                        Services ( <small><small>Under development</small></small> )
-                                    </h4>
-                                </div>
-                                <hr>
                                 <div class="row">
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <button id="serviceCartBtn" class="btn btn-success btn-sm">
-                                            <span class="mdi mdi-cart"></span> Cart
+                                    <div class="col-8">
+                                        <h4 class="text-gradient-primary">
+                                            Services <!-- ( <small><small>Under development</small></small> ) -->
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <button id="serviceCartBtn" class="btn btn-success btn-sm" style="float: right;">
+                                            <span class="mdi mdi-cart"></span> My Cart
                                         </button>
                                     </div>
                                 </div>
                                 <hr>
                                 {{-- Services list --}}
                                 <div class="row">
-
                                     <div class="col-12 col-xxl-4">
                                         <div class="mb-3">
-                                            <label for="pet_name_search" class="form-label">
-                                                Search
-                                            </label>
                                             <input id="pet_name_search" type="text"
                                                 class="form-control form-control-sm" placeholder="Search Services"
                                                 list="servicesList">
@@ -61,12 +56,12 @@
                                             <p class="card-text">
                                                 <ul>
                                                     <li>
-                                                        Price : {{ $row->price }} php
+                                                        <b>₱{{ number_format($row->price, 2) }}</b>
                                                     </li>
                                                     <li>
-                                                        Status : @switch($row->status)
+                                                        @switch($row->status)
                                                             @case(0)
-                                                                <span class="badge rounded-pill bg-danger">Not available</span>
+                                                                <span class="badge rounded-pill bg-danger">Unavailable</span>
                                                                 @break
 
                                                             @default

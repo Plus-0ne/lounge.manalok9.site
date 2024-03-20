@@ -489,7 +489,7 @@ a {
 
 .collapse-item {
     width: 100%;
-    color: #1e2530;
+    color: var(--font-color-primary);
     text-decoration: none;
 }
 
@@ -513,7 +513,7 @@ a {
     padding-right: 9px;
     padding-left: 30px;
     font-size: 0.85rem;
-    background-color: #f1f1f1;
+    background-color: transparent;
 }
 
 .sidebar-user {
