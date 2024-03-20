@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body share-body">
-                <div class="row">
+                <div class="row" style="height: 50%; position: relative;">
                     <div class="col-12 ff-primary-regular" style="padding: 8px;">
                         <label class="ff-primary-light">
                             Share your thoughts
@@ -13,7 +13,29 @@
                     </div>
                     <hr>
                     <div class="col-12 ff-primary-regular" style="padding: 12px;">
-                        <div class="pt-2">
+                        <div class="share-post-group pt-2" data-group="loading">
+                            <div class="d-flex flex-row">
+                                <div class="share-profile-pic skeleton">
+                                    <div style="border-radius: 100%;
+                                    width: 40px;
+                                    height: 40px;
+                                    object-fit: cover;
+                                    object-position: center;"></div>
+                                </div>
+                                <div class="user_fullname ms-3 d-flex flex-column">
+                                    <div class="d-flex flex-row">
+                                        <span class="view-full-post ff-primary-regular skeleton" style="width: 250px; height: 40px; border-radius: 8px; margin-bottom: 8px;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="fs-text skeleton" style="width: 100%; height: 20px; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="fs-text skeleton" style="width: 100%; height: 20px; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="fs-text skeleton" style="width: 100%; height: 20px; border-radius: 8px; margin-bottom: 8px;"></div>
+                                <div class="fs-text skeleton" style="width: 35%; height: 20px; border-radius: 8px;"></div>
+                            </div>
+                        </div>
+                        <div class="share-post-group pt-2" data-group="main">
                             <div class="d-flex flex-row">
                                 <div class="share-profile-pic">
                                     <img class="img-fluid" src="{{ asset('img/sample_image/klee.png') }}" alt=""
@@ -24,9 +46,7 @@
                                         <span class="view-full-post share-username ff-primary-regular"
                                             data-id=""></span>
                                         <small class="ms-2">
-                                            <small>
-                                                <span class="badge rounded-pill bg-success sat-span-time"></span>
-                                            </small>
+                                                <span class="sat-span-time"></span>
                                         </small>
                                     </div>
                                     <small>

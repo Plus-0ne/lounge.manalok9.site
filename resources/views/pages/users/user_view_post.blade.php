@@ -53,7 +53,6 @@
                                         </ul>
                                     </div>
                                 @endif
-
                             </div>
                             <div class="p-3 col-12">
                                 <p>

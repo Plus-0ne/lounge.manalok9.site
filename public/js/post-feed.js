@@ -599,7 +599,7 @@ $(document).ready(function () {
                         <button type="button" class="mini-mobile-display btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i></button>
                         <button type="button" class="non-mobile-display btn btn-secondary show_reply_section" data-post_id="${posts.post_id}" data-comments_count="${comment_count}"><i class="bi bi-reply-fill"></i> Reply</button>
                         <button type="button" class="non-mobile-display btn btn-secondary share_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-share-fill"></i></button>
-                        <button type="button" class="non-mobile-display btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button>
+                        <!-- <button type="button" class="non-mobile-display btn btn-secondary view_this_post" data-post_id="${posts.post_id}" style="width: 64px;"><i class="bi bi-hash"></i></button> -->
                     </div>
                 </div>
             </div>
@@ -1930,6 +1930,13 @@ $(document).ready(function () {
     $(document).on('click', '.share_this_post', function () {
         var post_id = $(this).attr('data-post_id');
 
+        $('.share-post-group[data-group="loading"]').show();
+        $('.share-post-group[data-group="main"]').hide();
+
+        const myModal = new bootstrap.Modal(document.getElementById('modalShowShare'), {});
+        /* Toggle modal */
+        myModal.toggle();
+
         get_post_to_share(post_id);
     });
 
@@ -1954,10 +1961,6 @@ $(document).ready(function () {
                 break;
 
             case 'success':
-                const myModal = new bootstrap.Modal(document.getElementById('modalShowShare'), {});
-                /* Toggle modal */
-                myModal.toggle();
-
                 // $('#shareTextArea').emojioneArea({
                 //     pickerPosition: "bottom",
                 //     tonesStyle: "radio",
@@ -1997,6 +2000,9 @@ $(document).ready(function () {
 
                 /* Check data response */
                 console.log(res, arData);
+
+                $('.share-post-group[data-group="loading"]').hide();
+                $('.share-post-group[data-group="main"]').show();
 
                 break;
 

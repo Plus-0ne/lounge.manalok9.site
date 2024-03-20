@@ -14,76 +14,62 @@
             {{-- SIDEABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row">
-
                         <div class="col-12 write_post_section d-flex flex-wrap">
                             {{-- Content here --}}
                             <div class="d-flex flex-column p-0 p-lg-3 w-100">
-                                <div class="col-12">
-                                    <h4>
-                                        Products
-                                    </h4>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <button id="showMyCartModalButton" type="button" class="btn btn-success btn-sm">
-                                            <span class="mdi mdi-cart-outline"></span> My cart
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr>
                                 {{-- Product list --}}
-                                <div class="row">
-
+                                <div class="row mb-3">
                                     <div class="col-12 col-xxl-4">
-                                        <div class="mb-3">
-                                            <label for="pet_name_search" class="form-label">
-                                                Search
-                                            </label>
-                                            <input id="pet_name_search" type="text"
-                                                class="form-control form-control-sm" placeholder="Search product"
-                                                list="productList">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-8">
+                                                <input id="pet_name_search" type="text"
+                                                    class="form-control form-control-sm" placeholder="Search product"
+                                                    list="productList">
+                                            </div>
+                                            <div class="col-sm-12 col-md-4">
+                                                <button id="showMyCartModalButton" type="button" class="btn btn-success btn-sm" style="float: right; display: inline-block;">
+                                                    <span class="mdi mdi-cart-outline"></span> My Cart
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 {{-- Display product and services --}}
                                 <div id="product_container" class="d-flex flex-wrap justify-content-center justify-content-xl-between">
                                     @foreach ($data['products'] as $row)
-                                    <div class="card" style="width: 19rem;">
-                                        <img src="{{ asset($row->image) }}" class="card-img-top" alt="{{ $row->name }}">
+                                    <div class="card" style="width: 20.5rem;">
+                                        <div class="d-flex align-items-center" style="width: 310px; height: 310px; overflow: none;">
+                                            <img src="{{ asset($row->image) }}" class="card-img-top" alt="Product image" style="object-fit: contain;">
+                                        </div>
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $row->name }}</h5>
+                                            <h6 class="card-title">{{ $row->name }}</h6>
                                             <p class="card-text">
-                                                <ul>
+                                                <ul style="list-style-type: none;">
                                                     <li>
-                                                        Price : {{ $row->price }} php
+                                                        <b>₱{{ number_format($row->price, 2) }}</b>
                                                     </li>
                                                     <li>
-                                                        Stock : {{ $row->stock }}
+                                                        Stock: {{ $row->stock }}
                                                     </li>
                                                     <li>
-                                                        Status : @switch($row->status)
+                                                        @switch($row->status)
                                                             @case(0)
-                                                                <span class="badge rounded-pill bg-danger">Not available</span>
+                                                                <span class="badge rounded-pill bg-danger"><i class="bi bi-exclamation-triangle"></i> Unavailable</span>
                                                                 @break
-
                                                             @default
-                                                                <span class="badge rounded-pill bg-success">Available</span>
+                                                                <span class="badge rounded-pill bg-success"><i class="bi bi-check2-circle"></i> Available</span>
                                                         @endswitch
                                                     </li>
                                                 </ul>
                                             </p>
-                                            <hr>
-                                            <div class="text-center">
-                                                <button class="btn btn-primary btn-sm addToCartButton" data-uuid="{{ $row->uuid }}" data-maxItems={{ $row->stock }}>
-                                                    <span class="mdi mdi-cart-plus"></span> Add to cart
-                                                </button>
-                                            </div>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <button class="btn btn-primary btn-sm addToCartButton" data-uuid="{{ $row->uuid }}" data-maxItems={{ $row->stock }}>
+                                                <span class="mdi mdi-cart-plus"></span> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     @endforeach

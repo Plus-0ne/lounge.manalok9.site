@@ -1884,14 +1884,9 @@ a {
 }
 
 .gallery_container {
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    clear: both;
-    box-sizing: border-box;
+    background-color: rgba(214, 167, 255, 0.05);
+    border-radius: 12px;
+    color: var(--font-color-text-primary);
 }
 
 .main-content-container {

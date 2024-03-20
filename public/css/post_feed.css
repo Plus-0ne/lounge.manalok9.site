@@ -548,7 +548,7 @@
     border-radius: 100%;
     width: 40px;
     height: 40px;
-    border: 1px solid gray;
+    /*border: 1px solid gray;*/
 }
 .share-profile-pic img {
     border-radius: 100%;
