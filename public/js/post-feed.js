@@ -293,7 +293,7 @@ $(document).ready(function () {
         console.log(`post_template called: ruuid: ${ruuid}, is_append: ${is_append}`);
         var my_uuid = ruuid;
         var post_temp = null;
-        var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
+        var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
 
         var posts = null;
         var post_creator = null;
@@ -330,7 +330,7 @@ $(document).ready(function () {
 
 
             /* Profile picture */
-            profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
+            profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
 
             console.log('post_creator', post_creator);
             if (post_creator.profile_image != null) {
@@ -524,7 +524,7 @@ $(document).ready(function () {
     function htmlContentPost(posts, profile_picture, post_settings, dateFormatted, post_message, fPost_message, usersName, post_visibility, text_withurl, user_reactions, react_count, comment_count, week_name, postActivityTxt, background_icon = null, is_append) {
         console.log(`htmlContentPost called: is_append: ${is_append}`);
         var show_ago_time = moment(posts.created_at).local().fromNow(true) + ' ago';
-        var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png';
+        var profile_picture_new = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
         var new_image = (ImageNotFound(profile_picture) == false) ? profile_picture_new : profile_picture;
         // <span class="ff-primary-light ms-1">'+ postActivityTxt + '</span>\
         // <small class="ms-2">\
@@ -977,7 +977,7 @@ $(document).ready(function () {
         var share_source_author = post_source.members_model;
 
         var usersName = "Guest";
-        var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png';
+        var profile_picture = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
         var post_visibility = "";
         var str = "";
         var date = "";
@@ -1455,7 +1455,7 @@ $(document).ready(function () {
     function commentFormTemplate(post_id, comment_temp, pcI, pcVal, delete_comment_cog) {
         pc_postComment = pcVal;
         pc_postCommentAuthor = pcVal.members_model;
-        pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png';
+        pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
         pc_posted_comment = "";
         pc_user_name = "";
         pc_user_timezone = moment.tz.guess();
@@ -1595,7 +1595,7 @@ $(document).ready(function () {
         /* Set all required variables */
         pc_postComment = res.postComments;
         pc_postCommentAuthor = res.postComments.members_model;
-        pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png';
+        pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
         pc_posted_comment = "";
         pc_user_name = "";
         pc_user_timezone = moment.tz.guess();
@@ -1823,7 +1823,7 @@ $(document).ready(function () {
                 $.each(res.postReactions, function (pcI, pcVal) {
                     pc_postReaction = pcVal;
                     pc_postReactionAuthor = pcVal.members_model;
-                    pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png';
+                    pc_profile_image = window.assetUrl + 'my_custom_symlink_1/user.png?v=2';
                     pc_user_name = "";
                     pc_profile_url = window.thisUrl + '/view/members-details?rid=' + pc_postReactionAuthor.uuid;
 
@@ -1970,7 +1970,7 @@ $(document).ready(function () {
                 // });
 
                 /* Set user image */
-                $('.share-profile-pic img').attr('src', (userDetails.profile_image == null ? window.assetUrl+'my_custom_symlink_1/user.png': userDetails.profile_image));
+                $('.share-profile-pic img').attr('src', (userDetails.profile_image == null ? window.assetUrl+'my_custom_symlink_1/user.png?v=2': userDetails.profile_image));
 
                 /* Set data id with post id */
                 $('.share-username').attr('data-id', post.post_id);
