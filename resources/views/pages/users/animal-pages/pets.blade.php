@@ -5,15 +5,11 @@
 
 <body>
     <div class="wrapper">
-
         {{-- TOP NAVIGATION --}}
         @include('pages/users/template/section/header_nav')
-
         <div class="main">
-
             {{-- SIDEABAR --}}
             @include('pages/users/template/section/sidebar')
-
             <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row">

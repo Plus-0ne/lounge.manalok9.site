@@ -14,6 +14,8 @@ $(document).ready(function () {
 
     const special_uuids = [
         '3a6c0fd5-1ef7-4bd0-9eb3-435aaae6ec8c', // step
+        '3d73c425-39fb-490f-ba5c-d4c3e82a3ca9',
+
         '0500436a-f0c9-4e01-a8e9-f5f7ec6b0bd5', // micha
     ]
 
