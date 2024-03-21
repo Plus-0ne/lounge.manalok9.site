@@ -14,10 +14,15 @@
         International Animals Genetic Database
     </title>
     <link rel="stylesheet" href="{{ asset('landing_page/css/bootstrap.min.css') }}">
+    <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="{{ asset('css/welcome-landing-v2.css') }}">
     <style>
+        body {
+            background: rgb(14,0,36);
+            background: linear-gradient(90deg, rgba(14,0,36,1) 36%, rgba(0,0,0,1) 79%, rgba(0,0,0,1) 100%);
+        }
         .container-l img {
             width: 80%;
             height: fit-content;
@@ -28,35 +33,23 @@
         }
 
         .container-l {
-            min-height: 100vh;
+            min-height: 75vh;
         }
 
         .form-email-lookup {
-            background-color: #fff;
-            border-radius: 3px;
+            color: white;
         }
 
         .fel-header {
-            color: rgb(34, 34, 34);
+            color: white;
         }
 
         .lp-button {
-            background-color: transparent;
-            color: #fff;
             padding: 1rem 1.5rem 1rem 1.5rem;
-            border: 1px solid #fff;
-            border-radius: 5px;
-            transition: all ease-in-out 0.2s;
-            -webkit-transition: all ease-in-out 0.2s;
-            -moz-transition: all ease-in-out 0.2s;
-            -ms-transition: all ease-in-out 0.2s;
-            text-decoration: none;
         }
 
         .lp-button:hover {
-            background-color: #fff;
-            color: rgb(34, 34, 34);
-            border: 1px solid rgb(34, 34, 34);
+
         }
 
         .fonts-1rem {
@@ -120,11 +113,93 @@
             text-shadow: 3px 3px 2px rgba(86, 1, 1, 1);
             border-radius: 0 0 0 15px;
         }
+
+        .btn {
+            border-radius: 24px;
+        }
+        .btn:focus,.btn:active:focus,.btn.active:focus,
+        .btn.focus,.btn:active.focus,.btn.active.focus {
+            outline: none;
+            box-shadow: none;
+        }
+        .btn .non-mica:focus {
+            transition: none !important;
+            transform: scale(1) !important;
+        }
+        .btn .non-mica:active {
+            transform: scale(1) !important;
+        }
+        .btn:focus {
+            transition: all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71);
+            transform: scale(0.9);
+        }
+        .btn:active {
+            transform: scale(1.0);
+        }
+        /* .btn:active {
+            transition: all 0.08s cubic-bezier(0.22, 0.68, 0, 1.71);
+            transform: scale(1);
+        } */
+        .btn-primary {
+            background-color: rgb(114 0 189 / 75%);
+            border: 2px solid transparent;
+            border-top: 1px solid rgb(135 135 135 / 25%);
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+            background-color: rgba(100, 1, 167, 0.75);
+            border: 2px solid transparent;
+            border-top: 1px solid rgb(135 135 135 / 25%);
+        }
+        .btn-primary:disabled, .btn-primary.disabled {
+            background-color: rgba(53, 0, 88, 0.75);
+            border: 2px solid transparent;
+            border-top: 1px solid rgba(56, 19, 73, 0.5);
+        }
+        .btn-secondary {
+            background-color: rgba(49, 44, 87, 0.5);
+            border: 2px solid transparent;
+            border-top: 1px solid rgba(88, 88, 88, 0.25);
+            /* color: var(--font-color-family); */
+        }
+        .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+            background-color: rgba(49, 44, 87, 0.75);
+            border: 2px solid transparent;
+            border-top: 1px solid rgba(88, 88, 88, 0.25);
+        }
+        .btn-secondary:disabled, .btn-secondary.disabled {
+            background-color: rgba(49, 44, 87, 0.75);
+            border: 2px solid transparent;
+            border-top: 1px solid rgba(49, 44, 87, 0.75);
+        }
+        .btn-ssm {
+            border-radius: 8px;
+            font-size: 11px;
+            padding: 4px;
+        }
+        .analytics-members-count {
+            display: block;
+            font-size: 64px;
+            font-family: courier;
+            visibility: hidden;
+            transition: 0.5s;
+        }
+        .form-control {
+            background-color: rgba(0, 0, 0, 0.33);
+            color: #eee;
+            border-radius: 12px 0px 0px 12px;
+            border: none;
+        }
+        .form-control:focus, .form-control:active {
+            background-color: rgba(0, 0, 0, 0.33);
+            color: #eee;
+            outline: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 
 <body>
-    <div class="analytics">
+    <!-- <div class="analytics">
         Online: <i class="ps-1 pe-3">{{ $analytics['users_online'] ?? '?' }}</i>
         <span class="registered">
             Members: <i class="ps-1 pe-2">{{ $analytics['users_registered'] ?? '?' }}</i>
@@ -143,64 +218,69 @@
                             @endauth
                         @endif
   
-    </div>
+    </div> -->
 
     <div class="wrapper">
         <div class="main">
             <div class="main-content d-flex flex-wrap">
-                <div
-                    class="container-l col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center align-items-middle">
-                    <div class="form-email-lookup ms-auto me-auto col-11 col-md-8 p-3 p-lg-4 animate__animated animate__fadeIn">
-                        <div class="fel-header pt-5 d-flex justify-content-center font-family-poppins-sans-serif">
-                            <h4>
-                                Register account
-                            </h4>
-                        </div>
-                        <div class="pt-1 pb-1 pt-lg-5 pb-lg-5">
-                            <div class="promptss-v2 mb-2">
-
-                            </div>
-                            <div class="d-flex flex-column">
-                                <input id="email_address" type="email" class="form-control p-3 font-family-poppins-sans-serif" name=""
-                                    id="" aria-describedby="helpId" placeholder="Email Address"
-                                    autocomplete="off">
-                                <button id="verify_emailAddress" class="btn btn-primary mt-3 p-2 p-lg-3 btn-lg">
-                                    <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
-                                        Register
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="container-l col-12 col-md-6 col-lg-8 d-flex flex-column justify-content-center align-items-middle mt-5">
+                <div class="container-l col-12 d-flex flex-column justify-content-center align-items-middle mt-2">
                     <img class="ms-auto me-auto animate__animated animate__fadeIn" src="{{ asset('img/official-iagd-logo-V2.png') }}"
                         alt="International Animals Genetics Database">
                     <div class="d-flex flex-wrap justify-content-center animate__animated animate__fadeIn">
-                        <a href="https://metaanimals.tech/" class="lp-button fonts-1-3rem me-3 mt-4 font-family-poppins-sans-serif" target="_blank" rel="noopener noreferrer">
+                        <a href="https://metaanimals.tech/" class="lp-button btn btn-secondary fonts-1-3rem me-3 mt-4 font-family-poppins-sans-serif" target="_blank" rel="noopener noreferrer">
                             Official Meta Animals Website
                         </a>
                         @if (Route::has('user.login'))
                             @auth
-                                <a href="{{ route('dashboard') }}" class="lp-button fonts-1-3rem mt-4 font-family-poppins-sans-serif">
-                                    Visit Lounge
+                                <a href="{{ route('dashboard') }}" class="lp-button btn btn-primary fonts-1-3rem mt-4 font-family-poppins-sans-serif">
+                                    <i class="bi bi-cup-hot-fill" style="vertical-align: 0;"></i> Visit Lounge
                                 </a>
                             @else
-                                <a href="{{ route('user.login') }}" class="lp-button fonts-1-3rem mt-4 font-family-poppins-sans-serif">
-                                    Sign-in
+                                <a href="{{ route('user.login') }}" class="lp-button btn btn-primary fonts-1-3rem mt-4 font-family-poppins-sans-serif">
+                                    <i class="bi bi-cup-hot-fill" style="vertical-align: 0;"></i> Sign-in
                                 </a>
                             @endauth
                         @endif
                     </div>
-
-                    <div class="d-flex flex-wrap justify-content-center p-5">
-                        <video class="mx-auto w-100 animate__animated animate__fadeIn" src="{{ asset('/videos/MEMBER-LOUNGE-TUTORIAL.mp4') }}"
-                            type="video/mp4" autoplay muted loop controls="true" volume="1.0" {{-- poster="{{asset('/img/MEMBER-LOUNGE-TUTORIAL-thumbnail.png')}}" --}}
-                            style="max-width: 750px;"></video>
+                    <div class="text-center mt-2">
+                        <layflags-rolling-number class="analytics-members-count">{{ $analytics['users_registered'] }}</layflags-rolling-number>
+                        <div class=""><i class="bi bi-people-fill"></i> members registered</div>
+                    </div>
+                    <div class="form-email-lookup ms-auto me-auto col-11 col-md-8 animate__animated animate__fadeIn">
+                        <div class="d-none d-sm-block pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
+                            <div class="promptss-v2 mb-2" style="width: 400px;">
+                            </div>
+                            <input id="email_address" type="email" class="form-control p-3 font-family-poppins-sans-serif" name=""
+                                id="" aria-describedby="helpId" placeholder="hello@example.com"
+                                autocomplete="off" style="display: inline-block; width: 400px;">
+                            <button id="verify_emailAddress" class="btn btn-secondary btn-lg" style="width: 125px;
+                                    padding: 15px 0px;
+                                    margin-bottom: 1px;
+                                    margin-left: -5px;
+                                    border-radius: 0px 12px 12px 0px;">
+                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+                                    Register
+                                </span>
+                            </button>
+                        </div>
+                        <div class="d-block d-sm-none pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
+                            <div class="promptss-v2 mb-2" style="width: 325px;">
+                            </div>
+                            <input id="email_address" type="email" class="form-control p-3 font-family-poppins-sans-serif" name=""
+                                id="" aria-describedby="helpId" placeholder="hello@example.com"
+                                autocomplete="off" style="display: inline-block; width: 325px;">
+                            <button id="verify_emailAddress" class="btn btn-secondary btn-lg" style="width: 125px;
+                                    padding: 15px 0px;
+                                    margin-bottom: 1px;
+                                    margin-left: -5px;
+                                    border-radius: 0px 12px 12px 0px;">
+                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+                                    Register
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -348,10 +428,12 @@
 <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
 
 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+<script type="module" src="https://unpkg.com/@layflags/rolling-number@1.0.0/rolling-number.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var timez = moment.tz.guess();
         $('#tiemxx').val(timez);
+        $('.analytics-members-count').css('visibility', 'visible');
     });
 </script>
 <script src="{{ asset('js/user-login.js') }}"></script>

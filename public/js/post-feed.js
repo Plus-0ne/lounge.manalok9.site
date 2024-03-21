@@ -1339,7 +1339,7 @@ $(document).ready(function () {
                         // pv_comment_container_id.html("");
 
                         generateComments(res, post_id);
-
+                        generateReplyElement(post_id, false);
                         console.log(res);
                         break;
                     default:
@@ -1660,10 +1660,10 @@ $(document).ready(function () {
 
     $(document).on('click', '.show_reply_section', function() {
         const post_id = $(this).data('post_id');
-        generateReplyElement(post_id);
+        generateReplyElement(post_id, true);
     });
 
-    function generateReplyElement(post_id) {
+    function generateReplyElement(post_id, focused=false) {
         $(`.user-reply-container[data-post_id="${post_id}"]`).remove();
         const reply_template = `<div class="user-reply-container vrrr d-flex flex-column mb-3" data-post_id="${post_id}" style="display: none;">
                                     <div class="mb-2 d-flex flex-row justify-content-between">
@@ -1684,7 +1684,9 @@ $(document).ready(function () {
         const reply_element = $(reply_template);
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4').append(reply_element);
         reply_element.fadeIn();
-        reply_element.find('textarea').trigger('focus');
+        if (focused) {
+            reply_element.find('textarea').trigger('focus');
+        }
     }
     /* -------------------------------------------------------------------------- */
     /*                             Show more comments                             */
