@@ -1301,7 +1301,7 @@ $(document).ready(function () {
         return skeleton_element;
     }
 
-    function getAllComments(cPageCount, post_id, pv_comment_container_id, comment_lastDate) {
+    function getAllComments(cPageCount, post_id, pv_comment_container_id, comment_lastDate, focused_reply=false) {
         /* Start skeleton loading display */
 
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4');
@@ -1309,7 +1309,8 @@ $(document).ready(function () {
         if (comments_count > 5) {
             comments_count = 5;
         }
-        for (let i = 0; i < comments_count; i++) {
+        pv_comment_container_id.append(create_skeleton_element());
+        for (let i = 0; i < comments_count - 1; i++) {
             pv_comment_container_id.append(create_skeleton_element());
         }
 
@@ -1332,19 +1333,19 @@ $(document).ready(function () {
                         break;
 
                     case 'info':
-                        pv_comment_container_id.html('<div class="w-100 d-flex justify-content-center info-c"><p>' + res.message + '</p></div>');
+                        // pv_comment_container_id.html('<div class="w-100 d-flex justify-content-center info-c"><p>' + res.message + '</p></div>');
                         break;
 
                     case 'success':
                         // pv_comment_container_id.html("");
 
                         generateComments(res, post_id);
-                        generateReplyElement(post_id, false);
                         console.log(res);
                         break;
                     default:
                         break;
                 }
+                generateReplyElement(post_id, focused_reply);
                 updateCommentSection();
 
             },
@@ -1536,6 +1537,7 @@ $(document).ready(function () {
         thisbtn.prop('disabled', true);
         e.preventDefault();
 
+        
         pv_comment_container_id.find('.vrrr').eq(-2).after(create_skeleton_element());
 
         $.ajax({
@@ -1659,8 +1661,22 @@ $(document).ready(function () {
     }
 
     $(document).on('click', '.show_reply_section', function() {
-        const post_id = $(this).data('post_id');
-        generateReplyElement(post_id, true);
+        // const post_id = $(this).data('post_id');
+        // generateReplyElement(post_id, true);
+
+        if (is_already_getting_comments) {
+            return false;
+        }
+        is_already_getting_comments = true;
+        var post_id = $(this).attr('data-post_id');
+        var pv_comment_container_id = $('.pv-comment-container-' + post_id);
+        
+        auto_clicked_comments.push(post_id);
+
+        pv_comment_container_id.html("");
+        cPageCount = 1;
+        /* Get all comments */
+        getAllComments(cPageCount, post_id, pv_comment_container_id, true);
     });
 
     function generateReplyElement(post_id, focused=false) {
