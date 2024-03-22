@@ -1533,7 +1533,6 @@ $(document).ready(function () {
 
         var pv_comment_container_id = $('.pv-comment-container-' + post_id);
 
-
         thisbtn.prop('disabled', true);
         e.preventDefault();
 
@@ -1568,10 +1567,14 @@ $(document).ready(function () {
                         }
 
                         if (response.status == 'success') {
+                            let comments_count = parseInt(pv_comment_container_id.parent().find('.show_comment_section').text());
+                            if (comments_count <= 0) {
+                                pv_comment_container_id.parent().find('.show_comment_section').trigger('click');
+                            }
+                            comments_count += 1;
+                            pv_comment_container_id.parent().find('.show_comment_section').html(`<i class="bi bi-chat-quote-fill"></i> ${(comments_count).toString()}`);
                             if (pv_comment_container_id.find('.vrrr').length > 0) {
-
                                 $('.pv-comment-container-' + post_id).find('.vrrr').eq(-3).after(appendMyComment(res, post_id, delete_comment_cog));
-
                             }
                             else {
                                 getAllComments(cPageCount, post_id, pv_comment_container_id);
