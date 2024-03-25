@@ -90,7 +90,7 @@
             </li>
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
-                data-bs-content="Work in progress! New pet gallery and registration.">
+                data-bs-content="List of your registered pets.">
                 <a class="nav-link @if (request()->is('user/pet/list')) active @endif" href="{{ route('user.pet_list') }}">
                     <div class="d-flex flex-wrap align-items-center px-3">
                         <div class="nav-icon-container">
@@ -98,13 +98,13 @@
                         </div>
                         <div>
                             <span>
-                                Pets
+                                My Pets
                             </span>
                         </div>
                     </div>
                 </a>
             </li>
-            <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
+            {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="View and register your pets here!">
                 <a class="nav-link @if (request()->is('kennel')) active @endif" href="{{ route('kennel') }}">
@@ -119,8 +119,7 @@
                         </div>
                     </div>
                 </a>
-
-            </li>
+            </li> --}}
 
             {{-- @if (!empty(Auth::guard('web')->user()->iagd_number)) --}}
             {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
@@ -233,7 +232,7 @@
 
             <hr>
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
-                <a class="nav-link" href="https://metaanimals.tech/" target="_BLANK" rel="noopener noreferrer"
+                <a class="nav-link" href="https://www.manalok9.com/" target="_BLANK" rel="noopener noreferrer"
                     data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
                     data-bs-placement="right" data-bs-content="Visit the official Meta Animals website!">
                     <div class="d-flex flex-wrap align-items-center px-3">
@@ -242,7 +241,24 @@
                         </div>
                         <div>
                             <span>
-                                Meta Animals
+                                Manalo K9
+                            </span>
+                        </div>
+                    </div>
+
+                </a>
+            </li>
+            <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
+                <a class="nav-link" href="https://resort.manalok9.com/" target="_BLANK" rel="noopener noreferrer"
+                    data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                    data-bs-placement="right" data-bs-content="Visit the official resort website!">
+                    <div class="d-flex flex-wrap align-items-center px-3">
+                        <div class="nav-icon-container">
+                            <i class="nav-icon mdi mdi-link"></i>
+                        </div>
+                        <div>
+                            <span>
+                                Manalo Resort
                             </span>
                         </div>
                     </div>
@@ -266,23 +282,6 @@
                         </div>
                     </div>
 
-
-                </a>
-            </li>
-            <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
-                <a class="nav-link" href="https://www.manalok9.com/" target="_BLANK" rel="noopener noreferrer"
-                    data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                    data-bs-placement="right" data-bs-content="Visit the Manalok9!">
-                    <div class="d-flex flex-wrap align-items-center px-3">
-                        <div class="nav-icon-container">
-                            <i class="nav-icon mdi mdi-link"></i>
-                        </div>
-                        <div>
-                            <span>
-                                Manalo K9
-                            </span>
-                        </div>
-                    </div>
 
                 </a>
             </li>
