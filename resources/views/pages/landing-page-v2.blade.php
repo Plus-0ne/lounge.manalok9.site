@@ -60,35 +60,6 @@
             font-size: 0.65rem;
         }
 
-        @media (min-width: 576px) {
-            .fonts-1-3rem {
-                font-size: 0.65rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .fonts-1-3rem {
-                font-size: 0.65rem;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .fonts-1-3rem {
-                font-size: 1.3rem;
-            }
-
-            .container-l img {
-                width: 50%;
-                height: fit-content;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .fonts-1-3rem {
-                font-size: 1.3rem;
-            }
-        }
-
         .analytics {
             position: fixed;
             top: 0;
@@ -195,6 +166,43 @@
             outline: none !important;
             box-shadow: none !important;
         }
+
+        @media (min-width: 576px) {
+            .fonts-1-3rem {
+                font-size: 0.65rem;
+            }
+            .container-l img {
+                width: 65%;
+                height: fit-content;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .fonts-1-3rem {
+                font-size: 1.3rem;
+            }
+            .container-l img {
+                width: 65%;
+                height: fit-content;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .fonts-1-3rem {
+                font-size: 1.3rem;
+            }
+
+            .container-l img {
+                width: 50%;
+                height: fit-content;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .fonts-1-3rem {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 
@@ -250,34 +258,38 @@
                         <div class="d-none d-sm-block pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
                             <div class="promptss-v2 mb-2" style="width: 400px;">
                             </div>
-                            <input id="email_address" type="email" class="form-control p-3 font-family-poppins-sans-serif" name=""
+                            <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
+                            	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
                                 id="" aria-describedby="helpId" placeholder="hello@example.com"
-                                autocomplete="off" style="display: inline-block; width: 400px;">
-                            <button id="verify_emailAddress" class="btn btn-secondary btn-lg" style="width: 125px;
+                                autocomplete="off" style="display: inline-block;">
+                            	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
                                     padding: 15px 0px;
                                     margin-bottom: 1px;
                                     margin-left: -5px;
                                     border-radius: 0px 12px 12px 0px;">
-                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
-                                    Register
-                                </span>
-                            </button>
+	                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+	                                    Register
+	                                </span>
+	                            </button>
+                            </div>
                         </div>
                         <div class="d-block d-sm-none pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
                             <div class="promptss-v2 mb-2" style="width: 325px;">
                             </div>
-                            <input id="email_address" type="email" class="form-control p-3 font-family-poppins-sans-serif" name=""
+                            <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
+                            	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
                                 id="" aria-describedby="helpId" placeholder="hello@example.com"
-                                autocomplete="off" style="display: inline-block; width: 325px;">
-                            <button id="verify_emailAddress" class="btn btn-secondary btn-lg" style="width: 125px;
+                                autocomplete="off" style="display: inline-block;">
+                            	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
                                     padding: 15px 0px;
                                     margin-bottom: 1px;
                                     margin-left: -5px;
                                     border-radius: 0px 12px 12px 0px;">
-                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
-                                    Register
-                                </span>
-                            </button>
+	                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+	                                    Register
+	                                </span>
+	                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
