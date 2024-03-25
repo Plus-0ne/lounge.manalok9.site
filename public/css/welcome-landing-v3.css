@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
+/*
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+ */
+:root {
+    --primary-font-style: 'Poppins', sans-serif;
+}
+.font-family-poppins-sans-serif {
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    /* height: 100%; */
+    background-color: #1e2530;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    color: #eeeeee;
+}
+
+.footer {
+    min-height: 50px;
+    color: #eeeeee;
+    background-color: rgba(0, 0, 0, 0.33);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Landing page alert styles */
+button.btn {
+    letter-spacing: var(--ls-btn-1-25);
+    font-size: 14px;
+
+}
+
+div.custom-alert {
+	padding: 0.6rem 0.8rem 0.6rem 0.8rem;
+	width: 100%;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+div.ca-warning {
+	background-color: #ffa726;
+	color: #000000;
+}
+div.ca-error {
+	background-color: #b91400;
+	color: #fafafa;
+}
+div.ca-success {
+	background-color: #4caf50;
+	color: #fafafa;
+}
+div.ca-secondary {
+	background-color: #6c757d;
+	color: #fafafa;
+}

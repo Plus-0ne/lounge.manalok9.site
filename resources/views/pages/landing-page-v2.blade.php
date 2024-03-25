@@ -17,7 +17,7 @@
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/welcome-landing-v2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/welcome-landing-v3.css') }}">
     <style>
         body {
             background: rgb(14,0,36);
@@ -235,7 +235,7 @@
                     <img class="ms-auto me-auto animate__animated animate__fadeIn" src="{{ asset('img/official-iagd-logo-V2.png') }}"
                         alt="International Animals Genetics Database">
                     <div class="d-flex flex-wrap justify-content-center animate__animated animate__fadeIn">
-                        <a href="https://metaanimals.tech/" class="lp-button btn btn-secondary fonts-1-3rem me-3 mt-4 font-family-poppins-sans-serif" target="_blank" rel="noopener noreferrer">
+                        <a href="https://manalok9.com/" class="lp-button btn btn-secondary fonts-1-3rem me-3 mt-4 font-family-poppins-sans-serif" target="_blank" rel="noopener noreferrer">
                             Official Meta Animals Website
                         </a>
                         @if (Route::has('user.login'))
@@ -260,7 +260,7 @@
                             </div>
                             <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
                             	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
-                                id="" aria-describedby="helpId" placeholder="hello@example.com"
+                                id="" aria-describedby="helpId" placeholder="Your Email (e.g. hello@example.com)"
                                 autocomplete="off" style="display: inline-block;">
                             	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
                                     padding: 15px 0px;
@@ -278,7 +278,7 @@
                             </div>
                             <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
                             	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
-                                id="" aria-describedby="helpId" placeholder="hello@example.com"
+                                id="" aria-describedby="helpId" placeholder="Your Email (e.g. hello@example.com)"
                                 autocomplete="off" style="display: inline-block;">
                             	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
                                     padding: 15px 0px;
@@ -298,7 +298,6 @@
     </div>
     <footer class="footer">
         <div class="container-fluid p-4 pb-0">
-            <hr>
             {{-- Footer Content Section --}}
             <section class="">
                 <div class="row">
@@ -392,14 +391,14 @@
                     </div>
                 </div>
             </section>
-            <hr class="my-3">
+            <div class="my-3"></div>
 
             {{-- Footer Branding --}}
             <section class="p-3 pt-0">
                 <div class="row d-flex align-items-center">
                     <div class="col-md-7 col-lg-8 text-center text-md-start">
                         <div class="p-3 size08rem">
-                            © 2022 Copyright: <a class="text-white" href="https://metaanimals.tech/"
+                            © 2024 Copyright: <a class="text-white" href="https://manalok9.com/"
                                 target="_blank" rel="noopener noreferrer">Meta Animals</a>
                         </div>
                     </div>
