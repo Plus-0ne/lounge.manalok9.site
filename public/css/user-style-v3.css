@@ -18,7 +18,7 @@ font-family: 'Roboto', sans-serif;
     --font-color-secondary: #b6b6b6;
     --font-color-icon-primary: #b6b6b6;
 
-
+    --divider-color-primary: #312c57;
 
     --primary-font-family: 'Poppins', sans-serif;
 
@@ -166,7 +166,7 @@ strong {
     position: fixed;
     height: 100%;
 
-    border-right: 1px solid #312c57;
+    border-right: 1px solid var(--divider-color-primary);
 
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -548,6 +548,16 @@ a {
     background-color: rgba(214, 167, 255, 0.05);
     padding: 24px 20px 16px 20px;
     border-radius: 4px;
+}
+
+.tooltip .arrow:before {
+    border-top-color: rgba(0, 0, 0, 0.16) !important;
+}
+
+.tooltip .tooltip-inner {
+    border-color: var(--divider-color-primary);
+    background-color: rgba(0, 0, 0, 0.16);
+    color: #eee;
 }
 
 /* Product Orders */
@@ -1737,7 +1747,7 @@ a {
     }
 
     .nav-icon {
-        color: #312c57;
+        color: var(--divider-color-primary);
     }
 }
 
