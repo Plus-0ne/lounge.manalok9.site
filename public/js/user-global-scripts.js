@@ -601,7 +601,6 @@ $(document).ready(function () {
                 </div>\
             </div>\
         </div>\
-        <div class="notif-divider"></div>\
         ';
 
         notification_container.append(notifContent);

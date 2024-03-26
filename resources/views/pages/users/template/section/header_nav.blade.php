@@ -103,8 +103,8 @@
                             </div>
                             <div class="px-3 pt-3 pb-2 w-100 notification-footer-dm d-flex flex-column text-end">
                                 <div>
-                                    <a href="#" class="btn btn-info btn-sm">
-                                        Show all notification
+                                    <a href="#" class="btn btn-secondary">
+                                        Show all notifications
                                     </a>
                                 </div>
                             </div>

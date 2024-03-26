@@ -1205,11 +1205,11 @@ a {
 }
 
 .notification-header-dm {
-    border-bottom: 1px solid rgb(199, 199, 199);
+    /*border-bottom: 1px solid rgb(199, 199, 199);*/
 }
 
 .notification-footer-dm {
-    border-top: 1px solid rgb(199, 199, 199);
+    /*border-top: 1px solid rgb(199, 199, 199);*/
 }
 
 .img-notif-user {
@@ -1235,8 +1235,7 @@ a {
 }
 
 .onClickgotoNotif:hover {
-    background-color: #ececec;
-    color: rgb(29, 29, 29);
+    background-color: rgba(0, 0, 0, 0.16);
 }
 
 /* Dropdown custom style */
@@ -1248,7 +1247,7 @@ a {
 }
 
 .statusUnread {
-    background-color: var(--bg-color-dimv2);
+    background-color: #11092c;
 }
 
 .notif-divider {
@@ -2140,6 +2139,12 @@ textarea.form-control:active, textarea.form-control:focus {
 
 .modal-footer {
     border: none;
+}
+
+.dropdown-menu {
+    background-color: #11092c;
+    color: #69647a;
+    border-radius: 8px;
 }
 
 /* CUSTOM BUTTON COLOR */
