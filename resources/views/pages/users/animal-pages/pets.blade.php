@@ -19,7 +19,7 @@
                             <div class="d-flex flex-column p-0 p-lg-3 w-100">
                                 <div class="col-12">
                                     <h4>
-                                        Browse all pets
+                                        My pets
                                     </h4>
                                 </div>
                                 <hr>

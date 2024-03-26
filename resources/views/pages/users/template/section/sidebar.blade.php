@@ -162,7 +162,6 @@
                         </div>
                     </div>
                 </a>
-
             </li>
 
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-toggle="popover"
@@ -224,10 +223,8 @@
                                 </a>
                             </li>
                         @endif
-
                     </ul>
                 </div>
-
             </li>
 
             <hr>

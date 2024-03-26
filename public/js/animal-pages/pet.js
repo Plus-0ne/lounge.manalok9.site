@@ -111,7 +111,7 @@ $(document).ready(function () {
             /*
                 * Pet Image
             */
-            let fileImage = 'img/no_img.jpg';
+            let fileImage = 'img/no_img.png';
             if (petVal.adtl_info != null) {
                 if (petVal.adtl_info.pet_image != null) {
                     fileImage = petVal.adtl_info.pet_image.file_path;
@@ -165,7 +165,7 @@ $(document).ready(function () {
                                     /*
                                         * On image not found or error loading replace with default placeholder image
                                     */
-                                    $(this).attr("src", window.assetUrl + "img/no_img.jpg");
+                                    $(this).attr("src", window.assetUrl + "img/no_img.png ");
                                 })
                             )
                         ).append(
