@@ -13,13 +13,11 @@
             </div>
         </div>
         {{-- Search section --}}
-        <div class="px-3 col-11 col-lg-5 search_container" style="display: none;">
+        {{-- <div class="px-3 col-11 col-lg-5 search_container">
             <div class="search_icon_container">
                 <span class="mdi mdi-magnify"></span>
             </div>
-            <input id="ps_search_input" class="form-control" type="text" name="ps_search_input">
-            <button type="submit" style="display: none;">Search</button>
-        </div>
+        </div> --}}
         {{-- Search end --}}
         <div class="non-mobile-display col-0 col-lg-5 ms-0 ms-lg-auto mt-2 mt-lg-0 d-flex flex-row justify-content-end align-items-center px-0 px-lg-3">
             <button type="button" class="btn btn-primary write_a_post-btn" style="width: 250px; float: right; display: none;">
@@ -31,6 +29,10 @@
             <!-- <button type="button" class="mini-mobile-display btn btn-primary write_a_post-btn" style="display: none !important;">
                 <i class="bi bi-feather"></i> <b>Write a post</b></span>
             </button> -->
+            <div class="px-2">
+                <input id="ps_search_input" class="form-control" type="text" name="ps_search_input" placeholder="Search" style="padding-left: 20px;">
+                <button type="submit" style="display: none;">Search</button>
+            </div>
             <div class="ads_toggle px-2">
                 <i class="action-icon mdi mdi-magnify"></i>
             </div>

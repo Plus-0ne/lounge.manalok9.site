@@ -18,7 +18,7 @@
             {{-- SIDABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 px-4 pt-4 pb-5 gallery_container d-flex flex-wrap">

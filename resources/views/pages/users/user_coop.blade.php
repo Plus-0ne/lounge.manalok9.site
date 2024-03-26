@@ -12,7 +12,7 @@
             {{-- SIDABAR --}}
             @include('pages/users/template/section/sidebar')
 
-            <div class="main-content h-100">
+            <div class="main-content">
                 <div class="container-fluid container-xl">
                     <div class="row py-4">
                         <form action="{{ route('user.add_bird') }}" method="post">

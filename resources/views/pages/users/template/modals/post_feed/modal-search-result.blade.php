@@ -16,7 +16,7 @@
     <div class="modal-dialog modal-dialog-centered modal-fullscreen" role="document">
         <div class="modal-content">
             <div class="modal-header ff-primary">
-                <h5 class="modal-title" id="modalTitleId"> Search result </h5>
+                <h5 class="modal-title" id="modalTitleId"> Found <label class="resultCountssss"></label> results</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="ff-primary">
                             <small>
-                                Results : <label class="resultCountssss"></label>
+                                
                             </small>
                         </div>
                     </div>

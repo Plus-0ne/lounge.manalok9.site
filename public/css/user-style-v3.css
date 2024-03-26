@@ -1194,7 +1194,7 @@ a {
 
 .row_user_result:hover {
     cursor: pointer;
-    background-color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.33);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -2040,6 +2040,8 @@ a {
     outline: none;
     box-shadow: none;
     border-color: #9c41f7;
+    background-color: rgba(0, 0, 0, 0.16);
+    color: white;
 }
 
 .form-select:focus {
@@ -2131,10 +2133,14 @@ textarea.form-control:active, textarea.form-control:focus {
     color: #612f94;
 }
 
+.modal-header {
+    border: none;
+}
 .modal-content {
     background-color: rgba(214, 167, 255, 0.05);
     border-radius: 12px;
     border: none;
+    color: #eee;
 }
 
 .modal-footer {

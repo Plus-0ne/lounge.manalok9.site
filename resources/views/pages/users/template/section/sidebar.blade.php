@@ -104,7 +104,7 @@
                     </div>
                 </a>
             </li>
-            {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
+            <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle" data-bs-container="body"
                 data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right"
                 data-bs-content="View and register your pets here!">
                 <a class="nav-link @if (request()->is('kennel')) active @endif" href="{{ route('kennel') }}">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </a>
-            </li> --}}
+            </li>
 
             {{-- @if (!empty(Auth::guard('web')->user()->iagd_number)) --}}
             {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
