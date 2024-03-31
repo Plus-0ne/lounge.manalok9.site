@@ -396,17 +396,20 @@ class PostFeedController extends Controller
         ])
         ->withCount([
             'PostReaction as total_r1' => function ($q) {
-                $q->where('reaction', 1);
+                $q->where('reaction', 'LIKE', '%like%');
+                $q->orWhere('reaction', 1);
             }
         ])
         ->withCount([
             'PostReaction as total_r2' => function ($q) {
-                $q->where('reaction', 2);
+                $q->where('reaction', 'LIKE', '%haha%');
+                $q->orWhere('reaction', 2);
             }
         ])
         ->withCount([
             'PostReaction as total_r3' => function ($q) {
-                $q->where('reaction', 3);
+                $q->where('reaction', 'LIKE', '%heart%');
+                $q->orWhere('reaction', 3);
             }
         ])
         ->withCount('CommentPerPost')

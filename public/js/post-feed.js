@@ -487,6 +487,7 @@ $(document).ready(function () {
 
             /* Reaction count */
             react_count = [posts.total_r1, posts.total_r2, posts.total_r3];
+            console.log(`${posts}`, react_count)
 
             /* Comment count */
             comment_count = posts.comment_per_post_count;
