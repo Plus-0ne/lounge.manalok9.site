@@ -17,7 +17,7 @@
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/welcome-landing-v3.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/welcome-landing-v3.css?v=2') }}">
     <style>
         body {
             background: rgb(14,0,36);
@@ -252,11 +252,11 @@
                     </div>
                     <div class="text-center mt-2">
                         <layflags-rolling-number class="analytics-members-count">{{ $analytics['users_registered'] }}</layflags-rolling-number>
-                        <div class="analytics-members-text-label" style="opacity: 0;"><i class="bi bi-people-fill"></i> members registered</div>
+                        <div class="analytics-members-text-label" style="opacity: 0; position: relative;"><i class="bi bi-people-fill" style="position: absolute; font-size: 144px; opacity: 0.04; top: -133px;"></i> members registered</div>
                     </div>
                     <div class="form-email-lookup ms-auto me-auto col-11 col-md-8" style="opacity: 0;">
                         <div class="d-none d-sm-block pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
-                            <div class="promptss-v2 mb-2" style="width: 400px;">
+                            <div class="promptss-v2 mb-2" style="width: 520px; margin: 0 auto;">
                             </div>
                             <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
                             	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
@@ -274,7 +274,7 @@
                             </div>
                         </div>
                         <div class="d-block d-sm-none pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
-                            <div class="promptss-v2 mb-2" style="width: 325px;">
+                            <div class="promptss-v2 mb-2" style="width: 325px; margin: 0 auto;">
                             </div>
                             <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
                             	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
@@ -488,6 +488,6 @@
         }, 1250);
     });
 </script>
-<script src="{{ asset('js/user-login.js') }}"></script>
+<script src="{{ asset('js/user-login.js?v=2') }}"></script>
 
 </html>

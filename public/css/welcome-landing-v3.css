@@ -60,20 +60,23 @@ div.custom-alert {
 	-moz-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.16);
+    color: #fafafa;
+    border-radius: 8px;
 }
 div.ca-warning {
-	background-color: #ffa726;
-	color: #000000;
+	border-left: 4px solid #ffa726;
+    color: #ffa726;
 }
 div.ca-error {
-	background-color: #b91400;
-	color: #fafafa;
+    border-left: 4px solid #b91400;
+    color: #b91400;
 }
 div.ca-success {
-	background-color: #4caf50;
-	color: #fafafa;
+    border-left: 4px solid #4caf50;
+    color: #4caf50;
 }
 div.ca-secondary {
-	background-color: #6c757d;
-	color: #fafafa;
+    border-left: 4px solid #6c757d;
+    color: #6c757d;
 }

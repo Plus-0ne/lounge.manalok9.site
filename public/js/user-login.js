@@ -403,7 +403,9 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $("#verify_emailAddress").html("Create");
+                $("#verify_emailAddress").html(`<span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+                                                    Resend
+                                                </span>`);
             },
         });
     });
