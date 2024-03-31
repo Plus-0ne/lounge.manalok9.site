@@ -1680,10 +1680,11 @@ $(document).ready(function () {
         pv_comment_container_id.html("");
         cPageCount = 1;
         /* Get all comments */
-        getAllComments(cPageCount, post_id, pv_comment_container_id, true);
+        const focused_reply = true;
+        getAllComments(cPageCount, post_id, pv_comment_container_id, undefined, focused_reply);
     });
 
-    function generateReplyElement(post_id, focused=false) {
+    function generateReplyElement(post_id, focused_reply=false) {
         $(`.user-reply-container[data-post_id="${post_id}"]`).remove();
         const reply_template = `<div class="user-reply-container vrrr d-flex flex-column mb-3" data-post_id="${post_id}" style="display: none;">
                                     <div class="mb-2 d-flex flex-row justify-content-between">
@@ -1704,7 +1705,7 @@ $(document).ready(function () {
         const reply_element = $(reply_template);
         $('.pv-comment-container-' + post_id).addClass('px-3 py-3 px-lg-4 py-lg-4').append(reply_element);
         reply_element.fadeIn();
-        if (focused) {
+        if (focused_reply) {
             reply_element.find('textarea').trigger('focus');
         }
     }
