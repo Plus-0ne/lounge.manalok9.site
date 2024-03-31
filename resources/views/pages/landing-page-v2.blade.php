@@ -21,7 +21,7 @@
     <style>
         body {
             background: rgb(14,0,36);
-            background: linear-gradient(90deg, rgba(14,0,36,1) 36%, rgba(0,0,0,1) 79%, rgba(0,0,0,1) 100%);
+            background: linear-gradient(0deg, rgba(14,0,36,1) 36%, rgba(0,0,0,1) 79%, rgba(0,0,0,1) 100%);
         }
         .container-l img {
             width: 80%;
@@ -151,7 +151,7 @@
             display: block;
             font-size: 64px;
             font-family: courier;
-            visibility: hidden;
+            opacity: 0;
             transition: 0.5s;
         }
         .form-control {
@@ -252,9 +252,9 @@
                     </div>
                     <div class="text-center mt-2">
                         <layflags-rolling-number class="analytics-members-count">{{ $analytics['users_registered'] }}</layflags-rolling-number>
-                        <div class=""><i class="bi bi-people-fill"></i> members registered</div>
+                        <div class="analytics-members-text-label" style="opacity: 0;"><i class="bi bi-people-fill"></i> members registered</div>
                     </div>
-                    <div class="form-email-lookup ms-auto me-auto col-11 col-md-8 animate__animated animate__fadeIn">
+                    <div class="form-email-lookup ms-auto me-auto col-11 col-md-8" style="opacity: 0;">
                         <div class="d-none d-sm-block pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
                             <div class="promptss-v2 mb-2" style="width: 400px;">
                             </div>
@@ -441,10 +441,51 @@
 <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
 <script type="module" src="https://unpkg.com/@layflags/rolling-number@1.0.0/rolling-number.js"></script>
 <script type="text/javascript">
+    function rotateGradient(element, angle) {
+        element.css('background', `linear-gradient(${angle}deg, rgba(14,0,36,1) 36%, rgba(0,0,0,1) 79%, rgba(0,0,0,1) 100%)`);
+    }
     $(document).ready(function() {
         var timez = moment.tz.guess();
         $('#tiemxx').val(timez);
-        $('.analytics-members-count').css('visibility', 'visible');
+
+        rotateGradient($('body'), 0); 
+
+        $('body').animate({ rotation: 90 }, {
+            duration: 500, 
+            step: function(currentAngle) {
+                rotateGradient($('body'), currentAngle); 
+            },
+            complete: function() {
+                setTimeout(function() {
+                    rotateGradient($('body'), 90); 
+                    $('body').animate({ rotation: 135 }, {
+                        duration: 500, 
+                        step: function(currentAngle) {
+                            rotateGradient($('body'), currentAngle); 
+                        }
+                    });
+                }, 250); 
+            }
+        }); 
+
+        // setTimeout(function() {
+        //     $('body').animate({ rotation: 135 }, {
+        //         duration: 1000,
+        //         step: function(currentAngle) {
+        //             rotateGradient($('body'), currentAngle); 
+        //         }
+        //     }); 
+        // }, 2000);
+
+        $('.analytics-members-count').css('opacity', 1);
+        setTimeout(function() {
+            $('.analytics-members-text-label').css('transition', '0.5s');
+            $('.analytics-members-text-label').css('opacity', 1);
+        }, 750);
+        setTimeout(function() {
+            $('.form-email-lookup').css('transition', '0.5s');
+            $('.form-email-lookup').css('opacity', 1);
+        }, 1250);
     });
 </script>
 <script src="{{ asset('js/user-login.js') }}"></script>
