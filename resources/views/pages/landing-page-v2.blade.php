@@ -57,7 +57,7 @@
         }
 
         .fonts-1-3rem {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
         }
 
         .analytics {
@@ -163,17 +163,30 @@
         .form-control:focus, .form-control:active {
             background-color: rgba(0, 0, 0, 0.33);
             color: #eee;
+            z-index: 1 !important;
             outline: none !important;
             box-shadow: none !important;
+        }
+        .input-group, .promptss-v2 {
+            max-width: 100%;
+        }
+        .verify_emailAddress, .register-button {
+            font-size: 0.7rem;
         }
 
         @media (min-width: 576px) {
             .fonts-1-3rem {
-                font-size: 0.65rem;
+                font-size: 0.7rem;
             }
             .container-l img {
                 width: 65%;
                 height: fit-content;
+            }
+            .verify_emailAddress, .register-button {
+                font-size: 0.7rem;
+            }
+            .input-group, .promptss-v2 {
+                max-width: 400px;
             }
         }
 
@@ -184,6 +197,12 @@
             .container-l img {
                 width: 65%;
                 height: fit-content;
+            }
+            .verify_emailAddress, .register-button {
+                font-size: 1rem;
+            }
+            .input-group, .promptss-v2 {
+                max-width: 100%;
             }
         }
 
@@ -196,11 +215,23 @@
                 width: 50%;
                 height: fit-content;
             }
+            .verify_emailAddress, .register-button {
+                font-size: 1rem;
+            }
+            .input-group, .promptss-v2 {
+                max-width: 100%;
+            }
         }
 
         @media (min-width: 1200px) {
             .fonts-1-3rem {
                 font-size: 1.3rem;
+            }
+            .verify_emailAddress, .register-button {
+                font-size: 1rem;
+            }
+            .input-group, .promptss-v2 {
+                max-width: 100%;
             }
         }
     </style>
@@ -250,42 +281,24 @@
                             @endauth
                         @endif
                     </div>
-                    <div class="text-center mt-2">
+                    <div class="text-center mt-3">
                         <layflags-rolling-number class="analytics-members-count">{{ $analytics['users_registered'] }}</layflags-rolling-number>
                         <div class="analytics-members-text-label" style="opacity: 0; position: relative;"><i class="bi bi-people-fill" style="position: absolute; font-size: 144px; opacity: 0.04; top: -133px;"></i> members registered</div>
                     </div>
                     <div class="form-email-lookup ms-auto me-auto col-11 col-md-8" style="opacity: 0;">
-                        <div class="d-none d-sm-block pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
+                        <div class="mt-3 pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
                             <div class="promptss-v2 mb-2" style="width: 520px; margin: 0 auto;">
                             </div>
                             <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
-                            	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
-                                id="" aria-describedby="helpId" placeholder="Your Email (e.g. hello@example.com)"
+                            	<input type="email" class="email_address form-control font-family-poppins-sans-serif" name=""
+                                aria-describedby="helpId" placeholder="Your Email (e.g. hello@example.com)"
                                 autocomplete="off" style="display: inline-block;">
-                            	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
+                            	<button class="verify_emailAddress btn btn-secondary btn-lg input-group-text" style="width: 125px;
                                     padding: 15px 0px;
                                     margin-bottom: 1px;
                                     margin-left: -5px;
                                     border-radius: 0px 12px 12px 0px;">
-	                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
-	                                    Register
-	                                </span>
-	                            </button>
-                            </div>
-                        </div>
-                        <div class="d-block d-sm-none pt-1 pb-1 pt-lg-5 pb-lg-5 text-center">
-                            <div class="promptss-v2 mb-2" style="width: 325px; margin: 0 auto;">
-                            </div>
-                            <div class="input-group mb-3" style="margin: 0 auto; width: 525px;">
-                            	<input id="email_address" type="email" class="form-control font-family-poppins-sans-serif" name=""
-                                id="" aria-describedby="helpId" placeholder="Your Email (e.g. hello@example.com)"
-                                autocomplete="off" style="display: inline-block;">
-                            	<button id="verify_emailAddress" class="btn btn-secondary btn-lg input-group-text" style="width: 125px;
-                                    padding: 15px 0px;
-                                    margin-bottom: 1px;
-                                    margin-left: -5px;
-                                    border-radius: 0px 12px 12px 0px;">
-	                                <span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+	                                <span class="register-button font-family-poppins-sans-serif">
 	                                    Register
 	                                </span>
 	                            </button>

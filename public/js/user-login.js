@@ -44,7 +44,7 @@ $(document).ready(function () {
         var gender = $("#gender");
         var birth_date = $("#birth_date");
         var contact_number = $("#contact_number");
-        // var email_address = $('#email_address');
+        // var email_address = $('.email_address');
         var password1 = $("#password1");
         var password2 = $("#password2");
         var timez = moment.tz.guess();
@@ -94,7 +94,7 @@ $(document).ready(function () {
                     birth_date.attr("type", "text");
                     birth_date.val("");
                     contact_number.val("");
-                    $("#email_address").val("");
+                    $(".email_address").val("");
                     password1.val("");
                     password2.val("");
                     referral_code.val("");
@@ -343,23 +343,24 @@ $(document).ready(function () {
         return false;
     });
     /* BUTTON VERIFY EMAIL ADDRESS */
-    $("#verify_emailAddress").on("click", function (e) {
+    $(".verify_emailAddress").on("click", function (e) {
         e.preventDefault();
 
-        var email_address = $("#email_address");
+        var email_address = $(".email_address").val();
+        console.log($(".email_address").val()[0]);
         var timez = moment.tz.guess();
         $.ajax({
             type: "POST",
             url: "/ajax/verify-email-address",
             data: {
-                email_address: email_address.val(),
+                email_address: email_address,
                 timez: timez,
             },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             beforeSend: function () {
-                $("#verify_emailAddress").html(
+                $(".verify_emailAddress").html(
                     '<i class="mdi mdi-loading mdi-spin"></i>'
                 );
             },
@@ -403,7 +404,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
-                $("#verify_emailAddress").html(`<span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
+                $(".verify_emailAddress").html(`<span style="font-size: 1rem;" class="font-family-poppins-sans-serif">
                                                     Resend
                                                 </span>`);
             },
