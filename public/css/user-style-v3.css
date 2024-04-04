@@ -2153,6 +2153,10 @@ textarea.form-control:active, textarea.form-control:focus {
     border-radius: 8px;
 }
 
+.dropdown-item {
+    color: #eee;
+}
+
 /* CUSTOM BUTTON COLOR */
 .btn {
 	border-radius: 24px;
