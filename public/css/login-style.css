@@ -99,7 +99,7 @@ input.input-disabled {
     border-color: #9c41f7;
 }
 
-.form-control:disabled {
+.form-control:disabled, .form-control[readonly] {
     background-color: rgba(0, 0, 0, 0.33);
     opacity: 0.33;
 }
