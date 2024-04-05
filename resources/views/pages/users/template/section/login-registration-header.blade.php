@@ -18,6 +18,6 @@
 
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/login-style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login-style.css?v=2') }}" rel="stylesheet">
 
 </head>
