@@ -1,4 +1,24 @@
 <div class="rig-side">
+    @if (!Auth::guard('web_admin')->check())
+    <div class="analytics">
+        <div class="analytics-container p-3">
+            <table style="color: #eee;">
+                <tr>
+                    <td class="fw-bold text-small pe-3">Users Online: </td>
+                    <td class="text-center text-gradient-primary">{{ number_format($analytics['users_online'], 0) ?? '00'}}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-small pe-3">Registered: </td>
+                    <td class="text-center text-gradient-primary">{{ number_format($analytics['users_registered'], 0) ?? '00'}}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold text-small pe-3">Total Visits: </td>
+                    <td class="text-center text-gradient-primary">{{ number_format($analytics['visitor_count'], 0) ?? '00'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    @else
     <div class="classi-ads">
         <div class="ads-container p-3">
             <div class="d-flex justify-content-start align-items-center mb-1">
@@ -35,34 +55,9 @@
                     <video class="w-100" src="{{ asset('videos/youtube-ads.mp4_1.mp4') }}" autoplay muted loop></video>
                 </a>
             </div>
-
             <div class="py-5">
-
             </div>
-
         </div>
-
-
     </div>
-
-    {{-- <div class="analytics" style="height: 50%; position: relative;">
-        <div class="analytics-container p-3" style="position: absolute; bottom: 8rem;">
-            <div class="d-flex justify-content-start align-items-center mb-1">
-                <table>
-                    <tr>
-                        <td class="fw-bold text-small pe-3">Users Online: </td>
-                        <td class="text-center">{{ $analytics['users_online'] ?? '00'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold text-small pe-3">Registered: </td>
-                        <td class="text-center">{{ $analytics['users_registered'] ?? '00'}}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold text-small pe-3">Total Visits: </td>
-                        <td class="text-center">{{ $analytics['visitor_count'] ?? '00'}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div> --}}
+    @endif
 </div>

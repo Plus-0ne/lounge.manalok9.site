@@ -151,7 +151,6 @@
                                         </div>
                                     </a>
                                 @endif
-
                             @endif
                             <a class="dropdown-item fs-text"
                                 href="{{ route('user.view_members') }}?rid={{ Auth::guard('web')->user()->uuid }}">
