@@ -9,7 +9,7 @@
                     <input id="timezzz" type="hidden" name="timez" value="">
                     <div class="createaccount-form">
                         <div class="w-100 pt-2 pb-2 mb-3 text-center">
-                            <img src="{{ asset('img/official-iagd-logo-for-white.png') }}" alt="Internation Animals Genetics Database" width="130px">
+                            <img src="{{ asset('lounge-icons-v1/lounge.svg') }}" alt="Internation Animals Genetics Database" width="130px">
                             <div class="mt-5"></div>
                             <h5>
                                 Create account
