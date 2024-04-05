@@ -175,15 +175,12 @@ button.createaccount-btn {
     font-weight: 500;
 }
 div.createaccount-container {
-    background-color: var(--background-dark-secondary);
+    padding: 24px;
+    color: #ddd;
+    border-radius: 12px;
+    background-color: rgba(214, 167, 255, 0.05);
     min-width: 95%;
     width: 95%;
-    color: #eee;
-    padding: 2.5rem 2rem 2.5rem 2rem;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 div.prompt-img {
     font-size: 1.3rem;
@@ -219,15 +216,12 @@ button.registerpet-btn {
     font-weight: 500;
 }
 div.registerpet-container {
-    background-color: var(--background-dark-secondary);
     min-width: 95%;
     width: 95%;
-    color: var(--color-black);
-    padding: 2.5rem 2rem 2.5rem 2rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    padding: 24px;
+    color: #ddd;
+    border-radius: 12px;
+    background-color: rgba(214, 167, 255, 0.05);
 }
 
 
