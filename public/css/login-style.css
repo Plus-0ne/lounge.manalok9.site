@@ -7,6 +7,11 @@
     --color-white : rgba(255, 255, 255, 1);
     --color-black : rgb(20, 20, 20);
 
+    --font-color-primary: #e7e7e7;
+    --font-color-text-primary: #FCFDFF;
+    --font-color-secondary: #b6b6b6;
+    --font-color-icon-primary: #b6b6b6;
+
     /* LETTER SPACING BUTTON */
     --ls-h1: -1.5pt;
     --ls-h2: -0.5pt;
@@ -36,8 +41,13 @@ html,body {
 	content: '';
 	clear: both;
 	box-sizing: border-box;
-    overflow-x: hidden;
-    background-color: var(--background-dark-primary);
+    background-color: #11082b;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url('../img/blurry-gradient-haikei.png');
+    overflow: hidden;
 }
 .body {
 	background-attachment: fixed;
@@ -52,15 +62,10 @@ html,body {
      background-color: #666666;
 } */
 .login-container {
-	background-color: var(--background-dark-secondary);
-    min-width: 95%;
-    width: 95%;
-    color: var(--color-black);
-    padding: 2.5rem 2rem 2.5rem 2rem;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    -ms-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    padding: 24px;
+    color: #ddd;
+    border-radius: 12px;
+	background-color: rgba(214, 167, 255, 0.05);
 }
 #metaanimals-logo {
     cursor: pointer;
@@ -73,20 +78,42 @@ div.input-container {
 input.input-disabled {
     cursor: not-allowed;
 }
-input.input-control {
+.form-control {
+    border-radius: 8px;
     border: none;
-    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.33);
+    color: var(--font-color-primary);
+}
+
+.form-control:focus, .form-control:-internal-autofill-selected {
     outline: none;
-    font-family: var(--font-fam-secondary);
-    font-size: 14px;
-    letter-spacing: var(--ls-body-small);
-    width: 100%;
-    padding: 0.7rem 1rem 0.7rem 1rem;
+    box-shadow: none;
+    border-color: #9c41f7;
+    background-color: rgba(0, 0, 0, 0.16);
+    color: white;
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #9c41f7;
+}
+
+
+textarea.form-control:hover {
+    background-color: rgba(0, 0, 0, 0.33) !important;
+    color: var(--font-color-primary);
+}
+
+textarea.form-control:active, textarea.form-control:focus {
+    background-color: rgba(0, 0, 0, 0.33) !important;
+    color: var(--font-color-primary);
+    animation: mica-effect 0.2s cubic-bezier(0.22, 0.68, 0, 1.71);
 }
 span.show_pass {
     position: absolute;
-    margin-left: -25px;
-    margin-top: 10px;
+    top: 7px;
+    right: 11px;
     z-index: 1;
     color: #555;
 }
@@ -105,14 +132,14 @@ select.input-control {
 }
 div.moaccount {
     font-family: var(--font-fam-secondary);
-    color: var(--color-black);
+    color: #eee;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: var(--ls-body-small);
 }
 div.remandfpass {
     font-family: var(--font-fam-secondary);
-    color: var(--color-black);
+    color: #eee;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: var(--ls-body-small);
@@ -120,7 +147,7 @@ div.remandfpass {
 a.forgot-pass {
     font-family: var(--font-fam-secondary);
     text-decoration: none;
-    color: var(--color-black);
+    color: #eee;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: var(--ls-body-small);
@@ -129,7 +156,7 @@ button.login-btn {
     width: 100%;
     background-color: var(--btn-c-primary);
     border: 1px solid var(--btn-c-primary);
-    color: var(--color-white);
+    color: #eee;
     padding: 0.6rem 0.6rem 0.6rem 0.6rem;
     font-family: var(--font-fam-secondary);
     letter-spacing: var(--ls-body-medium);
@@ -140,7 +167,7 @@ button.createaccount-btn {
     width: 100%;
     background-color: var(--background-dark-secondary);
     border: 1px solid var(--btn-c-primary);
-    color: var(--color-black);
+    color: #eee;
     padding: 0.6rem 0.6rem 0.6rem 0.6rem;
     font-family: var(--font-fam-secondary);
     letter-spacing: var(--ls-body-medium);
@@ -151,7 +178,7 @@ div.createaccount-container {
     background-color: var(--background-dark-secondary);
     min-width: 95%;
     width: 95%;
-    color: var(--color-black);
+    color: #eee;
     padding: 2.5rem 2rem 2.5rem 2rem;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -208,10 +235,68 @@ div.registerpet-container {
 
 
 
-button.btn {
-    letter-spacing: var(--ls-btn-1-25);
-    font-size: 14px;
-
+.btn {
+    border-radius: 24px;
+    letter-spacing: 0.25px;
+}
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+    box-shadow: none;
+}
+.btn .non-mica:focus {
+    transition: none !important;
+    transform: scale(1) !important;
+}
+.btn .non-mica:active {
+    transform: scale(1) !important;
+}
+.btn:focus {
+    transition: all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71);
+    transform: scale(0.9);
+}
+.btn:active {
+    transform: scale(1.0);
+}
+/* .btn:active {
+    transition: all 0.08s cubic-bezier(0.22, 0.68, 0, 1.71);
+    transform: scale(1);
+} */
+.btn-primary {
+    background-color: rgb(114 0 189 / 75%);
+    border: 2px solid transparent;
+    border-top: 1px solid rgb(135 135 135 / 25%);
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: rgba(100, 1, 167, 0.75);
+    border: 2px solid transparent;
+    border-top: 1px solid rgb(135 135 135 / 25%);
+}
+.btn-primary:disabled, .btn-primary.disabled {
+    background-color: rgba(53, 0, 88, 0.75);
+    border: 2px solid transparent;
+    border-top: 1px solid rgba(56, 19, 73, 0.5);
+}
+.btn-secondary {
+    background-color: rgba(49, 44, 87, 0.5);
+    border: 2px solid transparent;
+    border-top: 1px solid rgba(88, 88, 88, 0.25);
+    /* color: var(--font-color-family); */
+}
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+    background-color: rgba(49, 44, 87, 0.75);
+    border: 2px solid transparent;
+    border-top: 1px solid rgba(88, 88, 88, 0.25);
+}
+.btn-secondary:disabled, .btn-secondary.disabled {
+    background-color: rgba(49, 44, 87, 0.75);
+    border: 2px solid transparent;
+    border-top: 1px solid rgba(49, 44, 87, 0.75);
+}
+.btn-ssm {
+    border-radius: 8px;
+    font-size: 11px;
+    padding: 4px;
 }
 
 div.custom-alert {
@@ -310,11 +395,6 @@ div.ca-secondary {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.btn {
-	/* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  border-radius: 2px;
-}
 #loading-screen {
     position: absolute;
     top: 0px;
@@ -343,4 +423,30 @@ div.ca-secondary {
 }
 .fs-medium-16px {
     font-size: 16px;
+}
+
+@keyframes mica-effect {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.99);
+        -webkit-transform: scale(0.99);
+        -ms-transform: scale(0.99);
+        -moz-transform: scale(0.99);
+        -o-transform: scale(0.99);
+    }
+
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+    }
 }

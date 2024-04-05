@@ -7,7 +7,7 @@
             <div class="login-container align-self-center">
                 <div class="login-form">
                     <div class="w-100 py-2 text-center mb-4">
-                        <img id="metaanimals-logo" src="{{ asset('img/official-iagd-logo-for-white.png') }}"
+                        <img id="metaanimals-logo" src="{{ asset('lounge-icons-v1/lounge.svg') }}"
                             alt="International Animals Genetics Database" width="210px">
                         {{-- <h5>
                             Lounge
@@ -17,12 +17,12 @@
                         @include('pages/users/template/section/prompts-v2')
                     </div>
                     <div class="w-100 py-2">
-                        <div class="input-container mb-4">
-                            <input id="unique_id" class="input-control" name="unique_id" type="text"
+                        <div class="form-group mb-4">
+                            <input id="unique_id" class="form-control" name="unique_id" type="text"
                                 placeholder="Email address">
                         </div>
-                        <div class="input-container mb-2">
-                            <input id="password" class="input-control" name="password" type="password"
+                        <div class="form-group mb-2" style="position: relative;">
+                            <input id="password" class="form-control" name="password" type="password"
                                 placeholder="Password">
                             <span class="show_pass"><i class="mdi mdi-eye-outline"></i></span>
                         </div>
@@ -40,14 +40,12 @@
                             </a>
                         </small>
                     </div>
-                    <div class="w-100 py-2 mt-3">
-                        <button id="submit_logincred" class="login-btn" type="submit">
-                            SIGN IN
+                    <div class="w-100 py-2 mt-3 text-center">
+                        <button id="submit_logincred" class="btn btn-primary w-100" type="submit">
+                            <i class="bi bi-key-fill"></i> Log In
                         </button>
                     </div>
-                    <div class="px-3">
-                        <hr>
-                    </div>
+                    <hr class="w-100">
                     <div class="w-100 d-flex flex-wrap justify-content-center">
                         {{-- GOOGLE BUTTON --}}
                         {{-- <div id="googleSignin" class="mt-2"></div> --}}
@@ -65,20 +63,15 @@
                             data-button-type="login_with" data-layout="default" data-auto-logout-link="true"
                             data-use-continue-as="true" onlogin="checkLoginState();"></div> --}}
                     </div>
-
-                    <div class="px-3">
-                        <hr>
-                    </div>
+                    <hr class="w-100">
                     <div class="moaccount text-center">
                         <small>
-                            <a class="create_account_link" href="{{ route('user.email_confirmation') }}"> Click here to
-                                create an account</a>
+                            <a class="btn btn-secondary w-100 create_account_link" href="{{ route('user.email_confirmation') }}"> Register a new account</a>
                         </small>
                     </div>
                 </div>
 
             </div>
-
         </div>
     </div>
 
