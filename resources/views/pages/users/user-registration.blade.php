@@ -21,20 +21,20 @@
                             </div>
 
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="first_name" class="input-control" name="first_name" type="text" placeholder="First Name"
+                                <div class="form-group">
+                                    <input id="first_name" class="form-control" name="first_name" type="text" placeholder="First Name"
                                     value="{{ (Session::has('register_this_googleacount.googlegiven_name')) ? Session::get('register_this_googleacount.googlegiven_name') : '' }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="last_name" class="input-control" name="last_name" type="text" placeholder="Last Name"
+                                <div class="form-group">
+                                    <input id="last_name" class="form-control" name="last_name" type="text" placeholder="Last Name"
                                     value="{{ (Session::has('register_this_googleacount.googlefamily_name')) ? Session::get('register_this_googleacount.googlefamily_name') : '' }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <select id="gender" class="input-control" name="gender">
+                                <div class="form-group">
+                                    <select id="gender" class="form-control" name="gender">
                                         <option selected disabled hidden>Sex</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -42,44 +42,44 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="birth_date" name="birth_date" class="input-control dateInput" type="text" placeholder="Birth Date">
+                                <div class="form-group">
+                                    <input id="birth_date" name="birth_date" class="form-control dateInput" type="text" placeholder="Birth Date">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="contact_number" name="contact_number" class="input-control" type="text" placeholder="Phone/Mobile No.">
+                                <div class="form-group">
+                                    <input id="contact_number" name="contact_number" class="form-control" type="text" placeholder="Phone/Mobile No.">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="email_address" name="email_address" class="input-control {{ (Session::has('register_this_email')) ? 'input-disabled' : '' }}" type="email" placeholder="Email address"
+                                <div class="form-group">
+                                    <input id="email_address" name="email_address" class="form-control {{ (Session::has('register_this_email')) ? 'input-disabled' : '' }}" type="email" placeholder="Email address"
                                     value="{{ (Session::has('register_this_email')) ? Session::get('register_this_email') : '' }}" {{ (Session::has('register_this_email')) ? 'disabled' : '' }}>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="password1" name="password1" class="input-control" type="password" placeholder="Password">
+                                <div class="form-group">
+                                    <input id="password1" name="password1" class="form-control" type="password" placeholder="Password">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 p-2">
-                                <div class="input-container">
-                                    <input id="password2" name="password2" class="input-control" type="password" placeholder="Verify password">
+                                <div class="form-group">
+                                    <input id="password2" name="password2" class="form-control" type="password" placeholder="Verify password">
                                 </div>
                             </div>
                             <div class="col-12 col-md-12 p-2">
-                                <div class="input-container">
-                                    <input id="referral_code" name="referral_code" class="input-control" type="text" placeholder="Referral code ( Member Lounge IAGD # - if available )" @readonly(true)>
+                                <div class="form-group">
+                                    <input id="referral_code" name="referral_code" class="form-control" type="text" placeholder="Referral code ( Member Lounge IAGD # - if available )" @readonly(true)>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 py-2 p-2 mt-5">
-                                <button id="submit_account" class="login-btn" type="submit">
-                                    SIGN UP
+                                <button id="submit_account" class="btn btn-primary w-100" type="submit">
+                                    Register
                                 </button>
                             </div>
                             <div class="col-12 col-md-6 py-2 p-2 mt-5">
-                                <button id="backBtn_reg" class="createaccount-btn" type="button">
-                                    BACK TO LOGIN
+                                <button id="backBtn_reg" class="btn btn-secondary w-100" type="button">
+                                    Back to Login
                                 </button>
                             </div>
 
