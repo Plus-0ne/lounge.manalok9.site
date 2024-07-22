@@ -33,7 +33,7 @@
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
 
 
-    <link href="{{ asset('css/user-style-v3.css?v=2') }}" rel="stylesheet">
+    <link href="{{ asset('css/user-style-v3.css?v=3') }}" rel="stylesheet">
 
     <link href="{{ asset('css/style-v3.css') }}" rel="stylesheet">
 

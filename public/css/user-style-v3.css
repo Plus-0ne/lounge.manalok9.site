@@ -520,6 +520,9 @@ a {
     padding: 10px;
 }
 
+.badge-user-image-backdrop {
+    z-index: -5;
+}
 .badge-user-image-backdrop img {
     width: 64px;
     height: 64px;
@@ -531,6 +534,7 @@ a {
     width: 64px;
     height: 64px;
     margin-right: 10px;
+    border-radius: 32px;
 }
 
 .badge-user-name {

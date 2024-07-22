@@ -1,6 +1,6 @@
 <div class="sidebar">
     <div class="sidebar-user-info">
-        <div class="d-flex flex-wrap justify-content-center align-items-center px-3">
+        <div class="d-flex flex-wrap justify-content-center align-items-center px-3 mt-2">
             <div class="badge-user-image-backdrop">
                 @if (!empty(Auth::guard('web')->user()->profile_image))
                     <img src="{{ asset(Auth::guard('web')->user()->profile_image) }}">
@@ -24,7 +24,12 @@
                 </span>
                 <br>
                 <a href="{{ URL::to('/user/referrals') }}" class="btn btn-primary btn-ssm"><i class="bi bi-cash-coin" style="vertical-align: 0;"></i> Get Paid</a>
+                @if (Auth::guard('web')->user()->is_premium <= 0)
                 <a href="{{ URL::to('/be_a_member') }}" class="btn btn-secondary btn-ssm"><i class="bi bi-arrow-up-circle" style="vertical-align: 0;"></i> Upgrade</a>
+                @endif
+                @if (Auth::guard('web')->user()->is_premium > 0)
+                <button href="{{ URL::to('/be_a_member') }}" class="btn btn-secondary btn-ssm" disabled><i class="bi bi-stars" style="vertical-align: 0;"></i> Premium!</button>
+                @endif
             </div>
         </div>
     </div>
