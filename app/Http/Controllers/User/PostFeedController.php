@@ -351,32 +351,27 @@ class PostFeedController extends Controller
         ])
 
         ->where(function ($v) use ($my_uuid) {
-            $v->where('visibility','=',['public'])
-
-            ->orWhere(function ($orv) use($my_uuid,$v) {
+            $v->where('visibility', '=', ['public'])
+            ->orWhere(function ($orv) use ($my_uuid, $v) {
                 $orv->where([
-                    ['visibility','=','private']
+                    ['visibility', '=', 'private']
                 ])
-
-                ->whereHas('MembersModel.myFollowers' , function ($mf) use ($my_uuid,$v) {
-
+                ->whereHas('MembersModel.myFollowers', function ($mf) use ($my_uuid, $v) {
                     $mf->where([
                         ['uuid', '=', $my_uuid],
                         ['status', '=', '1']
                     ])
-
-                    ->orWhere(function ($mm) use($my_uuid,$v) {
+                    ->orWhere(function ($mm) use ($my_uuid, $v) {
                         $mm->where([
                             ['follow_uuid', '=', $my_uuid],
                             ['status', '=', '1']
                         ]);
                     });
-
                 });
             })
-            ->orWhere(function($me) use ($my_uuid) {
+            ->orWhere(function ($me) use ($my_uuid) {
                 $me->where([
-                    ['uuid','=',$my_uuid]
+                    ['uuid', '=', $my_uuid]
                 ]);
             });
         })
@@ -413,14 +408,36 @@ class PostFeedController extends Controller
             }
         ])
         ->withCount('CommentPerPost')
-        ->with('PostAttachments')->skip(0)
+        ->with('PostAttachments')
+        ->skip(0)
         ->with('sharedSource')
         ->with('sourceAttachments')
-
         ->orderBy('updated_at', 'DESC')
         ->paginate(10);
+
+        $PostFeed->getCollection()->transform(function ($post) {
+            $defaultWeight = 100;
+            $bonusPerReaction = 5;
+            $daysPassedPenalty = 2;
+            $daysPassed = $post->created_at->diffInDays(now());
+
+            $weight = $defaultWeight + 
+                    ($post->total_r1 * $bonusPerReaction) + 
+                    ($post->total_r2 * $bonusPerReaction) + 
+                    ($post->total_r3 * $bonusPerReaction) - 
+                    ($daysPassed * $daysPassedPenalty);
+
+            $post->weight = max($weight, 0); // Ensure weight is not negative
+
+            return $post;
+        });
+
+        $sortedPosts = $PostFeed->getCollection()->sortByDesc('weight');
+        $PostFeed->setCollection($sortedPosts);
+
         return response()->json(['data' => $PostFeed]);
     }
+
 
     public function post_get_specific(Request $request)
     {
