@@ -126,14 +126,16 @@ class UserController extends Controller
         /* get all notification */
         $notif = Notif_Helper::GetUserNotification();
 
+        $premium_uuids = MembersModel::where('is_premium', 1)->pluck('uuid');
+
         /* Javascript variables */
         JavaScript::put([ // get trade_log details
             'ruuid' => Auth::guard('web')->user()->uuid,
             'assetUrl' => asset('/'),
             'currentBaseUrl' => URL::to('/'),
-            'user_timezone' => Auth::guard('web')->user()->timezone
+            'user_timezone' => Auth::guard('web')->user()->timezone,
+            'premium_uuids' => $premium_uuids
         ]);
-
 
         $data = array(
             'title' => 'Post Feed | IAGD Members Lounge',

@@ -23,6 +23,8 @@ $(document).ready(function () {
         '8b70240c-08a7-411e-9f21-6d4bdc5ed052', // official mk9
     ]
 
+    const premium_uuids = window.premium_uuids;
+
     let is_already_getting_comments = false;
 
     $.fn.isInViewport = function() {
@@ -349,6 +351,14 @@ $(document).ready(function () {
                 usersName = `${usersName} <i class="bi bi-check-circle-fill text-gradient-golden"></i>`;
             }
 
+            if (official_uuids.includes(post_creator.uuid)) {
+                usersName = `${usersName} <i class="bi bi-check-circle-fill text-gradient-golden"></i>`;
+            }
+
+            if (premium_uuids.includes(post_creator.uuid)) {
+                usersName = `${usersName} <img src="${window.assetUrl}img/lounge_premium.png" style="width: 24px; height: 24px;>`;
+            }
+
             /* Hide edit dot if user is not the post creator */
 
             if (post_creator.uuid == my_uuid) {
@@ -470,6 +480,10 @@ $(document).ready(function () {
                 post_attachment = '';
                 postActivityTxt = '';
                 post_attachment_share_preview(posts);
+            }
+
+            if (premium_uuids.includes(post_creator.uuid)) {
+                usersName = `<span class="text-gradient-golden">${usersName}</span>`;
             }
 
             if (official_uuids.includes(post_creator.uuid)) {

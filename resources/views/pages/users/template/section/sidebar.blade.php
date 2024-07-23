@@ -16,9 +16,16 @@
                 @endif
             </div>
             <div>
+                @if (Auth::guard('web')->user()->is_premium <= 0)
                 <span class="badge-user-name">
                     {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}
                 </span>
+                @endif
+                @if (Auth::guard('web')->user()->is_premium == 1)
+                <span class="badge-user-name text-gradient-purple">
+                    {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}
+                </span>
+                @endif
                 <span class="badge-user-iagd_number">
                     {{ Auth::guard('web')->user()->iagd_number }}
                 </span>

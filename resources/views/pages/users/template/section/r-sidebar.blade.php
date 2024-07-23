@@ -1,5 +1,5 @@
 <div class="rig-side">
-    @if (!Auth::guard('web_admin')->check())
+    @if (Auth::guard('web_admin')->check())
     <div class="analytics">
         <div class="analytics-container p-3">
             <table style="color: #eee;">
