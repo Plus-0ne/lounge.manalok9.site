@@ -426,6 +426,10 @@ div.emojionearea-button-close {
     padding-right: 9px;
     width: 100%;
 }
+.nav-link:hover {
+    transition: all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71);
+	transform: scale(1.1);
+}
 .nav-link.active:before {
     position: absolute;
     content: "";

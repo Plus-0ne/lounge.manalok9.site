@@ -22,7 +22,7 @@
                 </span>
                 @endif
                 @if (Auth::guard('web')->user()->is_premium == 1)
-                <span class="badge-user-name text-gradient-purple">
+                <span class="badge-user-name text-gradient-golden">
                     {{ !empty(Auth::guard('web')->user()->first_name) ? Auth::guard('web')->user()->first_name : 'guest' }}
                 </span>
                 @endif
@@ -33,9 +33,6 @@
                 <a href="{{ URL::to('/user/referrals') }}" class="btn btn-primary btn-ssm"><i class="bi bi-cash-coin" style="vertical-align: 0;"></i> Get Paid</a>
                 @if (Auth::guard('web')->user()->is_premium <= 0)
                 <a href="{{ URL::to('/be_a_member') }}" class="btn btn-secondary btn-ssm"><i class="bi bi-arrow-up-circle" style="vertical-align: 0;"></i> Upgrade</a>
-                @endif
-                @if (Auth::guard('web')->user()->is_premium > 0)
-                <button href="{{ URL::to('/be_a_member') }}" class="btn btn-secondary btn-ssm" disabled><i class="bi bi-stars" style="vertical-align: 0;"></i> Premium!</button>
                 @endif
             </div>
         </div>
