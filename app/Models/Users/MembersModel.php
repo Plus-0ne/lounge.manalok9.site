@@ -35,6 +35,8 @@ class MembersModel extends Authenticatable
         'contact_number',
         'address',
         'is_email_verified',
+        'is_premium',
+        'status',
         'timezone',
         'last_action',
         'referred_by',

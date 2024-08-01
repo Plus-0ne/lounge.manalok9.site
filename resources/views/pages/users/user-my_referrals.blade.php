@@ -210,9 +210,9 @@ function buildReferralCard(data, target_container) {
         let profile_image = `${photo_path}/${data.profile_image}`;
     }
 
-    let data_card = $(`<div class="hoverable-card card tewi-container-noblur" data-iagd_number="${data.iagd_number}" data-referred_by="${data.referred_by}" style="width: 18rem; display: inline-block; margin-top: 5px; margin-bottom: 25px; margin-right: 33px; top: 25px;">
+    let data_card = $(`<div class="hoverable-card card tewi-container-noblur" data-iagd_number="${data.iagd_number}" data-referred_by="${data.referred_by}" style="width: 18rem; display: inline-block; margin-top: 5px; margin-bottom: 25px; margin-right: 33px; top: 25px; border-radius: 0px 0px 16px 0px; border: 1px solid var(--divider-color-primary);">
                           <div class="card-body d-flex flex-column">
-                              <img src="${profile_image}" class="rounded-circle" width="48" height="48" style="position: absolute; left: -25px; bottom: 75px;">
+                              <img src="${profile_image}" class="rounded-circle" width="48" height="48" style="position: absolute; left: -25px; bottom: 75px; border: 1px solid var(--divider-color-primary); background-color: var(--divider-color-primary);">
                               <h5 class="card-title text-primary font-clemente" style="margin-left: 15px;">${full_name}</h5>
                               <h6 class="card-subtitle mb-2">${data.iagd_number ? data.iagd_number : '<span class="text-muted" style="font-size: 13px;"><i class="bi bi-exclamation-circle-fill" style="vertical-align: 0;"></i> No description specified.</span>'}</h6>
                               <p class="card-text" style="font-size: 13px;">Referred by ${data.referred_by ? data.referred_by : '<span class="text-muted" style="font-size: 13px;"><i class="bi bi-exclamation-circle-fill" style="vertical-align: 0;"></i> No references.</span>'}</p>
@@ -226,7 +226,9 @@ function buildReferralCard(data, target_container) {
     return true;
 }
 $(document).on('mouseenter', '.hoverable-card', function () {
-    $(this).css('border-color', '#fff');
+    $(this).css('border-color', '#ffcc00');
+    $(this).css('transition', 'all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71)');
+	$(this).css('transform', 'scale(1.1)');
     let iagd_number = $(this).data('iagd_number');
     let referred_by = $(this).data('referred_by');
     highlightBranch(iagd_number);
@@ -234,14 +236,20 @@ $(document).on('mouseenter', '.hoverable-card', function () {
 });
 
 $(document).on('mouseleave', '.hoverable-card', function () {
-    $(this).css('border-color', 'transparent');
-    $('.hoverable-card').css('border-color', 'transparent')
+    $(this).css('border-color', 'var(--divider-color-primary)');
+    $(this).css('transition', 'all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71)');
+	$(this).css('transform', 'scale(1)');
+    $('.hoverable-card').css('border-color', 'var(--divider-color-primary)')
+    $('.hoverable-card').css('transition', 'all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71)');
+	$('.hoverable-card').css('transform', 'scale(1)');
 });
 
 function highlightBranch(iagd_number) {
     let cards = $(`.card[data-referred_by="${iagd_number}"]`);
     if(cards.length > 0) {
-        cards.css('border-color', '#fff')
+        cards.css('border-color', '#ffcc00');
+        cards.css('transition', 'all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71)');
+	    cards.css('transform', 'scale(1.1)');
         cards.each(function() {
             highlightBranch($(this).data('iagd_number'));
         });
@@ -251,7 +259,9 @@ function highlightBranch(iagd_number) {
 function highlightParent(referred_by) {
     let card = $(`.card[data-iagd_number="${referred_by}"]`);
     if(card.length > 0) {
-        card.css('border-color', '#fff')
+        card.css('border-color', '#ffcc00');
+        card.css('transition', 'all 0.2s cubic-bezier(0.22, 0.68, 0, 1.71)');
+	    card.css('transform', 'scale(1.1)');
         highlightParent(card.data('referred_by'));
     }
 }

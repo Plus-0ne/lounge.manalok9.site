@@ -1495,6 +1495,11 @@ $(document).ready(function () {
             } else {
                 pc_user_name = `${pc_postCommentAuthor.first_name} ${pc_postCommentAuthor.last_name}`;
             }
+            if (premium_uuids.includes(pc_postCommentAuthor.uuid)) {
+                pc_user_name = `<span class="text-gradient-golden">${pc_postCommentAuthor.first_name} ${pc_postCommentAuthor.last_name}`;
+            } else {
+                pc_user_name = `${pc_postCommentAuthor.first_name} ${pc_postCommentAuthor.last_name}`;
+            }
         }
 
         /* Hide delete if comment is not from auth users */
