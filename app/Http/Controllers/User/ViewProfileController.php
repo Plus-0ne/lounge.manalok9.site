@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -72,6 +73,7 @@ class ViewProfileController extends Controller
             $data = array(
                 'title' => 'Member not found | IAGD Members Lounge',
                 'mem-data' => null,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user-view-profile', ['data' => $data]);
         }
@@ -87,7 +89,8 @@ class ViewProfileController extends Controller
             'title' => $gmd->first_name.' '.$gmd->last_name.' | IAGD Members Lounge',
             'rid' => $uuid,
             'gmd' => $gmd,
-            'iFollowed' => $iFollowed
+            'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user-view-profile', ['data' => $data]);
     }
@@ -114,6 +117,7 @@ class ViewProfileController extends Controller
             $data = array(
                 'title' => 'Member not found | IAGD Members Lounge',
                 'mem-data' => null,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user-view-comments', ['data' => $data]);
         }
@@ -129,7 +133,8 @@ class ViewProfileController extends Controller
             'title' => $gmd->first_name.' '.$gmd->last_name.' | IAGD Members Lounge',
             'rid' => $uuid,
             'gmd' => $gmd,
-            'iFollowed' => $iFollowed
+            'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user-view-comments', ['data' => $data]);
     }
@@ -171,7 +176,8 @@ class ViewProfileController extends Controller
             'title' => $gmd->first_name.' '.$gmd->last_name.' | IAGD Members Lounge',
             'rid' => $uuid,
             'gmd' => $gmd,
-            'iFollowed' => $iFollowed
+            'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user-view-reacts', ['data' => $data]);
     }
@@ -198,6 +204,7 @@ class ViewProfileController extends Controller
             $data = array(
                 'title' => 'Member not found | IAGD Members Lounge',
                 'mem-data' => null,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user-view-profile', ['data' => $data]);
         }
@@ -217,7 +224,8 @@ class ViewProfileController extends Controller
             'title' => $gmd->first_name.' '.$gmd->last_name.' | IAGD Members Lounge',
             'rid' => $uuid,
             'gmd' => $gmd,
-            'iFollowed' => $iFollowed
+            'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user-view-advertisement', ['data' => $data]);
     }
@@ -261,6 +269,7 @@ class ViewProfileController extends Controller
             'rid' => $uuid,
             'gmd' => $gmd,
             'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_view_pets', ['data' => $data]);
     }
@@ -1200,6 +1209,7 @@ class ViewProfileController extends Controller
             $data = array(
                 'title' => 'Member not found | IAGD Members Lounge',
                 'mem-data' => null,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user_view_follows', ['data' => $data]);
         }
@@ -1222,6 +1232,7 @@ class ViewProfileController extends Controller
             'rid' => $uuid,
             'gmd' => $gmd,
             'iFollowed' => $iFollowed,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_view_follows', ['data' => $data]);
     }

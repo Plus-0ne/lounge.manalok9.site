@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AdminInsuranceModel;
 use App\Models\Users\InsuranceOrdered;
@@ -73,7 +74,8 @@ class InsuranceController extends Controller
         $data = array(
             'title' => 'Insurance | IAGD Members Lounge',
             'notif' => $notif,
-            'insurance' => $insurance
+            'insurance' => $insurance,
+            'analytics' => CustomHelper::analytics()
         );
 
         return view('pages.users.product-services.user-insurance', ['data' => $data]);

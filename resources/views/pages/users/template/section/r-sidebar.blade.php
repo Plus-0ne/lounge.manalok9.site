@@ -5,15 +5,15 @@
             <table style="color: #eee;">
                 <tr>
                     <td class="fw-bold text-small pe-3">Users Online: </td>
-                    <td class="text-center text-gradient-primary">{{ number_format($analytics['users_online'], 0) ?? '00'}}</td>
+                    <td class="text-center text-gradient-primary">{{ number_format($data['analytics']['users_online'], 0) ?? '00'}}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold text-small pe-3">Registered: </td>
-                    <td class="text-center text-gradient-primary">{{ number_format($analytics['users_registered'], 0) ?? '00'}}</td>
+                    <td class="text-center text-gradient-primary">{{ number_format($data['analytics']['users_registered'], 0) ?? '00'}}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold text-small pe-3">Total Visits: </td>
-                    <td class="text-center text-gradient-primary">{{ number_format($analytics['visitor_count'], 0) ?? '00'}}</td>
+                    <td class="text-center text-gradient-primary">{{ number_format($data['analytics']['visitor_count'], 0) ?? '00'}}</td>
                 </tr>
             </table>
         </div>

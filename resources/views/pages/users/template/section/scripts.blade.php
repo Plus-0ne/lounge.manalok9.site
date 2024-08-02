@@ -66,6 +66,8 @@
 {{-- CUSTOM --}}
 <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.core.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 {{-- EMOJI SUPPORT --}}
 <script type="text/javascript" src="{{ asset('emoji_keyboard/emojionearea.min.js') }}"></script>
 

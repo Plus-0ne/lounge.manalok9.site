@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Helper\ServiceEnrollmentHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ProductsModel;
@@ -54,7 +55,8 @@ class ProductsAndServicesController extends Controller
             'title' => 'Products | IAGD Members Lounge',
             'notif' => $notif,
             'productsName' => $productsName,
-            'products' => $products
+            'products' => $products,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/product-services/user-products', ["data" => $data]);
     }
@@ -90,7 +92,8 @@ class ProductsAndServicesController extends Controller
         $data = array(
             'title' => 'Your cart | IAGD Members Lounge',
             'notif' => $notif,
-            'productCart' => $cart
+            'productCart' => $cart,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/product-services/user-products-cart', ["data" => $data]);
     }
@@ -408,7 +411,8 @@ class ProductsAndServicesController extends Controller
             'title' => 'Services | IAGD Members Lounge',
             'notif' => $notif,
             'serviceNames' => $serviceNames,
-            'services' => $services
+            'services' => $services,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/product-services/user-services', ["data" => $data]);
     }
@@ -665,6 +669,7 @@ class ProductsAndServicesController extends Controller
         $data = array(
             'title' => 'Enrollment | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/product-services/user-services-enrollment-form', ["data" => $data]);
     }

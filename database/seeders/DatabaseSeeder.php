@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'admin_id' => '08bea9cc-abbb-4125-ae6a-339318b1b38b',
             'user_uuid' => 'badea2d3-0575-4ab2-b41a-fed8a5d5c086',
             'email_address' => 'devt5599@gmail.com',
-            'password' => '$2y$10$YN7c/sdU1xQWH.jUwV4ZmOlyaRhhGIiFomhqDjiYycaV.Ha9/L4Ye',
+            'password' => Hash::make('123456password'),
             'department' => 'IT',
             'position' => 'Web Developer',
             'roles' => '1',

@@ -155,23 +155,36 @@
                             <a class="dropdown-item fs-text"
                                 href="{{ route('user.view_members') }}?rid={{ Auth::guard('web')->user()->uuid }}">
                                 <div class="d-flex align-items-center">
-                                    <i class="action-icon-dd mdi mdi-account me-2"></i> Profile
+                                    <i class="action-icon-dd bi bi-person-square me-2"></i> Profile
+                                    {{-- <i class="action-icon-dd mdi mdi-account me-2"></i> --}}
                                 </div>
                             </a>
                             <a class="dropdown-item fs-text"
                                 href="{{ route('user.my_referrals') }}">
                                 <div class="d-flex align-items-center">
-                                    <i class="action-icon-dd mdi mdi-account-group me-2"></i> My Referrals
+                                    <i class="action-icon-dd bi bi-stars me-2"></i> My Referrals
+                                    {{-- <i class=" mdi mdi-account-group me-2"></i>  --}}
                                 </div>
                             </a>
+
+                            <a class="dropdown-item fs-text"
+                                href="{{ route('dealer') }}">
+                                <div class="d-flex align-items-center">
+                                    <i class="action-icon-dd bi bi-capsule me-2"></i>  Be a dealer
+                                    {{-- <i class="action-icon-dd mdi mdi-account-group me-2"></i> --}}
+                                </div>
+                            </a>
+
                             <a class="dropdown-item fs-text" href="{{ route('user.user_profile') }}">
                                 <div class="d-flex align-items-center">
-                                    <i class="action-icon-dd mdi mdi-cog me-2"></i> Account
+                                    <i class="action-icon-dd bi bi-gear me-2"></i> Account
+                                    {{-- <i class=" mdi mdi-cog me-2"></i> --}}
                                 </div>
                             </a>
                             <a class="dropdown-item fs-text" href="{{ route('logout.user') }}">
                                 <div class="d-flex align-items-center">
-                                    <i class="action-icon-dd mdi mdi-logout me-2"></i> Sign out
+                                    <i class="action-icon-dd bi bi-box-arrow-right me-2"></i> Sign out
+                                    {{-- <i class="action-icon-dd mdi mdi-logout me-2"></i> --}}
                                 </div>
                             </a>
                         </div>

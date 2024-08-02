@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url('../fonts/HelveticaNeue-Medium.otf') format('opentype'), 
+    src: url('../fonts/HelveticaNeue-Medium.otf') format('opentype'),
          url('../fonts/HelveticaNeueMedium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -33,7 +33,7 @@
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    
+
     border-bottom: 1px solid #312c57;
     backdrop-filter: blur(10px);
 
@@ -204,6 +204,21 @@ hr {
     background-color: transparent;
     border: none;
 }
+
+.swal2-container.swal2-center>.swal2-popup{
+    background-color: rgb(52, 4, 97);
+}
+.swal2-html-container, .swal2-title{
+    color: white !important;
+}
+.swal-icon--success__hide-corners {
+background: none !important;
+}
+.swal-icon--success:before,
+.swal-icon--success:after {
+background: none !important;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                  Min 576px                                 */
 /* -------------------------------------------------------------------------- */

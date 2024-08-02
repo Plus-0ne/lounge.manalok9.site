@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class IAGDMembershipController extends Controller
     {
         $data = array(
             'title' => 'Upgrade your IAGD membership | IAGD Members Lounge',
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_be_a_member', ['data' => $data]);
     }

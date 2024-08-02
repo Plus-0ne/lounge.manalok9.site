@@ -78,6 +78,8 @@ use App\Http\Controllers\User\ProductsAndServicesController;
 use App\Http\Middleware\Cors;
 use Illuminate\Support\Facades\Artisan;
 
+use App\Http\Controllers\User\DealersController;
+
 /* END USER CONTROLLER */
 
 /**
@@ -209,7 +211,7 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/ajax/post/reaction/create', [PostFeedController::class, 'post_reaction_create'])->name('user.post_reaction_create');
     Route::post('/ajax/post/reaction/view', [PostFeedController::class, 'post_reaction_view'])->name('user.post_reaction_view');
     Route::post('/ajax/post/create', [PostFeedController::class, 'create_new_post'])->name('user.create_new_post');
-    Route::post('/ajax/post/comment/view', [PostFeedController::class, 'view_comments'])->name('user.view_comments');
+    Route::any('/ajax/post/comment/view', [PostFeedController::class, 'view_comments'])->name('user.view_comments');
     Route::post('/ajax/post/comment/delete', [PostFeedController::class, 'delete_comments'])->name('user.delete_comments');
 
     /* -------------------------------------------------------------------------- */
@@ -501,10 +503,23 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post('/services/cart/delete', [ProductsAndServicesController::class, 'serviceCartDelete'])->name('user.services.serviceCartDelete');
     Route::get('/services/cart/checkout', [ProductsAndServicesController::class, 'serviceCheckout'])->name('user.services.serviceCheckout');
 
-    Route::get('/services/enrollment', [ProductsAndServicesController::class, 'servicesEnrollmentForm'])->name('user.servicesEnrollmentForm.form');
-    Route::post('/services/enrollment/add', [ProductsAndServicesController::class, 'enrollThisPet'])->name('user.servicesEnrollmentForm.enrollThisPet');
-    Route::get('/services/enrollment/cart', [ProductsAndServicesController::class, 'enrollmentCartService'])->name('user.servicesEnrollmentForm.enrollmentCartService');
-    Route::post('/services/enrollment/cart/remove', [ProductsAndServicesController::class, 'enrollmentCartServiceRemove'])->name('user.enrollmentCartServiceRemove');
+    Route::get('/services/enrollment', [ProductsAndServicesController::class, 'servicesEnrollmentForm'])
+    ->name('user.servicesEnrollmentForm.form');
+    Route::post('/services/enrollment/add', [ProductsAndServicesController::class, 'enrollThisPet'])
+    ->name('user.servicesEnrollmentForm.enrollThisPet');
+    Route::get('/services/enrollment/cart', [ProductsAndServicesController::class, 'enrollmentCartService'])
+    ->name('user.servicesEnrollmentForm.enrollmentCartService');
+    Route::post('/services/enrollment/cart/remove', [ProductsAndServicesController::class, 'enrollmentCartServiceRemove'])
+    ->name('user.enrollmentCartServiceRemove');
+
+    /**
+     * This is the dealers routes and its sub routes
+     * @param prefix 'dealer'
+     * @return \Illuminate\Routing\RouteRegistrar
+     */
+    Route::prefix('dealer')->group(function () {
+        Route::get('/', [DealersController::class, 'index'])->name('dealer');
+    });
 });
 
 /**

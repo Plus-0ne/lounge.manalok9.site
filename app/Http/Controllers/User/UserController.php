@@ -57,25 +57,11 @@ use Illuminate\Support\Facades\Http;
 
 /* Custom helper */
 use App\Helper\NotificationsForUser_Helper as Notif_Helper;
+use App\Helper\CustomHelper;
 use App\Models\Admin\AdminModel;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $users_online = MembersModel::where('last_action', '>', Carbon::now()->subMinutes(10))->count();
-        $users_registered = MembersModel::count();
-        $visitor_count = VisitorLog::all()->count();
-
-        $data = array(
-            'users_online' => $users_online,
-            'users_registered' => $users_registered,
-            'visitor_count' => $visitor_count,
-        );
-
-        View::share('analytics', $data);
-    }
-
 
     /* LOAD VIEWS */
     public function log_in(Request $request)
@@ -117,6 +103,7 @@ class UserController extends Controller
             // }
             $data = array(
                 'title' => 'Register Member | IAGD Members Lounge',
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user_registered_members', ['data' => $data]);
         }
@@ -140,6 +127,7 @@ class UserController extends Controller
         $data = array(
             'title' => 'Post Feed | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_dashboard', ["data" => $data]);
     }
@@ -149,7 +137,8 @@ class UserController extends Controller
         $members_gallery = MembersGallery::where('uuid', Auth::guard('web')->user()->uuid)->get();
         $data = array(
             'title' => 'Gallery | IAGD Members Lounge',
-            'members_gallery' => $members_gallery
+            'members_gallery' => $members_gallery,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_pet_gallery', ["data" => $data]);
     }
@@ -162,6 +151,7 @@ class UserController extends Controller
         $data = array(
             'title' => 'User Profile | IAGD Members Lounge',
             'everify' => $getEmailVerificaiton,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_profile', ["data" => $data]);
     }
@@ -174,6 +164,7 @@ class UserController extends Controller
         $data = array(
             'title' => 'Trades | IAGD Members Lounge',
             'current_trade_log' => $current_trade,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_pet_trades',["data"=>$data]);
     }
@@ -246,6 +237,7 @@ class UserController extends Controller
                 'requester_data' => $grtd,
                 'trade_requests' => $trade_requests,
                 'test_animals' => $test_animals,
+                'analytics' => CustomHelper::analytics()
             );
             JavaScript::put([ // get trade_log details
                 'trade_no' => $gtd->trade_no,
@@ -268,6 +260,7 @@ class UserController extends Controller
         $data = array(
             'title' => 'Advertisements | IAGD Members Lounge',
             'member_advertisements' => $member_advertisements,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_advertisements',["data"=>$data]);
     }
@@ -289,6 +282,7 @@ class UserController extends Controller
             $data = array(
                 'title' => 'Advertisements | IAGD Members Lounge',
                 'ad_data' => $gad,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user_advertisements_info',["data"=>$data]);
         } else {
@@ -315,6 +309,7 @@ class UserController extends Controller
                                         ->where('OwnerUUID', Auth::guard('web')->user()->uuid)
                                         ->where('Status', '<>', 0)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_kennel',["data"=>$data]);
     }
@@ -346,6 +341,7 @@ class UserController extends Controller
                 'title' => 'Dogs | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -400,6 +396,7 @@ class UserController extends Controller
             'kennel_count' => RegistryDog::select('id')
                                         ->where('OwnerUUID', Auth::guard('web')->user()->uuid)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_kennel_unregistered',["data"=>$data]);
     }
@@ -429,6 +426,7 @@ class UserController extends Controller
                 'title' => 'Dog Registration | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -486,6 +484,7 @@ class UserController extends Controller
                                         ->orWhere('OwnerIAGDNo', (Auth::guard('web')->user()->iagd_number ? Auth::guard('web')->user()->iagd_number : 'NONE'))
                                         ->where('Status', '<>', 0)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_cattery',["data"=>$data]);
     }
@@ -517,6 +516,7 @@ class UserController extends Controller
                 'title' => 'Cats | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -600,6 +600,7 @@ class UserController extends Controller
                 'title' => 'Cat Registration | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -657,6 +658,7 @@ class UserController extends Controller
                                         ->orWhere('OwnerIAGDNo', (Auth::guard('web')->user()->iagd_number ? Auth::guard('web')->user()->iagd_number : 'NONE'))
                                         ->where('Status', '<>', 0)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_rabbitry',["data"=>$data]);
     }
@@ -688,6 +690,7 @@ class UserController extends Controller
                 'title' => 'Rabbits | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -742,6 +745,7 @@ class UserController extends Controller
             'rabbitry_count' => RegistryRabbit::select('id')
                                         ->where('OwnerUUID', Auth::guard('web')->user()->uuid)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_rabbitry_unregistered',["data"=>$data]);
     }
@@ -771,6 +775,7 @@ class UserController extends Controller
                 'title' => 'Rabbit Registration | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -828,6 +833,7 @@ class UserController extends Controller
                                         ->orWhere('OwnerIAGDNo', (Auth::guard('web')->user()->iagd_number ? Auth::guard('web')->user()->iagd_number : 'NONE'))
                                         ->where('Status', '<>', 0)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_coop',["data"=>$data]);
     }
@@ -859,6 +865,7 @@ class UserController extends Controller
                 'title' => 'Birds | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -913,6 +920,7 @@ class UserController extends Controller
             'coop_count' => RegistryBird::select('id')
                                         ->where('OwnerUUID', Auth::guard('web')->user()->uuid)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_coop_unregistered',["data"=>$data]);
     }
@@ -942,6 +950,7 @@ class UserController extends Controller
                 'title' => 'Bird Registration | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -999,6 +1008,7 @@ class UserController extends Controller
                                         ->orWhere('OwnerIAGDNo', (Auth::guard('web')->user()->iagd_number ? Auth::guard('web')->user()->iagd_number : 'NONE'))
                                         ->where('Status', '<>', 0)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_other_animal',["data"=>$data]);
     }
@@ -1030,6 +1040,7 @@ class UserController extends Controller
                 'title' => 'Other Animals | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -1084,6 +1095,7 @@ class UserController extends Controller
             'other_animal_count' => RegistryOtherAnimal::select('id')
                                         ->where('OwnerUUID', Auth::guard('web')->user()->uuid)
                                         ->count(),
+                                        'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/user_other_animal_unregistered',["data"=>$data]);
     }
@@ -1113,6 +1125,7 @@ class UserController extends Controller
                 'title' => 'Other Animal Registration | IAGD Members Lounge',
                 'pet_data' => $gpd,
                 'js_var' => $js_var,
+                'analytics' => CustomHelper::analytics()
             );
 
             // get adtl pet data - unregistered
@@ -1258,6 +1271,7 @@ class UserController extends Controller
                 'post_reaction_c' => $PostReaction_c,
                 'PostComments' => $PostComments,
                 'PostComments_c' => $PostComments_c,
+                'analytics' => CustomHelper::analytics()
             );
             JavaScript::put([
                 'rid' => $gpd->id,
@@ -1291,6 +1305,7 @@ class UserController extends Controller
             $data = array(
                 'title' => $mg->name . ' | IAGD Members Lounge',
                 'mg' => $mg,
+                'analytics' => CustomHelper::analytics()
             );
             return view('pages/users/user-view-pet', ["data" => $data]);
         } else {
@@ -1857,19 +1872,19 @@ class UserController extends Controller
     {
         $user = Auth::guard('web')->user();
         $iagd_number = $user->iagd_number;
-    
+
         // Attempt to get user references
         $references = $userReferenceService->getUserReferences($iagd_number);
         if (isset($references['error'])) {
             Log::info('Reference error');
             return redirect()->back()->with('response', 'key_error');
         }
-    
+
         // Define the API base URL and parameters
         $baseApiUrl = "https://attendance.metaanimals.org/api/v1/referrals";
         $authToken = 'tewi-3DhkGogQqmPS6S_ww_Tpb9!kQtXc__Bya';
         $headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
-    
+
         // First API call for user calculations
         $calculationResponse = Http::withHeaders($headers)->asForm()->post(
             "$baseApiUrl/get_user_calculations",
@@ -1879,35 +1894,35 @@ class UserController extends Controller
                 'downline_data' => $references['downline_data'],
             ]
         );
-    
+
         if (!$calculationResponse->successful()) {
             Log::info('API response error for user calculations', ['status' => $calculationResponse->status()]);
             return redirect()->back()->with('response', 'api_error');
         }
-    
+
         $calculationData = $calculationResponse->json();
-    
+
         if (!isset($calculationData['data'])) {
             Log::info('Unexpected API response structure for user calculations');
             return redirect()->back()->with('response', 'unexpected_response');
         }
-    
+
         // Second API call for withdrawal status
         $withdrawStatusResponse = Http::withHeaders($headers)
                                ->asForm()
                                ->post("$baseApiUrl/check_iagd_withdrawal_status?auth_token=$authToken&iagd_number=$iagd_number");
-    
+
         if (!$withdrawStatusResponse->successful()) {
             Log::info('API response error for withdrawal status', ['status' => $withdrawStatusResponse->status()]);
             return redirect()->back()->with('response', 'api_error');
         }
-    
+
         $withdrawStatusData = $withdrawStatusResponse->json();
-    
+
         // Initialize withdraw_status with a default message
         $withdraw_status = 'Withdrawal status not available';
         $withdraw_valid = 0;
-        
+
         // Parse the response based on the 'code' received
         if (isset($withdrawStatusData['code'])) {
             switch ($withdrawStatusData['code']) {
@@ -1928,7 +1943,7 @@ class UserController extends Controller
         } else {
             Log::info('Unexpected API response structure for withdrawal status');
         }
-    
+
         // Prepare the data array for the view
         $data = [
             'title' => 'My Referrals',
@@ -1936,8 +1951,9 @@ class UserController extends Controller
             'commissions' => $calculationData['data']['commissions'] ?? [],
             'withdraw_valid' => $withdraw_valid,
             'withdraw_status' => $withdraw_status,
+            'analytics' => CustomHelper::analytics()
         ];
-    
+
         return view('pages/users/user-my_referrals', ['data' => $data]);
     }
 }

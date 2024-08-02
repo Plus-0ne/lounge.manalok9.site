@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Helper\PetRegistrationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Users\MembersBird;
@@ -43,12 +44,14 @@ class PetController extends Controller
         JavaScript::put([ // get trade_log details
             'ruuid' => Auth::guard('web')->user()->uuid,
             'assetUrl' => asset('/'),
-            'currentBaseUrl' => URL::to('/')
+            'currentBaseUrl' => URL::to('/'),
+
         ]);
 
         $data = array(
             'title' => 'Pets | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/animal-pages/pets', ["data" => $data]);
     }
@@ -194,6 +197,7 @@ class PetController extends Controller
         $data = array(
             'title' => 'Dog registration | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/animal-pages/form-registration-dog', ["data" => $data]);
     }
@@ -620,7 +624,8 @@ class PetController extends Controller
         $data = array(
             'title' => 'Pets | IAGD Members Lounge',
             'notif' => $notif,
-            'pDetails' => $pDetails
+            'pDetails' => $pDetails,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/animal-pages/pets-view-dog', ["data" => $data]);
     }
@@ -785,6 +790,7 @@ class PetController extends Controller
         $data = array(
             'title' => 'Cat registration | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/animal-pages/form-registration-cat', ["data" => $data]);
     }
@@ -1128,6 +1134,7 @@ class PetController extends Controller
         $data = array(
             'title' => 'Bird registration | IAGD Members Lounge',
             'notif' => $notif,
+            'analytics' => CustomHelper::analytics()
         );
         return view('pages/users/animal-pages/form-registration-bird', ["data" => $data]);
     }
@@ -1154,6 +1161,7 @@ class PetController extends Controller
        $data = array(
            'title' => 'Rabbit registration | IAGD Members Lounge',
            'notif' => $notif,
+           'analytics' => CustomHelper::analytics()
        );
        return view('pages/users/animal-pages/form-registration-rabbit', ["data" => $data]);
     }

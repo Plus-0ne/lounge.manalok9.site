@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\CustomHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -124,7 +125,8 @@ class ViewPostController extends Controller
             'postReaction' => $postReaction,
             'userFollowed' => $userFollowed,
             'userFollower' => $userFollower,
-            'shareContent' => $share_source
+            'shareContent' => $share_source,
+            'analytics' => CustomHelper::analytics()
         ];
         return view('pages/users/user_dashboard_post_view', ['data'=>$data]);
     }
