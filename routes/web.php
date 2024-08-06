@@ -519,6 +519,7 @@ Route::middleware(['auth:web'])->group(function () {
      */
     Route::prefix('dealer')->group(function () {
         Route::get('/', [DealersController::class, 'index'])->name('dealer');
+        Route::post('/create', [DealersController::class, 'create'])->name('dealer.create');
     });
 });
 

@@ -14,7 +14,6 @@ export function swalConfirmation(
         confirmButtonText : `${swalConfirmBtn}`,
         cancelButtonText : `${swalCancelBtn}`,
         buttonsStyling: false,
-        dangerMode : true,
         customClass: {
             confirmButton: `${swalConfirmClass}`,
             cancelButton: `${swalCancelClass}`
@@ -33,6 +32,18 @@ export function swalConfirmation(
             animate__faster
             `
         }
+    });
+}
+
+export function swalPrompts(swalText,swalIcon,swalConfirmBtn,swalConfirmClass) {
+    return Swal.fire({
+        text: swalText,
+        icon: swalIcon,
+        confirmButtonText : swalConfirmBtn,
+        buttonsStyling: false,
+        customClass: {
+            confirmButton: swalConfirmClass,
+        },
     });
 }
 

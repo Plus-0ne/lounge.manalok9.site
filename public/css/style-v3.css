@@ -206,10 +206,10 @@ hr {
 }
 
 .swal2-container.swal2-center>.swal2-popup{
-    background-color: rgb(52, 4, 97);
+    background-color: rgb(243, 243, 243);
 }
 .swal2-html-container, .swal2-title{
-    color: white !important;
+    color: rgb(85, 85, 85) !important;
 }
 .swal-icon--success__hide-corners {
 background: none !important;
