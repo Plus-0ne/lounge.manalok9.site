@@ -19,6 +19,9 @@
 	{{-- DATA TABLE --}}
 	<link href="{{ asset('DataTable_B5/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
 
+    {{-- Bootstrap icons --}}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.min.css') }}">
+
 	{{-- TOASTR --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 

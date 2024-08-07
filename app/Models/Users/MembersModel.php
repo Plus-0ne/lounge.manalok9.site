@@ -10,11 +10,13 @@ use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Sanctum\HasApiTokens;
 
 class MembersModel extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+    use HasApiTokens;
 
     protected $table='iagd_members';
 

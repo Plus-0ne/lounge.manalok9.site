@@ -17,7 +17,7 @@
         "jamesmills/laravel-timezone": "^1.11",
         "laracasts/utilities": "^3.2",
         "laravel/framework": "^9.0",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "mervick/emojionearea": "^3.0.0",
