@@ -30,7 +30,7 @@ return [
             'path' => env('PUSHER_APP_PATH'),
             'capacity' => null,
             'enable_client_messages' => false,
-            'enable_statistics' => true,
+            'enable_statistics' => false,
         ],
     ],
 
@@ -117,8 +117,7 @@ return [
          * in a separate file specified by local_pk.
          */
 
-
-        'local_cert' => "/home/mzmpttmy/public_html/beta-metalounge/etc/ssl/cert.pem",
+        'local_cert' => "C:/xampp/apache/crt/lounge.manalok9.site/public.pem",
 
         // 'local_cert' => null,
 
@@ -127,8 +126,7 @@ return [
          * certificate (local_cert) and private key.
          */
 
-    
-        'local_pk' => "/home/mzmpttmy/public_html/beta-metalounge/etc/ssl/key.pem",
+        'local_pk' => "C:/xampp/apache/crt/lounge.manalok9.site/private.pem",
 
         // 'local_pk' => null,
 
