@@ -40,7 +40,7 @@
                 <div class="collapse multi-collapse" id="dealers">
                     <ul class="nav flex-column">
                         <li class="nav-collapse">
-                            <a class="collapse-item" href="{{ route('admin.Dog_Registration') }}">
+                            <a class="collapse-item" href="{{ route('admin.dealers') }}">
                                 For verification
                             </a>
                         </li>

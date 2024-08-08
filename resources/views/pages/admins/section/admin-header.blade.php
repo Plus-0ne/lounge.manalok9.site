@@ -11,7 +11,7 @@
 
 
 	{{-- BOOTSTRAP --}}
-	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	{{-- MATERIAL ICONS --}}
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">

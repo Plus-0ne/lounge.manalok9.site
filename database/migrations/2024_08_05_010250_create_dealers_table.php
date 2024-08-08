@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('contact_number')->nullable();
             $table->string('tel_number')->nullable();
             $table->string('store_location')->nullable();
+            $table->tinyInteger('status')->nullable()->comment('0=REJECTED,1=PENDING,2=APPROVED');
             $table->softDeletes();
             $table->timestamps();
         });

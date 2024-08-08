@@ -25,6 +25,7 @@ use App\Http\Controllers\LandingController;
 /* ADMIN CONTROLLER */
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CertificationRequestController;
+use App\Http\Controllers\Admin\DealersController as AdminDealersController;
 use App\Http\Controllers\Admin\InsuranceController as AdminInsuranceController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\LoungeMembersController;
@@ -624,6 +625,34 @@ Route::middleware(['auth:web_admin'])->group(function () {
 
             abort(404);
         })->where('path', '.*');
+
+        /**
+         * Dealers route group
+         * @param string 'dealers'
+         * @return \Illuminate\Routing\RouteRegistrar
+         */
+        Route::prefix('dealers')->group(function () {
+
+            /**
+             * Dealers page route
+             * @param string '/'
+             * @param controller [AdminDealersController::class
+             * @param function 'index']
+             * @return \Illuminate\Routing\Route
+             */
+            Route::get('/', [AdminDealersController::class, 'index'])->name('admin.dealers');
+
+
+            /**
+             * Approved dealrs page route
+             * @param string '/approved'
+             * @param controller [AdminDealersController::class
+             * @param function 'index']
+             * @return \Illuminate\Routing\Route
+             */
+            Route::get('/approved', [AdminDealersController::class, 'approvedDealers'])->name('admin.dealers.approved');
+
+        });
     });
 });
 
