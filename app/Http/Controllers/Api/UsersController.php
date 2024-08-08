@@ -26,10 +26,8 @@ class UsersController extends Controller
             return response()->json($data);
         }
 
-        $data = DB::table('iagd_members')
-            ->select('*')
-            ->whereRaw("MATCH(first_name, last_name, middle_name) AGAINST(? IN BOOLEAN MODE)", [$request->input('q')])
-            ->get();
+        $data = MembersModel::whereFullText(['iagd_number','old_iagd_number','email_address','first_name','last_name','middle_name','contact_number','referred_by'
+        ],$request->input('q'))->get();
 
         return response()->json($data);
     }

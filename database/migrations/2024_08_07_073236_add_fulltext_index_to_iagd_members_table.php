@@ -14,7 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::table('iagd_members', function (Blueprint $table) {
-            $table->fullText(['first_name', 'last_name', 'middle_name']);
+            $table->fullText([
+                'iagd_number',
+                'old_iagd_number',
+                'email_address',
+                'first_name',
+                'last_name',
+                'middle_name',
+                'contact_number',
+                'referred_by',
+            ],'full_text_query');
         });
     }
 
@@ -26,7 +35,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('iagd_members', function (Blueprint $table) {
-            $table->dropFullText(['first_name', 'last_name', 'middle_name']);
+            $table->dropIndex('full_text_query');
         });
     }
 };
