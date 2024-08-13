@@ -652,6 +652,15 @@ Route::middleware(['auth:web_admin'])->group(function () {
              */
             Route::post('/update/status', [AdminDealersController::class, 'updateDealerStatus'])->name('admin.dealers.update.status');
 
+            /**
+             * Get dealers details
+             * @param string '/details/get'
+             * @param controller [AdminDealersController::class
+             * @param function 'dealerDetailsGet']
+             * @return \Illuminate\Routing\Route
+             */
+            Route::post('/details/get', [AdminDealersController::class, 'dealerDetailsGet'])->name('admin.dealers.details.get');
+
         });
     });
 });

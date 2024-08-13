@@ -77,7 +77,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success btn-sm" data-uuid="{{ $row->uuid }}">
+                                                    <button type="button" class="btn btn-success btn-sm btnShowDealerDetails" data-uuid="{{ $row->uuid }}">
                                                         <i class="bi bi-eye"></i> View
                                                     </button>
                                                     <button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
@@ -111,6 +111,7 @@
             </div>
         </div>
     </div>
+    @include('pages.admins.section.modals.dealers.dealers-details')
     {{-- SCRIPTS --}}
     @include('pages/admins/section/admin-scripts')
     <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>

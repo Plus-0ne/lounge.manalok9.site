@@ -6,6 +6,7 @@ use App\Helper\CustomHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Users\Dealers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use URL;
 use Validator;
@@ -94,6 +95,11 @@ class DealersController extends Controller
         return response()->json($dealer);
     }
 
+    /**
+     * Description
+     * @param {any} $id
+     * @returns {any}
+     */
     public function approveDealer($id) {
         $dealer = Dealers::find($id);
 
@@ -129,6 +135,11 @@ class DealersController extends Controller
 
     }
 
+    /**
+     * Description
+     * @param {any} $id
+     * @returns {any}
+     */
     public function rejectDealer($id) {
 
         $dealer = Dealers::find($id);
@@ -146,7 +157,7 @@ class DealersController extends Controller
                 'message' => 'This application is already approved.'
             ];
         }
-        
+
         $dealer->status = 0;
 
         if (!$dealer->save()) {
@@ -161,5 +172,17 @@ class DealersController extends Controller
             'message' => 'Dealer application has been rejected!'
         ];
 
+    }
+
+    public function dealerDetailsGet(Request $request) {
+        $dealer = Dealers::where('uuid',$request->input('uuid'))->with('userAccount')->with('fileImage')->first();
+
+        $imagePath = $dealer->fileImage->path;
+        $data = [
+            'dealer' => $dealer,
+            'imagePath' => Storage::disk('public')->url($imagePath)
+        ];
+
+        return response()->json($data);
     }
 }

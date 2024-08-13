@@ -30,6 +30,15 @@ class Dealers extends Model
     ];
 
     /**
+     * Get the userAccount associated with the Dealers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function userAccount(): HasOne
+    {
+        return $this->hasOne(MembersModel::class, 'uuid', 'user_uuid');
+    }
+    /**
      * Get the fileImage associated with the Dealers
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

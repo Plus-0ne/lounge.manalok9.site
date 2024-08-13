@@ -67,6 +67,11 @@ $(function () {
         }
     });
 
+    /**
+     * Onclick approve dealer
+     * @param {any} '.approvedBtn'
+     * @returns {any}
+     */
     $('.approvedBtn').on('click', function () {
         let swalText = "Approve application for a dealer ?";
         let swalIcon = "info";
@@ -142,6 +147,11 @@ $(function () {
         });
     });
 
+    /**
+     * Onclick reject dealer
+     * @param {any} '.rejectBtn'
+     * @returns {any}
+     */
     $('.rejectBtn').on('click', function () {
         let swalText = "Reject application for a dealer ?";
         let swalIcon = "warning";
@@ -217,4 +227,70 @@ $(function () {
             }
         });
     });
+
+    $('.btnShowDealerDetails').on('click', function () {
+        const fd = new FormData();
+        const url = window.urlBase + "/admin/dealers/details/get";
+
+        fd.append('uuid',$(this).attr('data-uuid'));
+
+        postData(url,fd)
+            .then((data) => {
+
+                const dealer = data.dealer;
+
+                let modal = $('#modalViewDealerDetails');
+                modal.modal('toggle');
+
+                let first_name = (dealer.first_name) ?? "";
+                let last_name = (dealer.last_name) ?? "";
+                let middle_name = (dealer.middle_name) ?? "";
+                let dealersName = `${last_name} ${first_name}, ${middle_name}`;
+
+                let email_address = (dealer.email_address) ?? "N/A";
+
+                modal.find('#dealersName').html(dealersName);
+                modal.find('#emailAddress').html(email_address);
+                modal.find('#mobileNumber').html((dealer.contact_number) ?? "N/A");
+                modal.find('#telephoneNumber').html((dealer.tel_number) ?? "N/A");
+                modal.find('#storeLocation').html((dealer.store_location) ?? "N/A");
+                modal.find('#validImageID').attr('src',(data.imagePath) ?? window.assetUrl + "/img/no-preview.jpeg");
+            })
+            .catch((error) => {
+                console.error("Error:", error); // Handle the error here
+            });
+
+    });
+
+    async function postData(url,data) {
+        try {
+            // Perform the fetch request
+            const response = await fetch(url, {
+                method: "post", // Specify the request method
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                body: data, // Convert the data object to a JSON string
+            });
+
+            // Check if the response is ok (status code 200-299)
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            // Parse the JSON data from the response
+            const responseData = await response.json();
+
+            // Return the response data
+            return responseData;
+        } catch (error) {
+            // Handle any errors that occurred during the fetch
+            console.error('Error posting data:', error);
+            throw error; // Rethrow the error if needed
+        }
+    }
+
+
 });
