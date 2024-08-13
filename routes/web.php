@@ -650,7 +650,7 @@ Route::middleware(['auth:web_admin'])->group(function () {
              * @param function 'index']
              * @return \Illuminate\Routing\Route
              */
-            Route::get('/approved', [AdminDealersController::class, 'approvedDealers'])->name('admin.dealers.approved');
+            Route::post('/update/status', [AdminDealersController::class, 'updateDealerStatus'])->name('admin.dealers.update.status');
 
         });
     });

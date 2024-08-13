@@ -25,4 +25,11 @@ class CustomHelper
 
         return $data;
     }
+
+    public static function convertUuidToId($uuid,$model) {
+
+        $id = $model::where('uuid',$uuid)->first()->id;
+
+        return $id;
+    }
 }

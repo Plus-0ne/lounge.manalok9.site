@@ -30,28 +30,14 @@
                 </a>
             </li>
             <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
-                <a class="nav-link" data-bs-toggle="collapse" href="#dealers" role="button" aria-expanded="false"
-                    aria-controls="multiCollapseExample1">
+                <a class="nav-link" href="{{ route('admin.dealers') }}">
                     <i class="bi bi-briefcase-fill"></i>
                     <span>
                         Dealers
                     </span>
                 </a>
-                <div class="collapse multi-collapse" id="dealers">
-                    <ul class="nav flex-column">
-                        <li class="nav-collapse">
-                            <a class="collapse-item" href="{{ route('admin.dealers') }}">
-                                For verification
-                            </a>
-                        </li>
-                        <li class="nav-collapse">
-                            <a class="collapse-item" href="{{ route('admin.Cat_Registration') }}">
-                                Approved
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </li>
+
             {{-- <li class="nav-item d-flex flex-wrap justify-content-between align-item-middle">
 				<a class="nav-link" href="{{ route('admin.users_post') }}">
 					<i class="nav-icon mdi mdi-newspaper-variant"></i>

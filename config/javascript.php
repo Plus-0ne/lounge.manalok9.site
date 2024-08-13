@@ -13,7 +13,7 @@ return [
     | Example: 'footer' or ['footer', 'bottom']
     |
     */
-    'bind_js_vars_to_this_view' => 'pages/users/template/section/scripts-var',
+    'bind_js_vars_to_this_view' => ['pages/users/template/section/scripts-var','pages/admins/section/admin-jsVars'],
 
     /*
     |--------------------------------------------------------------------------

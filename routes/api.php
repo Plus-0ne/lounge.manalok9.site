@@ -80,6 +80,7 @@ Route::middleware('throttle:60,1')->group(function () {
             Route::prefix('users')->group(function () {
 
                 Route::get('/get', [UsersController::class,'get'])->name('api.users.get');
+                
             });
 
         });

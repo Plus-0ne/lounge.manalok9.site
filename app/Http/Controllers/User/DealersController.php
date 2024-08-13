@@ -72,6 +72,29 @@ class DealersController extends Controller
             ];
             return response()->json($data);
         }
+        // Check if user is a dealer
+        $dealer = Dealers::where('user_uuid',Auth::guard('web')->user()->uuid);
+
+        if ($dealer->count() > 0) {
+
+            $lastApplication = $dealer->orderBy('id','DESC')->first();
+            // Check if dealer status
+            if ($lastApplication->status == 2) {
+                $data = [
+                    'status' => 'warning',
+                    'message' => 'You are already registered as a dealer!'
+                ];
+                return response()->json($data);
+            }
+
+            if ($lastApplication->status == 1) {
+                $data = [
+                    'status' => 'warning',
+                    'message' => 'We have received your application. Please allow us some time to complete the verification process.'
+                ];
+                return response()->json($data);
+            }
+        }
 
         // Upload file to temp folder
         $imageFileUpload = $this->uploadImageFile($request);
@@ -101,6 +124,7 @@ class DealersController extends Controller
             'contact_number' => $request->input('contact_number'),
             'tel_number' => $request->input('telephone_number'),
             'store_location' => $request->input('store_address'),
+            'status' => '1'
         ];
         // Create new dealers
         $create = Dealers::create($data);

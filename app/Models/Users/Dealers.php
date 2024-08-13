@@ -23,6 +23,7 @@ class Dealers extends Model
         'contact_number',
         'tel_number',
         'store_location',
+        'status',
         'deleted_at',
         'created_at',
         'updated_at'

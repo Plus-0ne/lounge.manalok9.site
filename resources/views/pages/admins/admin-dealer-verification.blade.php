@@ -18,7 +18,7 @@
 
             <div class="main-content h-100">
                 <div class="container-fluid">
-                    <div class="row p-3 p-lg-4 dashboard-section ">
+                    <div class="row p-1 p-lg-4 dashboard-section">
                         <div class="d-flex flex-wrap">
                             <div class="breadcrumb-text col-12 mt-3 text-sm-center text-lg-start">
                                 <h3>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 p-3 d-flex flex-column justify-content-start">
                             <div class="table-responsive">
-                                <table id="example" class="table table-striped table-condensed" style="width:100%">
+                                <table id="dealersTable" class="table table-striped table-condensed">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -57,31 +57,46 @@
                                             <td>
                                                 @switch($row->status)
                                                     @case(1)
-                                                        PENDING
+                                                        <span class="badge rounded-pill text-bg-primary">
+                                                            PENDING
+                                                        </span>
+
                                                         @break
                                                     @case(2)
-                                                        APPROVED
+                                                        <span class="badge rounded-pill text-bg-success">
+                                                            APPROVED
+                                                        </span>
+
                                                         @break
                                                     @default
-                                                        REJECTED
+                                                        <span class="badge rounded-pill text-bg-danger">
+                                                            REJECTED
+                                                        </span>
+
                                                 @endswitch
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-primary">
-                                                        <i class="bi bi-gear"></i>
+                                                    <button type="button" class="btn btn-success btn-sm" data-uuid="{{ $row->uuid }}">
+                                                        <i class="bi bi-eye"></i> View
                                                     </button>
-                                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                                      <span class="visually-hidden">Toggle Dropdown</span>
+                                                    <button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <span class="visually-hidden">Toggle Dropdown</span>
                                                     </button>
                                                     <ul class="dropdown-menu">
-                                                      <li><a class="dropdown-item" href="#">Action</a></li>
-                                                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                      <li><hr class="dropdown-divider"></li>
-                                                      <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                                        <li class="approvedBtn" data-uuid="{{ $row->uuid }}">
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bi bi-check me-1"></i> Approve
+                                                            </a>
+                                                        </li>
+                                                        <li class="rejectBtn" data-uuid="{{ $row->uuid }}">
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <i class="bi bi-ban me-1"></i> Reject
+                                                            </a>
+                                                        </li>
                                                     </ul>
-                                                  </div>
+                                                </div>
 
                                             </td>
                                         </tr>
@@ -100,44 +115,7 @@
     @include('pages/admins/section/admin-scripts')
     <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.js"></script>
-    <script>
-        $('.table-responsive').on('show.bs.dropdown', function () {
-            $('.table-responsive').css( "overflow", "inherit" );
-        });
-
-        $('.table-responsive').on('hide.bs.dropdown', function () {
-            $('.table-responsive').css( "overflow", "auto" );
-        })
-        let example = new DataTable('#example',{
-            responsive: true,
-            columnDefs: [
-                {
-                    width: '15%',
-                    targets: 0
-                },
-                {
-                    width: '15%',
-                    targets: 1
-                },
-                {
-                    width: '15%',
-                    targets: 2
-                },
-                {
-                    width: '15%',
-                    targets: 3
-                }
-            ],
-            language: {
-                paginate: {
-                    first: '<i class="bi bi-caret-left-fill"></i><i class="bi bi-caret-left-fill" style="margin-left: -10px;"></i>',
-                    last: '<i class="bi bi-caret-right-fill"></i><i class="bi bi-caret-right-fill" style="margin-left: -10px;"></i>',
-                    next: '<i class="bi bi-caret-right-fill"></i>',
-                    previous: '<i class="bi bi-caret-left-fill"></i>'
-                }
-            }
-        });
-    </script>
+    <script type="module" src="{{ asset('js/admins_js/admin-dealers.js') }}"></script>
 </body>
 
 

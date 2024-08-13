@@ -25,5 +25,7 @@
 	{{-- TOASTR --}}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    
 	{{-- CUSTOM STYLES --}}
 	<link href="{{ asset('css/admin-style.css') }}" rel="stylesheet">
